@@ -860,8 +860,7 @@ Tab:AddButton({
 	Name = "刷马职业",
 
 	Callback = function()
-
-     --[[
+--[[
 	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
 ]]
 loadstring(game:HttpGet("https://pastebin.com/raw/SDy62NeU"))()
@@ -875,8 +874,7 @@ Tab:AddButton({
 	Name = "极品脚本",
 
 	Callback = function()
-
-     loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()
 
   	end    
 

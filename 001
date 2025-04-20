@@ -933,7 +933,7 @@ Tab:AddButton({
 	Name = "油管上的",
 
 	Callback = function()
-
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/%E6%B2%B9%E7%AE%A1%E8%84%9A%E6%9C%AC"))()
 
     end
 

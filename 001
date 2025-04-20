@@ -269,7 +269,7 @@ Tab:AddButton({
 
 Tab:AddButton({
 
-	Name = "皮飞行",
+	Name = "飞行",
 
 	Callback = function()
 
@@ -281,7 +281,7 @@ Tab:AddButton({
 
 Tab:AddButton({
 
-	Name = "皮飞车",
+	Name = "飞车",
 
 	Callback = function()
 
@@ -299,14 +299,14 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "皮自瞄",
+	Name = "自瞄",
 	Callback = function()
      loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/3683e49998644fb7.txt_2024-08-09_094310.OTed.lua"))()
   	end    
 })
 
 Tab:AddButton({
-	Name = "皮甩飞",
+	Name = "甩飞",
 	Callback = function()
      loadstring(game:HttpGet'https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/11_1.txt_2024-08-08_214614.OTed.lua')()
   	end    

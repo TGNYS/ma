@@ -848,23 +848,30 @@ Tab:AddButton({
   	end    
 })
 
-local about = Window:MakeTab({
-    Name = "死铁轨",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
+local Tab = Window:MakeTab({
+
+	Name = "死铁轨",
+
+	Icon = "rbxassetid://4483345998",
+
+	PremiumOnly = false
 
 })
 
 Tab:AddButton({
 
-	Name = "极品脚本",
+	Name = "死铁轨刷债券",
 
 	Callback = function()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()
-
-  	end    
-
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/thiennrb7/Script/refs/heads/main/autobond"))()
+	end
 })
 
+Tab:AddButton({
 
+	Name = "死铁轨脚本",
+
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()
+	end
+})

@@ -243,6 +243,14 @@ print("执行(光影)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MZEEN2424/Graphics/main/Graphics.xml"))()
   end
 })
+currency:AddButton({
+  Name = "死亡笔记",
+  Default = false,
+  Callback = function()
+print("执行(死亡笔记)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/1_1.txt_2024-08-08_153358.OTed.lua"))()
+  end
+})
 
 print("创建分类(currency-通用)")
 
@@ -336,6 +344,13 @@ print("执行(刷债券)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/thiennrb7/Script/refs/heads/main/autobond"))()
 end
 })    
+OtherScripts:AddButton({
+	Name = "极品脚本",
+	Callback = function()
+print("执行(极品脚本)")
+--WTBloadstring(game:HttpGet('https://pastefy.app/w72aJbvr/raw'))()
+end
+})    
 
 local OtherScripts = Window:MakeTab({
     Name = "刃刀球",
@@ -354,5 +369,18 @@ OtherScripts:AddButton({
 	Callback = function()
 print("执行(还可以的脚本(需要卡密))")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/mzkv/LUNAR/refs/heads/main/BladeBall", true))()
+end
+}) 
+
+local OtherScripts = Window:MakeTab({
+    Name = "FE脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1x1x1x1",
+	Callback = function()
+print("执行(无敌脚本)")
+loadstring(game:HttpGet(('https://pastebin.com/raw/JipYNCht'),true))()
 end
 })    

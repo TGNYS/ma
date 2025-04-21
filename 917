@@ -323,17 +323,17 @@ local DOORS = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 }) 
-DOORS:AddButton({
+OtherScripts:AddButton({
 	Name = "DOORS-MS脚本(英文版)",
 	Callback = function()
 print("执行(DOORS-MS脚本(英文版))")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/main.lua"))()
 end
 })  
-DOORS:AddButton({
-	Name = "DOORS-(汉化)",
+OtherScripts:AddButton({
+	Name = "汉化",
 	Callback = function()
-print("执行(DOORS-(汉化))")
+print("执行(汉化)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/EntitySpawner/main/doors(orionlib).lua"))()
 end
 })

@@ -516,8 +516,6 @@ end
 OtherScripts:AddButton({
 	Name = "夜视仪",
 	Callback = function()
-print("执行(夜视仪)")
-  _G.UpdateStars = false -- stars disappear after picking up a book/breaker pole | false: a little lag
-   loadstring(game:HttpGet('https://raw.githubusercontent.com/DeividComSono/Scripts/main/Scanner.lua'))()
+print("执行(夜视仪)")  loadstring(game:HttpGet('https://raw.githubusercontent.com/DeividComSono/Scripts/main/Scanner.lua'))()
 end
 })

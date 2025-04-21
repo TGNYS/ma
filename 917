@@ -349,3 +349,10 @@ print("执行(无敌脚本)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/%E6%B2%B9%E7%AE%A1%E8%84%9A%E6%9C%AC"))()
 end
 })    
+OtherScripts:AddButton({
+	Name = "还可以的脚本(需要卡密)",
+	Callback = function()
+print("执行(还可以的脚本(需要卡密))")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/mzkv/LUNAR/refs/heads/main/BladeBall", true))()
+end
+})    

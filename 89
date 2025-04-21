@@ -1,0 +1,39 @@
+loadstring(game:HttpGet("https://pastebin.com/raw/9fFu43FF"))()game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "看到这个就代表可以用"; Text ="请耐心等待加载"; Duration = 4; })local CoreGui = game:GetService("StarterGui")CoreGui:SetCore("SendNotification", {    Title = "BS",    Text = "正在加载（反挂机已开启）",    Duration = 5, })print("反挂机开启")		local vu = game:GetService("VirtualUser")		game:GetService("Players").LocalPlayer.Idled:connect(function()		   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)		   wait(1)		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)		end)local OrionLib = loadstring(game:HttpGet('https://pastebin.com/raw/iXGNieAz'))()local Window = OrionLib:MakeWindow({Name = "BL", HidePremium = false, SaveConfig = true,IntroText = "BL", ConfigFolder = "BL(14)"})
+
+local Tab = Window:MakeTab({
+
+	Name = "死铁轨",
+
+	Icon = "rbxassetid://4483345998",
+
+	PremiumOnly = false
+
+})
+
+Tab:AddButton({
+
+	Name = "死铁轨刷债券",
+
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/thiennrb7/Script/refs/heads/main/autobond"))()
+	end
+})
+
+local Tab = Window:MakeTab({
+
+	Name = "刃刀球",
+
+	Icon = "rbxassetid://4483345998",
+
+	PremiumOnly = false
+
+})
+
+Tab:AddButton({
+
+	Name = "最强",
+
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/mzkv/LUNAR/refs/heads/main/BladeBall", true))()
+	end
+})

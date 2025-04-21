@@ -816,52 +816,6 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
-
-	Name = "自然灾害",
-
-	Icon = "rbxassetid://4483345998",
-
-	PremiumOnly = false
-	
-})
-
-Tab:AddButton({
-
-	Name = "自然灾害①",	
-	
-	Callback = function()
-	
-loadstring(game:HttpGet('https://raw.githubusercontent.com/9NLK7/93qjoadnlaknwldk/main/main'))()	
-	
-	end
-
-})
-
-Tab:AddButton({
-
-	Name = "自然灾害②",	
-	
-	Callback = function()
-	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringUjHI6RQpz2o8", true))()	
-	
-	end
-			
-})
-
-Tab:AddButton({
-
-	Name = "自然灾害③",
-
-	Callback = function()
-	
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringUjHI6RQpz2o8", true))()
-	
-	    end
-
-})
-
-local Tab = Window:MakeTab({
 	Name = "FE脚本",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
@@ -985,3 +939,25 @@ Tab:AddButton({
     end
 
 })
+
+local Tab = Window:MakeTab({
+
+	Name = "自然灾害",
+
+	Icon = "rbxassetid://4483345998",
+
+	PremiumOnly = false
+
+})
+
+Tab:AddButton({
+
+	Name = "1",
+
+	Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/9NLK7/93qjoadnlaknwldk/main/main'))()
+
+    end
+
+})
+

@@ -435,3 +435,16 @@ print("执行(刷1)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/ok/T%20ang%20County"))()
 end
 })
+
+local OtherScripts = Window:MakeTab({
+    Name = "最强战争",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1",
+	Callback = function()
+print("执行(1)")
+loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-Tsb-good-script-17364"))()
+end
+})

@@ -427,3 +427,16 @@ print("执行(老大汉化)")
 loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\34\104\116\116\112\115\58\47\47\102\114\101\101\110\111\116\101\46\98\105\122\47\114\97\119\47\109\117\122\110\104\101\114\104\114\117\34\41\44\116\114\117\101\41\41\40\41\10")()
 end
 })
+
+local OtherScripts = Window:MakeTab({
+    Name = "河北唐县刷钱脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "刷1",
+	Callback = function()
+print("执行(刷1)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/ok/T%20ang%20County"))()
+end
+})

@@ -531,6 +531,13 @@ OtherScripts:AddButton({
 	Name = "刷钱",
 	Callback = function()
 print("执行(刷钱)")
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/%E5%88%B7%E9%92%B1"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "一路向西",
+	Callback = function()
+print("执行(一路向西)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/lyyanai/westbound/main/script"))()
 end
 })

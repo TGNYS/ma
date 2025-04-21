@@ -253,6 +253,38 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/mai
   end
 })
 currency:AddButton({
+  Name = "爬墙",
+  Default = false,
+  Callback = function()
+print("执行(爬墙)")
+loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+  end
+})
+currency:AddButton({
+  Name = "子弹追踪",
+  Default = false,
+  Callback = function()
+print("执行(子弹追踪)")
+loadstring(game:HttpGet("https://pastebin.com/raw/1AJ69eRG"))()
+  end
+})
+currency:AddButton({
+  Name = "透视",
+  Default = false,
+  Callback = function()
+print("执行(透视)")
+loadstring(game:HttpGet('https://pastebin.com/raw/MA8jhPWT'))()
+  end
+})
+currency:AddButton({
+  Name = "电脑键盘",
+  Default = false,
+  Callback = function()
+print("执行(电脑键盘)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+  end
+})
+currency:AddButton({
   Name = "R6撸管",
   Default = false,
   Callback = function()

@@ -251,6 +251,22 @@ print("执行(死亡笔记)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/1_1.txt_2024-08-08_153358.OTed.lua"))()
   end
 })
+currency:AddButton({
+  Name = "R6撸管",
+  Default = false,
+  Callback = function()
+print("执行(R6撸管)")
+loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+  end
+})
+currency:AddButton({
+  Name = "R15撸管",
+  Default = false,
+  Callback = function()
+print("执行(R15撸管)")
+loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+  end
+})
 
 print("创建分类(currency-通用)")
 

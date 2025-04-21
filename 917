@@ -514,3 +514,23 @@ print("执行(1)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubRivals"))()
 end
 })
+
+local OtherScripts = Window:MakeTab({
+    Name = "一路向西",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "多功能",
+	Callback = function()
+print("执行(多功能)")
+loadstring(game:HttpGet("https://thisstuff.xyz/Api/WOAHSCRIPTS/1257821635-9356095531/oOAfkpCWzDWsn4CjuLZLZOs3vCf4rgUMhXaJd32VyHSs2tojOCTUKINNTbAuTTCGFrYTyMeBDEIfdo7C0Sp5EnCyxN80pHf5jpqk2xU7f1LAcx2Nt1cZe", true))()
+end
+})
+OtherScripts:AddButton({
+	Name = "刷钱",
+	Callback = function()
+print("执行(刷钱)")
+
+end
+})

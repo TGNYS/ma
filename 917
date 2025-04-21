@@ -273,13 +273,6 @@ print("执行(DOORS-(汉化))")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/EntitySpawner/main/doors(orionlib).lua"))()
 end
 })
-DOORS:AddButton({
-	Name = "DOORS-NB脚本",
-	Callback = function()
-print("执行(DOORS-NB脚本)")
-loadstring(game:HttpGet("https://github.com/DocYogurt/DOORS/raw/main/Loader.lua"))()
-end
-})
 
 print("创建分类(DOORS-DOORS)")
 

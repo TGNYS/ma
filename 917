@@ -323,14 +323,14 @@ local DOORS = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 }) 
-OtherScripts:AddButton({
+DOORS:AddButton({
 	Name = "DOORS-MS脚本(英文版)",
 	Callback = function()
 print("执行(DOORS-MS脚本(英文版))")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/main.lua"))()
 end
 })  
-OtherScripts:AddButton({
+DOORS:AddButton({
 	Name = "汉化",
 	Callback = function()
 print("执行(汉化)")

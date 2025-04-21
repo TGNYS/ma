@@ -319,7 +319,7 @@ end
 print("创建分类(currency-通用)")
 
 local DOORS = Window:MakeTab({
-    Name = "DOORS",
+    Name = "DOORS(不可用)",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 }) 
@@ -331,7 +331,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/
 end
 })  
 
-print("创建分类(DOORS-DOORS)")
+print("创建分类(DOORS-DOORS(不可用))")
 
 local ACG = Window:MakeTab({
     Name = "ACG",

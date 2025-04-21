@@ -516,6 +516,7 @@ end
 OtherScripts:AddButton({
 	Name = "夜视仪",
 	Callback = function()
-print("执行(夜视仪)")  loadstring(game:HttpGet('https://raw.githubusercontent.com/DeividComSono/Scripts/main/Scanner.lua'))()
+print("执行(夜视仪)")  
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/%E5%A4%9C%E8%A7%86%E4%BB%AA"))()
 end
 })

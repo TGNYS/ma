@@ -87,6 +87,7 @@ local announcement = Window:MakeTab({
 	PremiumOnly = false
 })
 announcement:AddParagraph("作者","萧炎,凡尘")
+announcement:AddParagraph("版本","高级")
 announcement:AddLabel("你的注入器:"..identifyexecutor())
 announcement:AddLabel("你的用户名:"..game.Players.LocalPlayer.Character.Name)
 announcement:AddLabel("你的客户端ID:"..game:GetService("RbxAnalyticsService"):GetClientId())

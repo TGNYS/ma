@@ -995,11 +995,9 @@ Tab:AddButton({
 
 Tab:AddButton({
 
-	Name = "xk高级版",
+	Name = "死铁轨刷债券",
 
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BINjiaobzx6/BINjiao/main/XK.lua"))()
-
 	end
-
 })

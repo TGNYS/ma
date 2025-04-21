@@ -253,14 +253,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/mai
   end
 })
 currency:AddButton({
-  Name = "透视(需要加群组)",
-  Default = false,
-  Callback = function()
-print("执行(透视(需要加群组))")
-loadstring(game:GetObjects("rbxassetid://10092697033")[1].Source)()
-  end
-})
-currency:AddButton({
   Name = "R6撸管",
   Default = false,
   Callback = function()

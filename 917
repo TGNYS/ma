@@ -74,7 +74,7 @@ sound:Play()
 
 print("弹出(凡尘脚本-你的用户名是)"..game.Players.LocalPlayer.Character.Name)
 
-print("弹出(凡尘脚本-防反挂机已自动启动)")
+print("弹出(凡尘脚本-检测到你是高级版，需要入门版请前往3557736755)")
 
 local Window = OrionLib:MakeWindow({Name = "凡尘脚本", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用凡尘脚本", ConfigFolder = "123"})
 

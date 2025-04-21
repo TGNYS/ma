@@ -357,26 +357,6 @@ end
 })    
 
 local OtherScripts = Window:MakeTab({
-    Name = "死铁轨",
-	Icon = "rbxassetid://4483345998", -- roblox图片ID
-	PremiumOnly = false
-})
-OtherScripts:AddButton({
-	Name = "刷债券",
-	Callback = function()
-print("执行(刷债券)")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/thiennrb7/Script/refs/heads/main/autobond"))()
-end
-})    
-OtherScripts:AddButton({
-	Name = "极品脚本",
-	Callback = function()
-print("执行(极品脚本)")
---WTBloadstring(game:HttpGet('https://pastefy.app/w72aJbvr/raw'))()
-end
-})    
-
-local OtherScripts = Window:MakeTab({
     Name = "刃刀球",
 	Icon = "rbxassetid://4483345998", -- roblox图片ID
 	PremiumOnly = false

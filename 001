@@ -1001,12 +1001,3 @@ Tab:AddButton({
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BINjiaobzx6/BINjiao/main/XK.lua"))()
 	end
 })
-
-Tab:AddButton({
-
-	Name = "死铁轨刷债券",
-
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/thiennrb7/Script/refs/heads/main/autobond"))()
-	end
-})

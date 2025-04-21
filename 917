@@ -314,9 +314,24 @@ currency:AddButton({
 print("执行(阿尔宙斯自瞄)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20Aimbot.lua"))()
 end
-})   
-
+}) 
+ 
 print("创建分类(currency-通用)")
+
+local DOORS = Window:MakeTab({
+    Name = "DOORS",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+}) 
+DOORS:AddButton({
+	Name = "DOORS-MS脚本(英文版)",
+	Callback = function()
+print("执行(DOORS-MS脚本(英文版))")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/main.lua"))()
+end
+})  
+
+print("创建分类(DOORS-DOORS)")
 
 local ACG = Window:MakeTab({
     Name = "ACG",

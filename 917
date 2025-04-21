@@ -383,4 +383,18 @@ OtherScripts:AddButton({
 print("执行(无敌脚本)")
 loadstring(game:HttpGet(('https://pastebin.com/raw/JipYNCht'),true))()
 end
-})    
+})
+OtherScripts:AddButton({
+	Name = "cOOlgui",
+	Callback = function()
+print("执行(cOOIgui)")
+loadstring(game:GetObjects("rbxassetid://8127297852")[1].Source)()
+end
+})
+OtherScripts:AddButton({
+	Name = "动画中心",
+	Callback = function()
+print("执行(动画中心)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui", true))()
+end
+})

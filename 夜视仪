@@ -1,0 +1,2 @@
+_G.UpdateStars = false -- stars disappear after picking up a book/breaker pole | false: a little lag
+  loadstring(game:HttpGet('https://raw.githubusercontent.com/DeividComSono/Scripts/main/Scanner.lua'))()

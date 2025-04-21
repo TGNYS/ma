@@ -1,0 +1,20 @@
+local OrionLib =loadstring(game:HttpGet('https://pastebin.com/raw/xLRUSiKx'))()local Window = OrionLib:MakeWindow({Name = "急你细品", HidePremium = false, SaveConfig = true,IntroText = "五十四", ConfigFolder = "1134464"})
+
+local Tab = Window:MakeTab({
+
+	Name = "死铁轨",
+
+	Icon = "rbxassetid://4483345998",
+
+	PremiumOnly = false
+
+})
+
+Tab:AddButton({
+
+	Name = "死铁轨刷债券",
+
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/thiennrb7/Script/refs/heads/main/autobond"))()
+	end
+})

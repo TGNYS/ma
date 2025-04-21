@@ -318,35 +318,6 @@ end
 
 print("创建分类(currency-通用)")
 
-local DOORS = Window:MakeTab({
-    Name = "DOORS",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-}) 
-DOORS:AddButton({
-	Name = "DOORS-MS脚本(英文版)",
-	Callback = function()
-print("执行(DOORS-MS脚本(英文版))")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/main.lua"))()
-end
-})  
-DOORS:AddButton({
-	Name = "汉化",
-	Callback = function()
-print("执行(汉化)")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/EntitySpawner/main/doors(orionlib).lua"))()
-end
-})
-DOORS:AddButton({
-	Name = "DOORS-不道啥名",
-	Callback = function()
-print("执行(DOORS-不知道啥名)")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
-end
-})
-
-print("创建分类(DOORS-DOORS)")
-
 local ACG = Window:MakeTab({
     Name = "ACG",
 	Icon = "rbxassetid://4483345998", -- roblox图片ID

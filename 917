@@ -95,7 +95,7 @@ announcement:AddLabel("当前服务器ID:"..game.GameId)
 announcement:AddLabel("你的账号年龄:"..game.Players.LocalPlayer.AccountAge)
 announcement:AddLabel("你的账号ID:"..game.Players.LocalPlayer.UserId)
 announcement:AddButton({
-	Name = "QQ群979483258点击复制",
+	Name = "QQ群56117318118点击复制",
 	Callback = function()
 print("执行(复制561173181)并弹出(复制成功-你已复制QQ群号)")
 setclipboard("561173181")

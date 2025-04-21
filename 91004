@@ -38,6 +38,9 @@ local function HeartbeatUpdate()
 	FpsLabel.Text = ("北京时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
 end
 Start = tick()
+Heartbeat:Connect(HeartbeatUpdate)
+local Window = OrionLib:MakeWindow({Name = "马脚本", HidePremium = false, SaveConfig = true,IntroText = "马脚本", ConfigFolder = "马脚本"})
+
 local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/j9TdK86G"))()
 
 print("初始化成功✅")

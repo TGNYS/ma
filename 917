@@ -319,7 +319,7 @@ end
 print("创建分类(currency-通用)")
 
 local DOORS = Window:MakeTab({
-    Name = "DOORS(不可用)",
+    Name = "DOORS",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 }) 
@@ -331,7 +331,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/
 end
 })  
 
-print("创建分类(DOORS-DOORS(不可用))")
+print("创建分类(DOORS-DOORS)")
 
 local ACG = Window:MakeTab({
     Name = "ACG",
@@ -498,5 +498,18 @@ OtherScripts:AddButton({
 	Callback = function()
 print("执行(1)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubRivals"))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "Doors(新)",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "最强汉化脚本",
+	Callback = function()
+print("执行(最强汉化脚本)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/EntitySpawner/main/doors(orionlib).lua"))()
 end
 })

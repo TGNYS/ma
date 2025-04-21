@@ -469,3 +469,16 @@ print("执行(1(卡密yes))")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BobJunior1/ForsakenBoi/refs/heads/main/B0bbyHub"))()
 end
 })
+
+local OtherScripts = Window:MakeTab({
+    Name = "竞争对手",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1",
+	Callback = function()
+print("执行(1)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubRivals"))()
+end
+})

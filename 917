@@ -391,3 +391,16 @@ print("执行(动画中心)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui", true))()
 end
 })
+
+local OtherScripts = Window:MakeTab({
+    Name = "俄亥俄州脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "自动印钞机",
+	Callback = function()
+print("执行(自动印钞机)")
+loadstring(game:HttpGet(loadstring(game:HttpGet("https://raw.githubusercontent.com/PUSCRIPTS/MONEY-PRINTER-YAY/main/MONEY"))()
+end
+})

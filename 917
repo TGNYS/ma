@@ -253,6 +253,22 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/mai
   end
 })
 currency:AddButton({
+  Name = "踏空行走",
+  Default = false,
+  Callback = function()
+print("执行(踏空行走)")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Float'))()
+  end
+})
+currency:AddButton({
+  Name = "伪名说话",
+  Default = false,
+  Callback = function()
+print("执行(伪名说话)")
+loadstring(game:HttpGet(('https://pastefy.ga/zCFEwaYq/raw'),true))()
+  end
+})
+currency:AddButton({
   Name = "爬墙",
   Default = false,
   Callback = function()

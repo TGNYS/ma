@@ -433,15 +433,6 @@ print("执行(音乐轰炸器))")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/%E8%BD%B0%E7%82%B8.lua"))()
 end
 }) 
-OtherScripts:AddButton({
-	Name = "雨中牛郎",
-	Callback = function()
-print("执行(雨中牛郎))")
-local audioPlayer : AudioPlayer = Instance.new("AudioPlayer")
-audioPlayer.Parent = workspace
-audioPlayer.AssetId = "rbxassetid://16831108393"
-end
-}) 
 
 local OtherScripts = Window:MakeTab({
     Name = "刃刀球",

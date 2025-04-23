@@ -565,3 +565,19 @@ print("执行(还可以(要卡密))")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/mzkv/LUNAR/refs/heads/main/BladeBall", true))()
 end
 })
+
+local OtherScripts = Window:MakeTab({
+    Name = "俄亥俄州脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "刷钱",
+	Callback = function()
+print("执行(刷钱)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/mspenguin161/ohio_hub_test/refs/heads/main/Loader.lua"))()
+
+--RbxScript: https://discord.gg/zA6bKNNaDp
+--Join the server and add your scripts
+end
+})

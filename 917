@@ -415,15 +415,40 @@ end
 })    
 
 local OtherScripts = Window:MakeTab({
+    Name = "音乐播放器",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "自定义播放器",
+	Callback = function()
+print("执行(自定义播放器))")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/beta/main/music.lua"))()
+end
+}) 
+OtherScripts:AddButton({
+	Name = "音乐轰炸器",
+	Callback = function()
+print("执行(音乐轰炸器))")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/%E8%BD%B0%E7%82%B8.lua"))()
+end
+}) 
+OtherScripts:AddButton({
+	Name = "雨中牛郎",
+	Callback = function()
+print("执行(雨中牛郎))")
+local audioPlayer : AudioPlayer = Instance.new("AudioPlayer")
+audioPlayer.Parent = workspace
+audioPlayer.AssetId = "rbxassetid://16831108393"
+end
+}) 
+
+local OtherScripts = Window:MakeTab({
     Name = "刃刀球",
 	Icon = "rbxassetid://4483345998", -- roblox图片ID
 	PremiumOnly = false
 })
-OtherScripts:AddButton({
-	Name = "无敌脚本",
-	Callback = function()
-print("执行(无敌脚本)")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/%E6%B2%B9%E7%AE%A1%E8%84%9A%E6%9C%AC"))()
+%AE%A1%E8%84%9A%E6%9C%AC"))()
 end
 })    
 OtherScripts:AddButton({

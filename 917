@@ -418,8 +418,6 @@ local OtherScripts = Window:MakeTab({
     Name = "刃刀球",
 	Icon = "rbxassetid://4483345998", -- roblox图片ID
 	PremiumOnly = false
-})
-%AE%A1%E8%84%9A%E6%9C%AC"))()
 end
 })    
 OtherScripts:AddButton({

@@ -427,6 +427,20 @@ loadstring(game:HttpGet(('https://pastebin.com/raw/JipYNCht'),true))()
 end
 })
 OtherScripts:AddButton({
+	Name = "月亮之刃",
+	Callback = function()
+print("执行(月亮之刃)")
+loadstring(game:HttpGet("https://pastebin.com/raw/rTSxZGSQ"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "sxxx",
+	Callback = function()
+print("执行(sxxx)")
+loadstring(game:HttpGet("https://pastebin.com/raw/i0yEjAry"))()
+end
+})
+OtherScripts:AddButton({
 	Name = "cOOlgui",
 	Callback = function()
 print("执行(cOOIgui)")

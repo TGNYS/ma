@@ -532,6 +532,13 @@ print("执行(夜视仪)")
 loadstring(game:HttpGet("https://pastebin.com/raw/4Vsv1Xwn"))()
 end
 })
+OtherScripts:AddButton({
+	Name = "最强(无汉化)",
+	Callback = function()
+print("执行(最强(无汉化))")
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/002c19202c9946e6047b0c6e0ad51f84.lua"))()
+end
+})
 
 local OtherScripts = Window:MakeTab({
     Name = "被遗弃",

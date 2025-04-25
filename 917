@@ -450,10 +450,10 @@ loadstring(game:HttpGet("https://github.com/Sinister-Scripts/Roblox-Exploits/raw
 end
 })
 OtherScripts:AddButton({
-	Name = "sxxx",
+	Name = "变猫娘",
 	Callback = function()
-print("执行(sxxx)")
-loadstring(game:HttpGet("https://pastebin.com/raw/i0yEjAry"))()
+print("执行(变猫娘)")
+loadstring(game:HttpGet("https://pastebin.com/raw/FWwdST5Y"))()
 end
 })
 OtherScripts:AddButton({

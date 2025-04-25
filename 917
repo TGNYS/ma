@@ -293,6 +293,14 @@ loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
   end
 })
 currency:AddButton({
+  Name = "口教",
+  Default = false,
+  Callback = function()
+print("执行(口教)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/M-E-N-A-C-E/Menace-Hub/refs/heads/main/Free%20Sus%20Missile", true))()
+  end
+})
+currency:AddButton({
   Name = "飞车",
   Default = false,
   Callback = function()

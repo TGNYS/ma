@@ -420,6 +420,13 @@ local OtherScripts = Window:MakeTab({
 	PremiumOnly = false
 }) 
 OtherScripts:AddButton({
+	Name = "佩恩",
+	Callback = function()
+print("执行(佩恩)")
+loadstring(game:HttpGet("https://paste.ee/r/tneq5cAw/0", true))()
+end
+})
+OtherScripts:AddButton({
 	Name = "1x1x1x1",
 	Callback = function()
 print("执行(1x1x1x1)")

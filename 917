@@ -443,10 +443,10 @@ loadstring(game:HttpGet("https://paste.ee/r/tneq5cAw/0", true))()
 end
 })
 OtherScripts:AddButton({
-	Name = "月亮之刃",
+	Name = "FE",
 	Callback = function()
-print("执行(月亮之刃)")
-loadstring(game:HttpGet("https://pastebin.com/raw/rTSxZGSQ"))()
+print("执行(FE)")
+loadstring(game:HttpGet("https://github.com/Sinister-Scripts/Roblox-Exploits/raw/refs/heads/main/FE-Animation-GUI-R6"))()
 end
 })
 OtherScripts:AddButton({

@@ -277,6 +277,14 @@ loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
   end
 })
 currency:AddButton({
+  Name = "草人",
+  Default = false,
+  Callback = function()
+print("执行(草人)")
+loadstring(game:HttpGet("https://pastebin.com/raw/FWwdST5Y"))()
+  end
+})
+currency:AddButton({
   Name = "子弹追踪",
   Default = false,
   Callback = function()

@@ -1,0 +1,35 @@
+s:play()
+end)
+e1x1x1x1Laugh.Name = "e1x1x1x1Laugh"
+e1x1x1x1Laugh.Parent = Frame
+e1x1x1x1Laugh.BackgroundColor3 = Color3.fromRGB(0,0,255)
+e1x1x1x1Laugh.Position = UDim2.new(0.0714285746, 0, 0.648000002, 0)
+e1x1x1x1Laugh.Size = UDim2.new(0, 79, 0, 34)
+e1x1x1x1Laugh.Font = Enum.Font.GothamBold
+e1x1x1x1Laugh.Text = "1x1x1x1 Laugh"
+e1x1x1x1Laugh.TextColor3 = Color3.fromRGB(0, 0, 0)
+e1x1x1x1Laugh.TextScaled = true
+e1x1x1x1Laugh.TextSize = 14.000
+e1x1x1x1Laugh.TextWrapped = true
+e1x1x1x1Laugh.MouseButton1Down:connect(function()
+ --Made by Servano
+
+ local s = Instance.new("Sound")
+
+ s.Name = "Sound"
+ s.SoundId = "http://www.roblox.com/asset/?id=35935204"
+ s.Volume = 9999999999999
+ s.Pitch = 0.8
+ s.Looped = true
+ s.archivable = false
+
+ s.Parent = game.Workspace
+
+ wait(1)
+
+ s:play()
+end)
+DayToNight.Name = "DayToNight"
+DayToNight.Parent = Frame
+DayToNight.BackgroundColor3 = Color3.fromRGB(0,0,255)
+DayToNight.Position = UDim2.new(0.388888896, 0, 0.216000006,

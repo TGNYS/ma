@@ -184,7 +184,7 @@ print("创建主UI(凡尘脚本-凡尘脚本-123)")
 
 local announcement = Window:MakeTab({
     Name = "主页",
-	Icon = "rbxassetid://4483345998",
+	Icon = "rbxassetid://7734068321",
 	PremiumOnly = false
 })
 announcement:AddParagraph("作者","萧炎,凡尘")

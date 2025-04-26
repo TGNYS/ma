@@ -508,7 +508,7 @@ OtherScripts:AddButton({
 	Name = "刷2",
 	Callback = function()
 print("执行(刷2)")
-getgenv().credits = "discord:yeahhaveagoodtime"getgenv().rwait = 0.3getgenv().rtoggle = "开"loadstring(game:HttpGet("https://raw.githubusercontent.com/mohun-sciprt/free/main/tangautofarm.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/mohun-sciprt/free/main/tangautofarm.lua"))()
 end
 })
 

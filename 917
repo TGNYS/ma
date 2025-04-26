@@ -603,6 +603,13 @@ loadstring(game:HttpGet('https://pastebin.com/raw/idKUExya'))()
 end
 })
 OtherScripts:AddButton({
+	Name = "最牛逼",
+	Callback = function()
+print("执行(最牛逼)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CodeE4X-dev/Star-X/refs/heads/main/BladeBall-V3.lua"))()
+end
+})
+OtherScripts:AddButton({
 	Name = "还可以(要卡密)",
 	Callback = function()
 print("执行(还可以(要卡密))")

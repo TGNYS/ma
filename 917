@@ -504,13 +504,6 @@ print("执行(刷1)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/ok/T%20ang%20County"))()
 end
 })
-OtherScripts:AddButton({
-	Name = "刷2",
-	Callback = function()
-print("执行(刷2)")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/mohun-sciprt/free/main/tangautofarm.lua"))()
-end
-})
 
 local OtherScripts = Window:MakeTab({
     Name = "最强战争",

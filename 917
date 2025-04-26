@@ -665,6 +665,19 @@ end
 })
 
 local OtherScripts = Window:MakeTab({
+    Name = "活到七天",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1",
+	Callback = function()
+print("执行(1)")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/zamzamzan/test/refs/heads/main/7days'))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
     Name = "俄亥俄州脚本",
 	Icon = "rbxassetid://4483345998", -- roblox图片ID
 	PremiumOnly = false
@@ -677,18 +690,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/mspenguin161/ohio_hub
 
 --RbxScript: https://discord.gg/zA6bKNNaDp
 --Join the server and add your scripts
-end
-})
-
-local OtherScripts = Window:MakeTab({
-    Name = "活到七天",
-	Icon = "rbxassetid://4483345998", -- roblox图片ID
-	PremiumOnly = false
-}) 
-OtherScripts:AddButton({
-	Name = "1",
-	Callback = function()
-print("执行(1)")
-loadstring(game:HttpGet('https://raw.githubusercontent.com/zamzamzan/test/refs/heads/main/7days'))()
 end
 })

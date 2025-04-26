@@ -1,5 +1,3 @@
-local OrionLib =
-loadstring(game:HttpGet("https://pastebin.com/raw/j9TdK86G"))()
 local Gui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -101,6 +99,8 @@ AgreeButton.MouseButton1Click:Connect(function()
     Gui:Destroy()
     runScript()
 
+local OrionLib =
+loadstring(game:HttpGet("https://pastebin.com/raw/j9TdK86G"))()
 local LBLG = Instance.new("ScreenGui", getParent)
 local LBL = Instance.new("TextLabel", getParent)
 local player = game.Players.LocalPlayer

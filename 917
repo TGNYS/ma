@@ -596,6 +596,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/m
 end
 })
 OtherScripts:AddButton({
+	Name = "🥲",
+	Callback = function()
+print("执行(🥲)")
+loadstring(game:HttpGet('https://pastebin.com/raw/idKUExya'))()
+end
+})
+OtherScripts:AddButton({
 	Name = "还可以(要卡密)",
 	Callback = function()
 print("执行(还可以(要卡密))")

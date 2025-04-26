@@ -1,3 +1,8 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
 local ScreenGui = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -232,6 +237,47 @@ if headImage ~= "" then
 	HeadImageLabel.Size = UDim2.new(1, 0, 1, 0)
 	HeadImageLabel.Image = headImage
 end
+
+Check.MouseButton1Click:connect(function()
+	_G.BeiqiuCenter="北秋中心"
+	loadstring(game:HttpGet(("\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\66\101\105\113\105\117\67\101\110\116\101\114\85\87\85\47\83\99\114\105\112\116\47\109\97\105\110\47\75\101\121\83\121\115\116\101\109\46\108\117\97"),true))()
+	Main:Destroy()
+end)
+
+Exit.MouseButton1Click:connect(function()
+	Main:Destroy()
+end)
+
+local isMinimized = false
+
+Mini.MouseButton1Click:Connect(function()
+	if isMinimized then
+		Main.Size = UDim2.new(0, 400, 0, 300)
+		Line.Position = UDim2.new(0.100000001, 0, 0.159999996, 0)
+		Title.Position = UDim2.new(0, 0, 0.00999999978, 0)
+		Mini.Position = UDim2.new(0.688000023, 0, 0.0399999991, 0)
+		Exit.Position = UDim2.new(0.829999983, 0, 0.0399999991, 0)
+		Mini.TextSize = 50.000
+		Mini.Text = "-"
+		isMinimized = false
+		ChangeLogs.Visible = true
+		head.Visible = true
+		username.Visible = true
+		Check.Visible = true
+	else
+		Main.Size = UDim2.new(0, 300, 0, 70)
+		Line.Position = UDim2.new(0.130000001, 0, 0.69288886, 0)
+		Title.Position = UDim2.new(0, 0, 0.04, 0)
+		Mini.Position = UDim2.new(0.62000023, 0, 0.1728888631, 0)
+		Exit.Position = UDim2.new(0.779999983, 0, 0.1728888631, 0)
+		Mini.TextSize = 35.000
+		Mini.Text = "+"
+		isMinimized = true
+		ChangeLogs.Visible = false
+		head.Visible = false
+		username.Visible = false
+		Check.Visible = false
+	end
 
 local OrionLib =
 loadstring(game:HttpGet("https://pastebin.com/raw/j9TdK86G"))()

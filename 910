@@ -1,0 +1,782 @@
+local OrionLib =
+loadstring(game:HttpGet("https://pastebin.com/raw/j9TdK86G"))()
+local Gui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local AgreeButton = Instance.new("TextButton")
+local AgreeUICorner = Instance.new("UICorner")
+local PhotoLabel = Instance.new("ImageLabel")
+local CloseButton = Instance.new("TextButton")
+local CloseUICorner = Instance.new("UICorner")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local TextLabel = Instance.new("TextLabel")
+local TextBox = Instance.new("TextBox")
+
+Gui.Parent = game.CoreGui
+
+Frame.Parent = Gui
+Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame.Position = UDim2.new(0.15, 0, 0, 0)
+Frame.Size = UDim2.new(0.72, 0, 0.85, 0)
+Frame.ClipsDescendants = true
+
+UICorner.Parent = Frame
+UICorner.CornerRadius = UDim.new(0, 10)
+
+PhotoLabel.Parent = Frame
+PhotoLabel.Image = "rbxassetid://16060333448"
+PhotoLabel.ImageTransparency = 0
+PhotoLabel.Position = UDim2.new(0.027, 0, 0.05, 0)
+PhotoLabel.Size = UDim2.new(0.47, 0, 0.897, 0)
+
+AgreeButton.Parent = Frame
+AgreeButton.BackgroundColor3 = Color3.fromRGB(66, 134, 244) 
+AgreeButton.Position = UDim2.new(0.548, 0, 0.83, 0) 
+AgreeButton.Size = UDim2.new(0.4, 0, 0.1, 0) 
+AgreeButton.Text = "同意"
+AgreeButton.TextColor3 = Color3.new(0, 0, 0) 
+AgreeButton.Font = Enum.Font.SourceSansBold
+AgreeButton.TextScaled = true
+
+AgreeUICorner.Parent = AgreeButton
+AgreeUICorner.CornerRadius = UDim.new(0, 10) 
+
+CloseButton.Parent = Frame
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) 
+CloseButton.Position = UDim2.new(0.94, 0, 0, 0) 
+CloseButton.Size = UDim2.new(0.06, 0, 0.12, 0) 
+CloseButton.Text = "×"
+CloseButton.TextColor3 = Color3.new(1, 1, 1) 
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.TextScaled = true
+
+CloseUICorner.Parent = CloseButton
+CloseUICorner.CornerRadius = UDim.new(0, 10) 
+
+ScrollingFrame.Parent = Frame
+ScrollingFrame.Position = UDim2.new(0.52, 0, 0.13, 0)
+ScrollingFrame.Size = UDim2.new(0.477, 0, 0.7, 0)
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
+ScrollingFrame.ScrollBarThickness = 3
+ScrollingFrame.ScrollBarImageColor3 = Color3.new(0.5, 0.5, 0.5)
+
+TextLabel.Parent = ScrollingFrame
+TextLabel.Size = UDim2.new(1, -10, 2, 0)
+TextLabel.Position = UDim2.new(0, 0, 0, 0)
+TextLabel.Text = [[
+1.更新时间1月27 凌晨4：38
+2.更新了Ui
+]]
+
+TextLabel.TextSize = 14
+TextLabel.TextWrapped = true
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel.BackgroundTransparency = 1
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel.TextYAlignment = Enum.TextYAlignment.Top
+
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.Position = UDim2.new(0.6, 0, 0, 0)
+TextBox.Size = UDim2.new(0.3, 0, 0.1, 0)
+TextBox.Font = Enum.Font.SourceSans
+TextBox.Text = "公告"
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextSize = 25
+TextBox.ClearTextOnFocus = false
+
+local TextBoxUICorner = Instance.new("UICorner")
+TextBoxUICorner.Parent = TextBox
+TextBoxUICorner.CornerRadius = UDim.new(0, 5)
+
+local TextBoxUIStroke = Instance.new("UIStroke")
+TextBoxUIStroke.Parent = TextBox
+TextBoxUIStroke.Thickness = 1
+TextBoxUIStroke.Color = Color3.fromRGB(0, 0, 0)
+TextBoxUIStroke.Transparency = 0.5
+
+AgreeButton.MouseButton1Click:Connect(function()
+    Gui:Destroy()
+    runScript()
+
+local LBLG = Instance.new("ScreenGui", getParent)
+local LBL = Instance.new("TextLabel", getParent)
+local player = game.Players.LocalPlayer
+
+LBLG.Name = "LBLG"
+LBLG.Parent = game.CoreGui
+LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+LBLG.Enabled = true
+LBL.Name = "LBL"
+LBL.Parent = LBLG
+LBL.BackgroundColor3 = Color3.new(1, 1, 1)
+LBL.BackgroundTransparency = 1
+LBL.BorderColor3 = Color3.new(0, 0, 0)
+LBL.Position = UDim2.new(0.75,0,0.010,0)
+LBL.Size = UDim2.new(0, 133, 0, 30)
+LBL.Font = Enum.Font.GothamSemibold
+LBL.Text = "TextLabel"
+LBL.TextColor3 = Color3.new(1, 1, 1)
+LBL.TextScaled = true
+LBL.TextSize = 14
+LBL.TextWrapped = true
+LBL.Visible = true
+
+local FpsLabel = LBL
+local Heartbeat = game:GetService("RunService").Heartbeat
+local LastIteration, Start
+local FrameUpdateTable = { }
+
+local function HeartbeatUpdate()
+	LastIteration = tick()
+	for Index = #FrameUpdateTable, 1, -1 do
+		FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
+	end
+	FrameUpdateTable[1] = LastIteration
+	local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
+	CurrentFPS = CurrentFPS - CurrentFPS % 1
+	FpsLabel.Text = ("北京时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+end
+Start = tick()
+Heartbeat:Connect(HeartbeatUpdate)
+print("初始化成功✅")
+print("脚本已运行")
+print("测试阶段后果自负")
+
+OrionLib:MakeNotification({
+                    Name = "警告⚠", 
+                    Content = "请勿去死铁轨服务器执行这个脚本",
+                    Time = 10 -- 持续时间
+                })    
+                local sound = Instance.new("Sound", workspace)
+sound.SoundId = "rbxassetid://4590662766"
+sound:Play()
+wait(1)
+
+print("UI加载成功✅")
+print("弹出(凡尘-UI)")
+
+OrionLib:MakeNotification({
+                    Name = "凡尘", 
+                    Content = "欢迎使用凡尘脚本",
+                    Time = 10 -- 持续时间
+                })    
+                local sound = Instance.new("Sound", workspace)
+sound.SoundId = "rbxassetid://4590662766"
+sound:Play()
+wait(1)
+
+print("弹出(凡尘脚本-欢迎使用凡尘脚本)")
+
+OrionLib:MakeNotification({
+                    Name = "凡尘脚本", 
+                    Content = "防反挂机已自动启动",
+                    Time = 10 -- 持续时间
+                })    
+                local sound = Instance.new("Sound", workspace)
+sound.SoundId = "rbxassetid://4590662766"
+sound:Play()
+wait(1)
+print("防反挂机✅")
+
+print("弹出(凡尘脚本-防反挂机已自动启动)")
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+    vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+    wait(1)
+    vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+end)
+
+print("执行(防反挂机)")
+
+OrionLib:MakeNotification({
+                    Name = "凡尘脚本", 
+                    Content = "你的注入器是:"..identifyexecutor(),
+                    Time = 10 -- 持续时间
+                })    
+                local sound = Instance.new("Sound", workspace)
+sound.SoundId = "rbxassetid://4590662766"
+sound:Play()
+wait(1)
+
+print("弹出(凡尘脚本-你的注入器是)"..identifyexecutor())
+
+OrionLib:MakeNotification({
+                    Name = "凡尘脚本", 
+                    Content = "你的用户名是:"..game.Players.LocalPlayer.Character.Name,
+                    Time = 10 -- 持续时间
+                })    
+                local sound = Instance.new("Sound", workspace)
+sound.SoundId = "rbxassetid://4590662766"
+sound:Play()
+
+print("弹出(凡尘脚本-你的用户名是)"..game.Players.LocalPlayer.Character.Name)
+
+print("弹出(凡尘脚本-检测到你是高级版，需要入门版请前往3557736755)")
+
+local Window = OrionLib:MakeWindow({Name = "凡尘脚本", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用凡尘脚本", ConfigFolder = "123"})
+
+print("脚本加载成功✅")
+print("创建主UI(凡尘脚本-凡尘脚本-123)")
+
+local announcement = Window:MakeTab({
+    Name = "主页",
+	Icon = "rbxassetid://7734068321",
+	PremiumOnly = false
+})
+announcement:AddParagraph("作者","萧炎,凡尘")
+announcement:AddParagraph("版本","高级")
+announcement:AddParagraph("警告","别去死铁轨执行这个脚本")
+announcement:AddLabel("你的注入器:"..identifyexecutor())
+announcement:AddLabel("你的用户名:"..game.Players.LocalPlayer.Character.Name)
+announcement:AddLabel("你的客户端ID:"..game:GetService("RbxAnalyticsService"):GetClientId())
+announcement:AddLabel("当前服务器ID:"..game.GameId)
+announcement:AddLabel("你的账号年龄:"..game.Players.LocalPlayer.AccountAge)
+announcement:AddLabel("你的账号ID:"..game.Players.LocalPlayer.UserId)
+announcement:AddButton({
+	Name = "QQ群56117318118点击复制",
+	Callback = function()
+print("执行(复制561173181)并弹出(复制成功-你已复制QQ群号)")
+setclipboard("561173181")
+OrionLib:MakeNotification({
+                    Name = "复制成功", 
+                    Content = "你已复制QQ群号",
+                    Time = 10 -- 持续时间
+                })    
+                local sound = Instance.new("Sound", workspace)
+sound.SoundId = "rbxassetid://4590662766"
+sound:Play()
+end
+})    
+announcement:AddButton({
+	Name = "启动指令版空脚本",
+	Callback = function()
+print("执行(指令版空脚本)")
+loadstring(game:HttpGet("https://pastebin.com/raw/UGnRD4xU"))()
+end
+})   
+
+print("创建分类(announcement-主页)")
+
+local TEST = Window:MakeTab({
+    Name = "注入器/脚本/测试或调试",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+})
+TEST:AddButton({
+	Name = "打开F9(调试控制台)",
+	Callback = function() -- 被调整值
+    print("执行(打开F9(调试控制台))")
+    game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
+end
+})    
+TEST:AddButton({
+	Name = "测试注入器等级键盘按F9查看",
+	Callback = function()
+    print("执行(测试注入器等级)")
+    getgenv().printidentity = nil printidentity()
+end
+})   
+TEST:AddButton({
+	Name = "测试注入器UNC键盘按F9查看",
+	Callback = function()
+print("执行(测试注入器UNC)")
+loadstring(game:HttpGet("https://pastebin.com/raw/aR4dJHGT"))()
+end
+})   
+
+print("创建分类(TEST-注入器/脚本/测试或调试)")
+
+local currency = Window:MakeTab({
+    Name = "通用",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+currency:AddTextbox({
+	Name = "移动速度",
+	Default = "", -- 默认值
+	TextDisappear = true,
+	Callback = function(Value)
+print("执行(修改移动速度)")
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+end
+})
+currency:AddTextbox({
+	Name = "跳跃高度",
+	Default = "", -- 默认值
+	TextDisappear = true,
+	Callback = function(Value)
+print("执行(修改跳跃高度)")
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+end
+})
+currency:AddTextbox({
+	Name = "重力",
+	Default = "", -- 默认值
+	TextDisappear = true,
+	Callback = function(Value)
+print("执行(修改重力)")
+game.Workspace.Gravity = Value
+end
+})
+currency:AddToggle({
+	Name = "夜视",
+	Default = false,
+	Callback = function(Value)
+    if Value then
+	    game.Lighting.Ambient = Color3.new(1, 1, 1)
+    else
+	    game.Lighting.Ambient = Color3.new(0, 0, 0)
+    end
+    print("执行切换/预加载(夜视)")
+	end
+})
+currency:AddToggle({
+	Name = "飞行(自制)",
+	Default = false,
+	Callback = function(Value)
+    if Value then
+	    loadstring(game:HttpGet("https://pastebin.com/raw/Z0VsZaHD"))()
+    else
+	    loadstring(game:HttpGet("https://pastebin.com/raw/gWczAK6H"))()
+    end
+        print("执行切换/预加载(飞行(自制))")
+	end
+})
+currency:AddButton({
+	Name = "高级脚本(K键切换)",
+	Callback = function()
+print("执行(高级脚本(K键切换)")
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/richie0866/orca/master/public/latest.lua"))()
+end
+})   
+currency:AddButton({
+	Name = "飞行V3",
+	Callback = function()
+print("执行(飞行V3)")
+loadstring(game:HttpGet("https://pastebin.com/raw/nkhg0q5K"))()
+end
+})   
+currency:AddButton({
+    Name = "建筑工具",
+    Callback = function()
+        Hammer = Instance.new("HopperBin")
+        Hammer.Name = "锤子"
+        Hammer.BinType = 4
+        Hammer.Parent = game.Players.LocalPlayer.Backpack
+        Clone = Instance.new("HopperBin")
+        Clone.Name = "克隆"
+        Clone.BinType = 3
+        Clone.Parent = game.Players.LocalPlayer.Backpack
+        Grab = Instance.new("HopperBin")
+        Grab.Name = "抓取"
+        Grab.BinType = 2
+        print("执行(建筑工具)")
+    end
+})
+currency:AddButton({
+  Name = "光影-1",
+  Default = false,
+  Callback = function()
+print("执行(光影)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MZEEN2424/Graphics/main/Graphics.xml"))()
+  end
+})
+currency:AddButton({
+  Name = "死亡笔记",
+  Default = false,
+  Callback = function()
+print("执行(死亡笔记)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/1_1.txt_2024-08-08_153358.OTed.lua"))()
+  end
+})
+currency:AddButton({
+  Name = "踏空行走",
+  Default = false,
+  Callback = function()
+print("执行(踏空行走)")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Float'))()
+  end
+})
+currency:AddButton({
+  Name = "伪名说话",
+  Default = false,
+  Callback = function()
+print("执行(伪名说话)")
+loadstring(game:HttpGet(('https://pastefy.ga/zCFEwaYq/raw'),true))()
+  end
+})
+currency:AddButton({
+  Name = "爬墙",
+  Default = false,
+  Callback = function()
+print("执行(爬墙)")
+loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+  end
+})
+currency:AddButton({
+  Name = "草人",
+  Default = false,
+  Callback = function()
+print("执行(草人)")
+loadstring(game:HttpGet("https://pastebin.com/raw/FWwdST5Y"))()
+  end
+})
+currency:AddButton({
+  Name = "子弹追踪",
+  Default = false,
+  Callback = function()
+print("执行(子弹追踪)")
+loadstring(game:HttpGet("https://pastebin.com/raw/1AJ69eRG"))()
+  end
+})
+currency:AddButton({
+  Name = "转圈",
+  Default = false,
+  Callback = function()
+print("执行(转圈)")
+loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+  end
+})
+currency:AddButton({
+  Name = "口教",
+  Default = false,
+  Callback = function()
+print("执行(口教)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/M-E-N-A-C-E/Menace-Hub/refs/heads/main/Free%20Sus%20Missile", true))()
+  end
+})
+currency:AddButton({
+  Name = "飞车",
+  Default = false,
+  Callback = function()
+print("执行(飞车)")
+loadstring(game:HttpGet("https://pastebin.com/raw/63T0fkBm"))()
+  end
+})
+currency:AddButton({
+  Name = "透视",
+  Default = false,
+  Callback = function()
+print("执行(透视)")
+loadstring(game:HttpGet('https://pastebin.com/raw/MA8jhPWT'))()
+  end
+})
+currency:AddButton({
+  Name = "电脑键盘",
+  Default = false,
+  Callback = function()
+print("执行(电脑键盘)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+  end
+})
+currency:AddButton({
+  Name = "R6撸管",
+  Default = false,
+  Callback = function()
+print("执行(R6撸管)")
+loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+  end
+})
+currency:AddButton({
+  Name = "R15撸管",
+  Default = false,
+  Callback = function()
+print("执行(R15撸管)")
+loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+  end
+})
+currency:AddButton({
+  Name = "操b",
+  Default = false,
+  Callback = function()
+print("执行(操b)")
+loadstring(game:HttpGet("https://pastebin.com/raw/bzmhRgKL"))();
+  end
+})
+currency:AddButton({
+	Name = "阿尔宙斯自瞄",
+	Callback = function()
+print("执行(阿尔宙斯自瞄)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20Aimbot.lua"))()
+end
+}) 
+ 
+print("创建分类(currency-通用)")
+
+local DOORS = Window:MakeTab({
+    Name = "DOORS",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+}) 
+DOORS:AddButton({
+	Name = "DOORS-MS脚本(英文版)",
+	Callback = function()
+print("执行(DOORS-MS脚本(英文版))")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/main.lua"))()
+end
+})  
+
+print("创建分类(DOORS-DOORS)")
+
+local ACG = Window:MakeTab({
+    Name = "ACG",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+})
+ACG:AddButton({
+	Name = "ACG自动找黄卡(自制)",
+	Callback = function()
+    print("执行(ACG自动找黄卡(自制))")
+    loadstring(game:HttpGet("https://pastebin.com/raw/rvb3LwkR"))();
+end
+})    
+
+print("创建分类(ACG-ACG)")
+
+local OtherScripts = Window:MakeTab({
+    Name = "其他脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+})
+OtherScripts:AddButton({
+	Name = "崩脚本",
+	Callback = function()
+print("执行(崩脚本)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/2344XDDDD/BEN-scrpit/refs/heads/main/BEN"))()
+end
+})    
+OtherScripts:AddButton({
+	Name = "XK脚本中心",
+	Callback = function()
+print("执行(XK脚本中心)")
+loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\66\73\78\106\105\97\111\98\122\120\54\47\66\73\78\106\105\97\111\47\109\97\105\110\47\88\75\46\84\88\84\34\41\41\40\41\10")()
+end
+})    
+OtherScripts:AddButton({
+	Name = "禁漫中心",
+	Callback = function()
+print("执行(禁漫中心)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/anlushanjinchangantangwanle/main/jmjmjmjmjmjmjmjmjmjmjmjmjmjmjmjm.lua"))()
+end
+})    
+OtherScripts:AddButton({
+	Name = "苏脚本",
+	Callback = function()
+print("执行(苏脚本)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kukunb/kukulol/refs/heads/main/SUscript.txt"))();
+end
+})    
+
+local OtherScripts = Window:MakeTab({
+    Name = "FE脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "佩恩",
+	Callback = function()
+print("执行(佩恩)")
+loadstring(game:HttpGet("https://paste.ee/r/tneq5cAw/0", true))()
+end
+})
+OtherScripts:AddButton({
+	Name = "FE",
+	Callback = function()
+print("执行(FE)")
+loadstring(game:HttpGet("https://github.com/Sinister-Scripts/Roblox-Exploits/raw/refs/heads/main/FE-Animation-GUI-R6"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "变猫娘",
+	Callback = function()
+print("执行(变猫娘)")
+loadstring(game:HttpGet("https://pastebin.com/raw/FWwdST5Y"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "cOOlgui",
+	Callback = function()
+print("执行(cOOIgui)")
+loadstring(game:GetObjects("rbxassetid://8127297852")[1].Source)()
+end
+})
+OtherScripts:AddButton({
+	Name = "动画中心",
+	Callback = function()
+print("执行(动画中心)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui", true))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "GB脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "情云gb脚本",
+	Callback = function()
+print("执行(情云gb脚本)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/Scripts/Main/GB"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "老大汉化",
+	Callback = function()
+print("执行(老大汉化)")
+loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\34\104\116\116\112\115\58\47\47\102\114\101\101\110\111\116\101\46\98\105\122\47\114\97\119\47\109\117\122\110\104\101\114\104\114\117\34\41\44\116\114\117\101\41\41\40\41\10")()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "河北唐县刷钱脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "刷1",
+	Callback = function()
+print("执行(刷1)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/ok/T%20ang%20County"))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "最强战争",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1",
+	Callback = function()
+print("执行(1)")
+loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-Tsb-good-script-17364"))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "被遗弃",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1(卡密yes)",
+	Callback = function()
+print("执行(1(卡密yes))")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BobJunior1/ForsakenBoi/refs/heads/main/B0bbyHub"))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "竞争对手",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1",
+	Callback = function()
+print("执行(1)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubRivals"))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "Doors(新)",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "最强汉化脚本",
+	Callback = function()
+print("执行(最强汉化脚本)")
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "夜视仪",
+	Callback = function()
+print("执行(夜视仪)")
+loadstring(game:HttpGet("https://pastebin.com/raw/4Vsv1Xwn"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "最强(无汉化)",
+	Callback = function()
+print("执行(最强(无汉化))")
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/002c19202c9946e6047b0c6e0ad51f84.lua"))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "被遗弃",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "被遗弃1",
+	Callback = function()
+print("执行(被遗弃1)")
+loadstring(game:HttpGet"https://raw.githubusercontent.com/OWOWOWWOW/HTT/main/HT.lua")()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "刃刀球",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "最强",
+	Callback = function()
+print("执行(最强)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/%E6%B2%B9%E7%AE%A1%E8%84%9A%E6%9C%AC"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "🥲",
+	Callback = function()
+print("执行(🥲)")
+loadstring(game:HttpGet('https://pastebin.com/raw/idKUExya'))()
+end
+})
+OtherScripts:AddButton({
+	Name = "还可以",
+	Callback = function()
+print("执行(还可以)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/redopy7/Blade-Ball/refs/heads/main/KalitorBeta.txt"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "最牛逼",
+	Callback = function()
+print("执行(最牛逼)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CodeE4X-dev/Star-X/refs/heads/main/BladeBall-V3.lua"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "还可以(要卡密)",
+	Callback = function()
+print("执行(还可以(要卡密))")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/mzkv/LUNAR/refs/heads/main/BladeBall", true))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
+    Name = "俄亥俄州脚本",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "刷钱",
+	Callback = function()
+print("执行(刷钱)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/mspenguin161/ohio_hub_test/refs/heads/main/Loader.lua"))()
+
+--RbxScript: https://discord.gg/zA6bKNNaDp
+--Join the server and add your scripts
+end
+})

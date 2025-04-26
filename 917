@@ -604,6 +604,13 @@ loadstring(game:HttpGet('https://pastebin.com/raw/idKUExya'))()
 end
 })
 OtherScripts:AddButton({
+	Name = "还可以",
+	Callback = function()
+print("执行(还可以)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/redopy7/Blade-Ball/refs/heads/main/KalitorBeta.txt"))()
+end
+})
+OtherScripts:AddButton({
 	Name = "最牛逼",
 	Callback = function()
 print("执行(最牛逼)")

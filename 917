@@ -642,6 +642,13 @@ local OtherScripts = Window:MakeTab({
 	PremiumOnly = false
 }) 
 OtherScripts:AddButton({
+	Name = "!",
+	Callback = function()
+print("执行(！)")
+loadstring(game:HttpGet("https://nicuse.xyz/MainHub.lua"))()
+end
+})
+OtherScripts:AddButton({
 	Name = "最强",
 	Callback = function()
 print("执行(最强)")

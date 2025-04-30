@@ -512,6 +512,19 @@ end
 })
 
 local OtherScripts = Window:MakeTab({
+    Name = "篮球:零",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1",
+	Callback = function()
+print("执行(1)")
+loadstring(game:HttpGet("https://rawscripts.net/raw/UPD-Basketball:-Zero-Perfect-Shoot-Auto-Dunk-Hitbox-More-Resonance-Hub-34446"))()
+end
+})
+
+local OtherScripts = Window:MakeTab({
     Name = "GB脚本",
 	Icon = "rbxassetid://4483345998", -- roblox图片ID
 	PremiumOnly = false

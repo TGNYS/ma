@@ -536,6 +536,13 @@ print("执行(1)")
 loadstring(game:HttpGet("https://rawscripts.net/raw/UPD-Basketball:-Zero-Perfect-Shoot-Auto-Dunk-Hitbox-More-Resonance-Hub-34446"))()
 end
 })
+OtherScripts:AddButton({
+	Name = "2",
+	Callback = function()
+print("执行(2)")
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e1cfd93b113a79773d93251b61af1e2f.lua"))()
+end
+})
 
 local OtherScripts = Window:MakeTab({
     Name = "GB脚本",
@@ -566,6 +573,13 @@ OtherScripts:AddButton({
 	Name = "刷1",
 	Callback = function()
 print("执行(刷1)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/ok/T%20ang%20County"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "刷2",
+	Callback = function()
+print("执行(刷2)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/ok/T%20ang%20County"))()
 end
 })

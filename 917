@@ -482,6 +482,20 @@ print("执行(1)")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()
 end
 })
+OtherScripts:AddButton({
+	Name = "2",
+	Callback = function()
+print("执行(2)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+end
+})
+OtherScripts:AddButton({
+	Name = "乌托邦",
+	Callback = function()
+print("执行(乌托邦)")
+loadstring(game:HttpGet("https://pastefy.app/xXwLngQD/raw"))()
+end
+})
 
 local OtherScripts = Window:MakeTab({
     Name = "FE脚本",

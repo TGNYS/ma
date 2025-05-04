@@ -743,6 +743,20 @@ print("执行(1)")
 loadstring(game:HttpGet('https://raw.githubusercontent.com/zamzamzan/test/refs/heads/main/7days'))()
 end
 })
+OtherScripts:AddButton({
+	Name = "2",
+	Callback = function()
+print("执行(2)")
+loadstring(game:HttpGet("https://github.com/kizzylmfao/Dizzy-Hub/raw/refs/heads/main/7DaysToLive"))()
+end
+})
+OtherScripts:AddButton({
+	Name = "3",
+	Callback = function()
+print("执行(3)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/omaromar242/7-days-Op-omarXwiet-Works/refs/heads/main/.gitignore"))()
+end
+})
 
 local OtherScripts = Window:MakeTab({
     Name = "俄亥俄州脚本",

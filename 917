@@ -630,6 +630,18 @@ print("执行(2)")
 loadstring(game:HttpGet"https://raw.githubusercontent.com/OWOWOWWOW/HTT/main/HT.lua")()
 end
 })
+local OtherScripts = Window:MakeTab({
+    Name = "数学谋杀案",
+	Icon = "rbxassetid://4483345998", -- roblox图片ID
+	PremiumOnly = false
+}) 
+OtherScripts:AddButton({
+	Name = "1",
+	Callback = function()
+print("执行(1)")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Khoaispr0123/Script/refs/heads/main/KyaaHub-MathMurder.lua"))()
+end
+})
 
 local OtherScripts = Window:MakeTab({
     Name = "竞争对手",

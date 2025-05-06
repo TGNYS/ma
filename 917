@@ -126,7 +126,7 @@ local announcement = Window:MakeTab({
 	Icon = "rbxassetid://7734068321",
 	PremiumOnly = false
 })
-announcement:AddParagraph("作者","萧炎,凡尘")
+announcement:AddParagraph("作者","凡尘")
 announcement:AddParagraph("版本","高级")
 announcement:AddParagraph("警告","别去死铁轨执行这个脚本")
 announcement:AddLabel("你的注入器:"..identifyexecutor())

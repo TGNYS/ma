@@ -1,0 +1,294 @@
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
+ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
+
+ wait(1) 
+ Notification:Notify( 
+     {Title = "凡尘", Description = "正在加载"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+ ) 
+ wait(2) 
+ Notification:Notify( 
+     {Title = "凡尘", Description = "准备好了！"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+ )
+ wait(0.2)
+ Notification:Notify( 
+     {Title = "凡尘", Description = "支持作者凡尘"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+ )
+ wait(0.4)
+ 
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("TextButton")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local UICorner = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Frame.BackgroundTransparency = 0.500
+Frame.Position = UDim2.new(0.858712733, 0, 0.0237762257, 0)
+Frame.Size = UDim2.new(0.129513338, 0, 0.227972031, 0)
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.Size = UDim2.new(1, 0, 1, 0)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "关闭"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 50.000
+TextButton.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextStrokeTransparency = 0.000
+TextButton.TextWrapped = true
+TextButton.MouseButton1Down:Connect(function()
+    if TextButton.Text == "关闭" then
+        TextButton.Text = "打开"
+    else
+        TextButton.Text = "关闭"
+    end
+    game:GetService("VirtualInputManager"):SendKeyEvent(true, "E" , false , game)
+end) -- replace "E" with your keybind
+
+UITextSizeConstraint.Parent = TextButton
+UITextSizeConstraint.MaxTextSize = 30
+
+local lib = loadstring(game:HttpGet"https://pastebin.com/raw/aDQ86WZA")()
+
+local win = lib:Window("刀刃球",Color3.fromRGB(0, 255, 0), Enum.KeyCode.E) -- your own keybind 
+
+local tab = win:Tab("主要")
+
+tab:Button("自动格挡V1", function()
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+
+Notification:Notify(
+    {Title = "凡脚本", Description = "欢迎进入"},
+    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "option"},
+    {Image = "http://www.roblox.com/asset/?id=15543175727", ImageColor = Color3.fromRGB(255, 84, 84), Callback = function(State) print(tostring(State)) end}
+)
+warn("感谢你使用猫脚本")
+warn("你好")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry",true))()
+local StarterGui = game:GetService("StarterGui") StarterGui:SetCore("DevConsoleVisible", false)
+end)
+
+tab:Button("击退模式+自动点击", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry",true))()
+  local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+  local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+  
+  Notification:Notify(
+    {Title = "凡尘", Description = "/   凡尘制作"},
+    {OutlineColor = Color3.fromRGB(80, 80, 80), Time = 5, Type = "option"},
+    {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84), Callback = function(State) print(tostring(State)) end}
+  ) 
+local function get_plr()
+  return game.Players.LocalPlayer
+end
+
+local function get_plrChar()
+  local plrChar = get_plr().Character
+  if plrChar then
+    return plrChar
+  end
+end
+
+local function get_plrRP()
+  local plrRP = get_plrChar():FindFirstChild("HumanoidRootPart")
+  if plrRP then
+    return plrRP
+  end
+end
+
+local function playerJump()
+  pcall(function()
+    game.Players.LocalPlayer.Character.Humanoid.Jump = true
+  end)
+end
+
+local function get_PlayersNumber()
+  local Alive = workspace:WaitForChild("Alive", 20):GetChildren()
+  local PlayersNumber = 0
+  for _,v in pairs(Alive) do
+    if v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 50 then
+      PlayersNumber = PlayersNumber + 1
+    end
+  end
+  return PlayersNumber
+end
+
+local function get_ProxyPlayer()
+  local Players = workspace:WaitForChild("Alive"):GetChildren()
+  local Distance = math.huge
+  local plr = game.Players.LocalPlayer
+  local plrRP = plr.Character:FindFirstChild("HumanoidRootPart")
+  local Player = nil
+  
+  for _,plr1 in pairs(Players) do
+    if plr1.Name ~= plr.Name and plrRP and plr1:FindFirstChild("HumanoidRootPart") and plr1:FindFirstChild("Humanoid") and plr1.Humanoid.Health > 50 then
+      local magnitude = (plr1.HumanoidRootPart.Position - plrRP.Position).Magnitude
+      if magnitude <= Distance then
+        Distance = magnitude
+        Player = plr1
+      end
+    end
+  end
+  return Player
+end
+
+local function Click_Button()
+  task.spawn(function()
+    local plr = game.Players.LocalPlayer
+    local plrFind = workspace.Alive:FindFirstChild(plr.Name)
+    if plrFind then
+      local plrs = 0
+      for _,v in pairs(workspace:WaitForChild("Alive", 10):GetChildren()) do
+        plrs = plrs + 1
+      end
+      if plrs > 1 then
+     local function yes()
+        local args = {[1] = 1.5,[2] = CFrame.new(-254, 112, -119) * CFrame.Angles(-2, 0, 2),[3] = {
+        ["2617721424"] = Vector3.new(-273, -724, -20),
+        },[4] = {[1] = 910,[2] = 154}}
+        game:GetService("ReplicatedStorage").Remotes.ParryAttempt:FireServer(unpack(args))task.wait()
+        end
+        local function u()
+        yes()
+        yes()
+         yes()
+        yes()
+        yes()
+        yes()
+        yes()
+        yes()
+        yes()
+        yes()
+        yes()
+        game:GetService("RunService").Heartbeat:Wait(0)
+        end
+        u()
+        u()
+        u()
+      end
+    end
+  end)
+end
+
+task.spawn(function()
+  while task.wait() do
+    if getgenv().SpamClickA then
+      Click_Button()
+    end
+  end
+end)
+
+local function DetectSpam()
+  local Balls = workspace:WaitForChild("Balls", 20)
+  
+  local OldPos = Vector3.new()
+  local OldTick1 = tick()
+  
+  local OldBall = Balls
+  local TargetPlayer = ""
+  local SpamNum = 0
+  local BallSpeed = 0
+  local BallDistance = 0
+  
+  task.spawn(function()
+    local OldTick = tick()
+    local OldPos = Vector3.new()
+    while getgenv().DetectSpam do task.wait()
+      local plrRP = get_plrRP()
+      local Ball = Balls:FindFirstChildOfClass("Part")
+      if plrRP and Ball then
+        BallDistance = (plrRP.Position - Ball.Position).Magnitude
+        BallSpeed = (OldPos - Ball.Position).Magnitude
+        if tick() - OldTick >= 1/60 then
+          OldTick = tick()
+          OldPos = Ball.Position
+        end
+      end
+    end
+  end)
+  
+  while getgenv().DetectSpam do task.wait()
+    local Ball = Balls:FindFirstChildOfClass("Part")
+    local plrRP = get_plrRP()
+    local ProxyPlayer = get_ProxyPlayer()
+    
+    if not Ball then
+      getgenv().SpamClickA = false
+    end
+  
+    if Ball and Ball:GetAttribute("realBall") and OldBall ~= Ball then
+    
+      Ball.Changed:Connect(function()task.wait()
+        local Ball = Balls:FindFirstChildOfClass("Part")
+        
+        if Ball then
+          TargetPlayer = Ball:GetAttribute("target")
+          
+          if ProxyPlayer and TargetPlayer == ProxyPlayer.Name or get_plr() and TargetPlayer == get_plr().Name then
+            SpamNum = SpamNum + 1
+          else
+            SpamNum = 0
+          end
+          
+          local args = ProxyPlayer and ProxyPlayer:FindFirstChild("HumanoidRootPart")
+          local HL1 = ProxyPlayer and ProxyPlayer:FindFirstChild("Highlight")
+          local HL2 = get_plrChar() and get_plrChar():FindFirstChild("Highlight")
+          
+          if plrRP and HL1 and args or plrRP and HL2 and args then
+            local DistancePlayer = (ProxyPlayer.HumanoidRootPart.Position - plrRP.Position).Magnitude
+            local DistanceBall = (Ball.Position - plrRP.Position).Magnitude
+            
+            if get_PlayersNumber() < 3 then
+              if DistancePlayer <= 30 and DistanceBall <= 35 and SpamNum >= 2 then
+                getgenv().SpamClickA = true
+              else
+                getgenv().SpamClickA = false
+              end
+            else
+              if DistancePlayer <= 30 and DistanceBall <= 35 and SpamNum >= 3 then
+                getgenv().SpamClickA = true
+              else
+                getgenv().SpamClickA = false
+              end
+            end
+          else
+            getgenv().SpamClickA = false
+          end
+        end
+      end)
+      OldBall = Ball
+    end
+  end
+end
+
+getgenv().DetectSpam = true
+DetectSpam()
+end)
+
+game.RunService.Stepped:Connect(function()
+while wait() do 
+        local map = game.Workspace.Map:GetChildren()[1]
+        local sock = map.Sock
+        local plr = game.Players.LocalPlayer
+        local char = plr.Character or plr.CharacterAdded:Wait()
+        if sock and char and char.HumanoidRootPart then
+            sock.CFrame = char.HumanoidRootPart.CFrame
+        end 
+    end
+end)

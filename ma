@@ -15,7 +15,7 @@ local function createAdaptiveWatermark()
     watermarkGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling -- 确保显示在最上层
     watermarkGui.ResetOnSpawn = false
 
-    local watermarkText = Instance.new("el")
+    local watermarkText = Instance.new("TextLabel")
     watermarkText.Name = "WatermarkText"
     watermarkText.Parent = watermarkGui
     watermarkText.Text = "凡尘" 
@@ -186,4 +186,4 @@ title.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 title.BorderSizePixel = 0
 title.Size = UDim2.new(0, 387, 0, 50)
 title.Font = Enum.Font.GothamBold
-title.Text = 
+title.

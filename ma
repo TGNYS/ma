@@ -96,7 +96,7 @@ local UITab1 = win:Tab("信息",'16060333448')
 
 local about = UITab1:section("作者信息",false)
 
-about:Label("好几个月积攒起来的知识做的")
+about:Label("积攒起来的知识做的")
 about:Label("每天不一定更新")
 about:Label("无任何师傅")
 about:Label("无任何感谢")

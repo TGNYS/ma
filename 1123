@@ -1319,7 +1319,7 @@ about:Button(
 		end)
 	local CoreGui = game:GetService("StarterGui")
 CoreGui:SetCore("SendNotification", {
-    Title = "神青提示10秒",
+    Title = "凡尘提示10秒",
     Text = "防挂机已开启",
     Duration = 10,
 })

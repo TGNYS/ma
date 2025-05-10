@@ -1,5 +1,5 @@
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/lenglengui/refs/heads/main/JMJMUI.lua"))()        
-local win = ui:new("凡尘脚本中心V3")
+local win = ui:new("凡尘脚本中心V2")
 --
 local UITab84 = win:Tab("信息",'16060333448')
 
@@ -12,18 +12,18 @@ about:Label("师傅叶")
 about:Label("感谢鹤，我的老朋友")
 about:Label("感谢支持我的人")
 about:Label("感谢叶和鹤，没有你们就没有现在的我")
-about:Label("本脚本为V5版本")
+about:Label("本脚本为V2版本")
 about:Label("已支持俄亥俄州")
 about:Button("点我复制作者QQ",function()
-    setclipboard("928950173")
+    setclipboard("2846706821")
 end)
 
-about:Button("点我复制神青脚本官方群",function()
-    setclipboard("1003591865")
+about:Button("点我复制凡尘脚本官方群",function()
+    setclipboard("56117318118")
 end)
 
-about:Button("点我复制神青脚本二群",function()
-    setclipboard("1015840930")
+about:Button("点我复制凡尘脚本二群",function()
+    setclipboard("715266495")
 end)
 
 local about = UITab84:section("『介绍』",true)

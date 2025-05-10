@@ -68,13 +68,13 @@ local Heartbeat = game:GetService("RunService").Heartbeat
 local LastIteration, Start
 local FrameUpdateTable = { }
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本v3"; Text ="载入中"; Duration = 2; })wait("3")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本"; Text ="载入中"; Duration = 2; })wait("3")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本v3"; Text ="纯缝合不是特别好"; Duration = 2; })wait("2")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本"; Text ="纯缝合不是特别好"; Duration = 2; })wait("2")
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "我喜欢挂王牌"; Text ="🙏钱晨拜三拜"; Duration = 2; })wait("2")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本v3"; Text ="载入成功"; Duration = 3; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本"; Text ="载入成功"; Duration = 3; })
 
 local function HeartbeatUpdate()
 	LastIteration = tick()
@@ -96,7 +96,7 @@ local UITab1 = win:Tab("信息",'16060333448')
 
 local about = UITab1:section("作者信息",false)
 
-about:Label("积攒起来的知识做的")
+about:Label("好几个月积攒起来的知识做的")
 about:Label("每天不一定更新")
 about:Label("无任何师傅")
 about:Label("无任何感谢")
@@ -186,4 +186,4 @@ title.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 title.BorderSizePixel = 0
 title.Size = UDim2.new(0, 387, 0, 50)
 title.Font = Enum.Font.GothamBold
-title.
+title.Te

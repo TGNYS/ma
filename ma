@@ -1,19 +1,24 @@
+-- ===== 自动适应屏幕的水印 =====
 local function createAdaptiveWatermark()
+    -- 如果已有水印，先删除旧的
     if game.CoreGui:FindFirstChild("AUG_Watermark") then
         game.CoreGui.AUG_Watermark:Destroy()
     end
 
+    -- 获取屏幕分辨率（ViewportSize）
     local screenSize = workspace.CurrentCamera.ViewportSize
 
+    -- 创建水印GUI
     local watermarkGui = Instance.new("ScreenGui")
-    watermarkGui.Name = "AUGAUG_Watermark"
+    watermarkGui.Name = "AUG_Watermark"
     watermarkGui.Parent = game.CoreGui
-    watermarkGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling watermarkGui.ResetOnSpawn = false
+    watermarkGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling -- 确保显示在最上层
+    watermarkGui.ResetOnSpawn = false
 
     local watermarkText = Instance.new("TextLabel")
     watermarkText.Name = "WatermarkText"
     watermarkText.Parent = watermarkGui
-    watermarkText.Text = "凡尘" 
+    watermarkText.Text = "AUG" 
     watermarkText.TextColor3 = Color3.fromRGB(255, 255, 255)
     watermarkText.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
     watermarkText.TextStrokeTransparency = 0.3 
@@ -63,13 +68,13 @@ local Heartbeat = game:GetService("RunService").Heartbeat
 local LastIteration, Start
 local FrameUpdateTable = { }
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本v3"; Text ="载入中"; Duration = 2; })wait("3")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "AUG脚本"; Text ="载入中"; Duration = 2; })wait("3")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本v3"; Text ="纯缝合不是特别好"; Duration = 2; })wait("2")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "AUG脚本"; Text ="纯缝合不是特别好"; Duration = 2; })wait("2")
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "我喜欢挂王牌"; Text ="🙏钱晨拜三拜"; Duration = 2; })wait("2")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本v3"; Text ="载入成功"; Duration = 3; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "AUG脚本"; Text ="载入成功"; Duration = 3; })
 
 local function HeartbeatUpdate()
 	LastIteration = tick()
@@ -85,7 +90,7 @@ Start = tick()
 Heartbeat:Connect(HeartbeatUpdate)
 
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/whenheer/iuop/refs/heads/main/Protected_7843953596944453.lua"))();		
-local win = ui:new("凡尘脚本v3")
+local win = ui:new("AUG脚本")
 --
 local UITab1 = win:Tab("信息",'16060333448')
 
@@ -181,3 +186,4 @@ title.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 title.BorderSizePixel = 0
 title.Size = UDim2.new(0, 387, 0, 50)
 title.Font = Enum.Font.GothamBold
+title

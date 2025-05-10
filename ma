@@ -1,19 +1,14 @@
--- ===== 自动适应屏幕的水印 =====
 local function createAdaptiveWatermark()
-    -- 如果已有水印，先删除旧的
     if game.CoreGui:FindFirstChild("AUG_Watermark") then
         game.CoreGui.AUG_Watermark:Destroy()
     end
 
-    -- 获取屏幕分辨率（ViewportSize）
     local screenSize = workspace.CurrentCamera.ViewportSize
 
-    -- 创建水印GUI
     local watermarkGui = Instance.new("ScreenGui")
     watermarkGui.Name = "AUGAUG_Watermark"
     watermarkGui.Parent = game.CoreGui
-    watermarkGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling -- 确保显示在最上层
-    watermarkGui.ResetOnSpawn = false
+    watermarkGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling watermarkGui.ResetOnSpawn = false
 
     local watermarkText = Instance.new("TextLabel")
     watermarkText.Name = "WatermarkText"

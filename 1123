@@ -1,13 +1,13 @@
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/lenglengui/refs/heads/main/JMJMUI.lua"))()        
-local win = ui:new("神青脚本中心V5")
+local win = ui:new("凡尘脚本中心V3")
 --
 local UITab84 = win:Tab("信息",'16060333448')
 
 local about = UITab84:section("『介绍』",true)
-about:Label("神青脚本")
+about:Label("凡尘脚本")
 about:Label("永久免费")
 about:Label("拒绝倒卖")
-about:Label("作者：神青")
+about:Label("作者：凡尘")
 about:Label("师傅叶")
 about:Label("感谢鹤，我的老朋友")
 about:Label("感谢支持我的人")

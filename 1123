@@ -3934,7 +3934,7 @@ getgenv().HitAura = s
 end)   
 
 local UITab18 = win:Tab("『其他脚本』",'7734068321')
-local about = UITab18:section("『其他脚本』",true)
+local about = UITab18:section("『』",true)
 
 about:Button("山脚本",function()
 loadstring(game:HttpGet("https://h.lkmc.asia/script/ssfb.lua"))()
@@ -3942,6 +3942,10 @@ end)
 
 about:Button("青脚本",function()
     loadstring(game:HttpGet('https://rentry.co/ct293/raw'))()
+end)
+
+about:Button("凡尘v1脚本",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/917"))()
 end)
 
 about:Button("陈脚本",function()

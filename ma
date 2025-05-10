@@ -41,7 +41,7 @@ end
 createAdaptiveWatermark()
 
 local LBLG = Instance.new("ScreenGui", getParent)
-local LBL = Instance.new("TextLabel", getParent)
+local LBL = Instance.new("请等待", getParent)
 local player = game.Players.LocalPlayer
 
 LBLG.Name = "LBLG"

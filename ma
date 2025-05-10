@@ -1,8 +1,8 @@
 -- ===== 自动适应屏幕的水印 =====
 local function createAdaptiveWatermark()
     -- 如果已有水印，先删除旧的
-    if game.CoreGui:FindFirstChild("fan_Watermark") then
-        game.CoreGui.fan_Watermark:Destroy()
+    if game.CoreGui:FindFirstChild("AUG_Watermark") then
+        game.CoreGui.AUG_Watermark:Destroy()
     end
 
     -- 获取屏幕分辨率（ViewportSize）
@@ -10,7 +10,7 @@ local function createAdaptiveWatermark()
 
     -- 创建水印GUI
     local watermarkGui = Instance.new("ScreenGui")
-    watermarkGui.Name = "fan_Watermark"
+    watermarkGui.Name = "AUGAUG_Watermark"
     watermarkGui.Parent = game.CoreGui
     watermarkGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling -- 确保显示在最上层
     watermarkGui.ResetOnSpawn = false
@@ -186,4 +186,3 @@ title.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 title.BorderSizePixel = 0
 title.Size = UDim2.new(0, 387, 0, 50)
 title.Font = Enum.Font.GothamBold
-ti

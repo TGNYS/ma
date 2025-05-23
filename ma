@@ -70,7 +70,7 @@ local FrameUpdateTable = { }
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本"; Text ="载入中"; Duration = 2; })wait("3")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "AUG脚本"; Text ="纯缝合不是特别好"; Duration = 2; })wait("2")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本"; Text ="纯缝合不是特别好"; Duration = 2; })wait("2")
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "祝你好运"; Text ="祝你幸福"; Duration = 2; })wait("2")
 
@@ -100,6 +100,7 @@ about:Label("好几个月积攒起来的知识做的")
 about:Label("每天不一定更新")
 about:Label("无任何师傅")
 about:Label("无任何感谢")
+about:Label("靠背篓")
 
 local about = UITab1:section("你的信息",false)
 

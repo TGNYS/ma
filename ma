@@ -72,9 +72,9 @@ game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "AUG脚本"; Text ="纯缝合不是特别好"; Duration = 2; })wait("2")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "我喜欢挂王牌"; Text ="别老仔🤓"; Duration = 2; })wait("2")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "祝你好运"; Text ="祝你幸福"; Duration = 2; })wait("2")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "AUG脚本"; Text ="载入成功"; Duration = 3; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本"; Text ="载入成功"; Duration = 3; })
 
 local function HeartbeatUpdate()
 	LastIteration = tick()

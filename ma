@@ -1062,3 +1062,7 @@ end)
 about:Button("死亡球2",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/LOLking123456/Ball1/main/Death"))()
 end)
+
+about:Button("死亡球3",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LOLking123456/Ball1/main/Death"))()
+end)

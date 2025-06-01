@@ -1,14 +1,14 @@
 --!strict
 --[[
-    Roblox 公告系统 v2.0
-    改进功能:
-    - 支持多种公告类型(普通、紧急、活动)
-    - 可点击公告查看详情
-    - 公告图标支持
-    - 更平滑的滚动动画
-    - 公告持续时间可配置
-    - 支持公告关闭按钮
-    - 更好的内存管理
+    Roblox 公告系统 v2.1
+    改进内容:
+    - 添加了公告优先级系统
+    - 支持多行文本自动调整高度
+    - 添加了淡入淡出动画
+    - 优化了内存管理
+    - 添加了公告点击回调功能
+    - 支持自定义图标和颜色
+    - 添加了公告历史记录功能
 ]]
 
 local AnnouncementSystem = {}
@@ -21,21 +21,24 @@ local AnnouncementTypes = {
         bgColor = Color3.fromRGB(0, 0, 0),
         bgTransparency = 0.7,
         duration = 5,
-        icon = "rbxassetid://1234567890" -- 默认图标ID
+        icon = "rbxassetid://1234567890",
+        priority = 1
     },
     URGENT = {
         color = Color3.fromRGB(255, 50, 50),
         bgColor = Color3.fromRGB(50, 0, 0),
         bgTransparency = 0.5,
         duration = 8,
-        icon = "rbxassetid://1234567891" -- 紧急图标ID
+        icon = "rbxassetid://1234567891",
+        priority = 3
     },
     EVENT = {
         color = Color3.fromRGB(255, 215, 0),
         bgColor = Color3.fromRGB(0, 50, 50),
         bgTransparency = 0.6,
         duration = 7,
-        icon = "rbxassetid://1234567892" -- 活动图标ID
+        icon = "rbxassetid://1234567892",
+        priority = 2
     }
 }
 
@@ -47,6 +50,8 @@ function AnnouncementSystem.new(parentGui: Instance)
     self.announcementQueue = {}
     self.currentDisplay = nil
     self.isShowing = false
+    self.history = {} -- 公告历史记录
+    self.maxHistory = 50 -- 最大历史记录数量
     
     -- 创建UI容器
     self:setupUI()
@@ -57,7 +62,218 @@ end
 -- 初始化UI
 function AnnouncementSystem:setupUI()
     -- 主容器
-    local container = Instance.new("Frame")
-    container.Name = "AnnouncementContainer"
-    container.Size = UDim2.new(1, 0, 0, 60)
-    container.Position = UDim2.new(0, 0, 0
+    self.container = Instance.new("Frame")
+    self.container.Name = "AnnouncementContainer"
+    self.container.Size = UDim2.new(1, 0, 0, 0) -- 高度动态调整
+    self.container.Position = UDim2.new(0, 0, 0, 10)
+    self.container.BackgroundTransparency = 1
+    self.container.ClipsDescendants = true
+    self.container.Parent = self.parentGui
+    
+    -- 公告背景
+    self.bgFrame = Instance.new("Frame")
+    self.bgFrame.Name = "AnnouncementFrame"
+    self.bgFrame.Size = UDim2.new(1, -40, 0, 0) -- 高度动态调整
+    self.bgFrame.Position = UDim2.new(0, 20, 0, 0)
+    self.bgFrame.BackgroundTransparency = 1 -- 初始完全透明
+    self.bgFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    self.bgFrame.BorderSizePixel = 0
+    self.bgFrame.Visible = false
+    self.bgFrame.Parent = self.container
+    
+    -- 圆角效果
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 8)
+    corner.Parent = self.bgFrame
+    
+    -- 图标
+    self.icon = Instance.new("ImageLabel")
+    self.icon.Name = "Icon"
+    self.icon.Size = UDim2.new(0, 30, 0, 30)
+    self.icon.Position = UDim2.new(0, 10, 0, 10)
+    self.icon.BackgroundTransparency = 1
+    self.icon.Parent = self.bgFrame
+    
+    -- 文本标签
+    self.textLabel = Instance.new("TextLabel")
+    self.textLabel.Name = "AnnouncementText"
+    self.textLabel.Size = UDim2.new(1, -50, 1, -20)
+    self.textLabel.Position = UDim2.new(0, 50, 0, 10)
+    self.textLabel.BackgroundTransparency = 1
+    self.textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    self.textLabel.TextSize = 18
+    self.textLabel.Font = Enum.Font.GothamSemibold
+    self.textLabel.TextXAlignment = Enum.TextXAlignment.Left
+    self.textLabel.TextYAlignment = Enum.TextYAlignment.Top
+    self.textLabel.TextWrapped = true
+    self.textLabel.Text = ""
+    self.textLabel.Parent = self.bgFrame
+    
+    -- 关闭按钮
+    self.closeButton = Instance.new("ImageButton")
+    self.closeButton.Name = "CloseButton"
+    self.closeButton.Size = UDim2.new(0, 20, 0, 20)
+    self.closeButton.Position = UDim2.new(1, -30, 0, 10)
+    self.closeButton.BackgroundTransparency = 1
+    self.closeButton.Image = "rbxassetid://3926305904" -- 默认关闭图标
+    self.closeButton.ImageRectOffset = Vector2.new(284, 4)
+    self.closeButton.ImageRectSize = Vector2.new(24, 24)
+    self.closeButton.Parent = self.bgFrame
+    
+    -- 点击区域
+    self.clickArea = Instance.new("TextButton")
+    self.clickArea.Name = "ClickArea"
+    self.clickArea.Size = UDim2.new(1, 0, 1, 0)
+    self.clickArea.Position = UDim2.new(0, 0, 0, 0)
+    self.clickArea.BackgroundTransparency = 1
+    self.clickArea.Text = ""
+    self.clickArea.Parent = self.bgFrame
+    
+    -- 初始化动画
+    self.tweenService = game:GetService("TweenService")
+    self.fadeInInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    self.fadeOutInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+end
+
+-- 添加公告到队列
+function AnnouncementSystem:AddAnnouncement(text: string, announcementType: string, customSettings: {[string]: any}?)
+    local config = AnnouncementTypes[announcementType] or AnnouncementTypes.NORMAL
+    
+    -- 合并自定义设置
+    if customSettings then
+        for k, v in pairs(customSettings) do
+            config[k] = v
+        end
+    end
+    
+    local announcement = {
+        text = text,
+        config = config,
+        timestamp = os.time(),
+        callback = customSettings and customSettings.callback or nil
+    }
+    
+    -- 添加到历史记录
+    table.insert(self.history, 1, announcement)
+    if #self.history > self.maxHistory then
+        table.remove(self.history, self.maxHistory + 1)
+    end
+    
+    -- 根据优先级插入队列
+    local inserted = false
+    for i, item in ipairs(self.announcementQueue) do
+        if item.config.priority < config.priority then
+            table.insert(self.announcementQueue, i, announcement)
+            inserted = true
+            break
+        end
+    end
+    
+    if not inserted then
+        table.insert(self.announcementQueue, announcement)
+    end
+    
+    -- 如果没有正在显示的公告，立即显示
+    if not self.isShowing then
+        self:ShowNextAnnouncement()
+    end
+end
+
+-- 显示下一条公告
+function AnnouncementSystem:ShowNextAnnouncement()
+    if #self.announcementQueue == 0 then
+        self.isShowing = false
+        return
+    end
+    
+    self.isShowing = true
+    local announcement = table.remove(self.announcementQueue, 1)
+    
+    -- 更新UI
+    self.textLabel.Text = announcement.text
+    self.textLabel.TextColor3 = announcement.config.color
+    
+    -- 计算文本所需高度
+    local textHeight = math.min(100, math.max(20, self.textLabel.TextBounds.Y + 10))
+    local frameHeight = textHeight + 20
+    
+    -- 调整UI大小
+    self.bgFrame.Size = UDim2.new(1, -40, 0, frameHeight)
+    self.container.Size = UDim2.new(1, 0, 0, frameHeight + 10)
+    
+    -- 设置图标
+    self.icon.Image = announcement.config.icon or AnnouncementTypes.NORMAL.icon
+    
+    -- 设置背景
+    self.bgFrame.BackgroundColor3 = announcement.config.bgColor
+    self.bgFrame.BackgroundTransparency = 1 -- 初始透明
+    
+    -- 显示UI
+    self.bgFrame.Visible = true
+    
+    -- 淡入动画
+    local fadeIn = self.tweenService:Create(self.bgFrame, self.fadeInInfo, {
+        BackgroundTransparency = announcement.config.bgTransparency
+    })
+    fadeIn:Play()
+    
+    -- 设置关闭按钮事件
+    self.closeButton.MouseButton1Click:Connect(function()
+        self:CloseCurrentAnnouncement()
+    end)
+    
+    -- 设置点击事件
+    self.clickArea.MouseButton1Click:Connect(function()
+        if announcement.callback then
+            announcement.callback()
+        end
+        self:CloseCurrentAnnouncement()
+    end)
+    
+    -- 自动关闭计时器
+    task.delay(announcement.config.duration, function()
+        if self.currentDisplay == announcement then
+            self:CloseCurrentAnnouncement()
+        end
+    end)
+    
+    self.currentDisplay = announcement
+end
+
+-- 关闭当前公告
+function AnnouncementSystem:CloseCurrentAnnouncement()
+    if not self.currentDisplay then return end
+    
+    -- 淡出动画
+    local fadeOut = self.tweenService:Create(self.bgFrame, self.fadeOutInfo, {
+        BackgroundTransparency = 1
+    })
+    
+    fadeOut.Completed:Connect(function()
+        self.bgFrame.Visible = false
+        self.currentDisplay = nil
+        self:ShowNextAnnouncement()
+    end)
+    
+    fadeOut:Play()
+end
+
+-- 获取公告历史
+function AnnouncementSystem:GetHistory(maxItems: number?)
+    local count = math.min(maxItems or 10, #self.history)
+    local result = {}
+    
+    for i = 1, count do
+        table.insert(result, self.history[i])
+    end
+    
+    return result
+end
+
+-- 清除所有公告
+function AnnouncementSystem:ClearAll()
+    self.announcementQueue = {}
+    self:CloseCurrentAnnouncement()
+end
+
+return AnnouncementSystem

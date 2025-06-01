@@ -1,311 +1,248 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/IIIlll1ll1/Cracks/main/BearUI.lua", true))()
-    local window = library:new("傻逼熊脚本")
-    local creds = window:Tab("关于", "6035145364")
-    local bin = creds:section("信息", true)
-    bin:Label("你的注入器:" .. identifyexecutor())
-    bin:Label("更新7月1日")
-    bin:Label("qq：1090977142")
-    local credits = creds:section("关闭", true)
-    credits:Button(
-        "关闭脚本",
-        function()
-            game:GetService("CoreGui")["frosty"]:Destroy()
+local OrionLib = loadstring(game:HttpGet(('https://pastebin.com/raw/KuEsRX44')))()
+local Window = OrionLib:MakeWindow({Name = 'YFHUB', HidePremium = false, SaveConfig = true, ConfigFolder = 'OrionTest', IntroText = 'YFHUB BY YF'})
+OrionLib:MakeNotification({
+    Name = '尊敬的用户：',
+    Content = '感谢您支持YF！',
+    Image = 'rbxassetid://4483345998',
+    Time = 5
+})
+local Home = Window:MakeTab({
+    Name = '主页',
+    Icon = 'rbxassetid://7733960981',
+    PremiumOnly = false
+})
+local jyrs = Window:MakeTab({
+    Name = '监狱人生',
+    Icon = 'rbxassetid://7733771891',
+    PremiumOnly = false
+})
+local xsdsd = Window:MakeTab({
+    Name = '现实的深度',
+    Icon = 'rbxassetid://7733771891',
+    PremiumOnly = false
+})
+local race = Window:MakeTab({
+    Name = 'Race Click',
+    Icon = 'rbxassetid://7733771891',
+    PremiumOnly = false
+})
+Home:AddParagraph('YF制作','官方QQ群156778698')
+Home:AddDropdown({
+    Name = '脚本',
+    Default = '',
+    Options = {'俄亥俄州','吸人','命令行','追踪','DEX'},
+    Callback = function(Value)
+    if Value == '俄亥俄州' then
+local OrionLib = loadstring(game:HttpGet(('https://pastebin.com/raw/KuEsRX44')))()
+local Window = OrionLib:MakeWindow({Name = 'YFHUB|OHIO', HidePremium = false, SaveConfig = true, ConfigFolder = 'OrionTest', IntroText = 'YFHUB|OHIO'})
+game:GetService('Players').LocalPlayer.PlayerGui.Hotbar.Enabled = true
+game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Visible = true
+game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Position = UDim2.new(0, 0, 0, 40)
+game:GetService('Players').LocalPlayer.PlayerGui.Money.Container.premium.Shadow.Visible = false
+game:GetService('Players').LocalPlayer.PlayerGui.Money.Container['2x cash'].Shadow.Visible = false
+game:GetService('Players').LocalPlayer.PlayerGui.Money.Container.premium.Visible = true
+game:GetService('Players').LocalPlayer.PlayerGui.Money.Container.premium.TextLabel.Text = 'OHIO.YF'
+game:GetService('Players').LocalPlayer.PlayerGui.Money.Container['2x cash'].Visible = true
+game:GetService('Players').LocalPlayer.PlayerGui.Money.Container['2x cash'].TextLabel.Text = '双倍现金 永久有效'
+game:GetService('Workspace').BlackMarket.Dealer.Dealer.ProximityPrompt.HoldDuration = 0
+game:GetService('Workspace').BlackMarket.BlackMarketBillboard.TopLabel.Text = 'YF黑市'
+game:GetService('Workspace').BlackMarket.BlackMarketBillboard.BottomLabel.Text = '向YF出售物品以获得钱!'
+game:GetService('Workspace').OhioSign.Screen.SurfaceGui.Frame.Population.Text = 'YF祝您玩的愉快'
+local Teams = game:GetService('Teams')
+local newTeam = Instance.new('Team')
+newTeam.Name = 'DevvGames'
+newTeam.Parent = Teams
+local player = game:GetService('Players').LocalPlayer
+player.Team = newTeam
+local UserInputService = game:GetService('UserInputService')
+UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+    if input.KeyCode == Enum.KeyCode.Z then
+        game:GetService('Players').LocalPlayer.PlayerGui.Backpack.Holder.Locker.Visible = true
+    end
+end)
+local Fram = Window:MakeTab({
+    Name = '资源类',
+    Icon = 'rbxassetid://7733771891',
+    PremiumOnly = false
+})
+local Cheat = Window:MakeTab({
+    Name = '修改类',
+    Icon = 'rbxassetid://7733771891',
+    PremiumOnly = false
+})
+Fram:AddDropdown({
+    Name = '瞬移',
+    Default = '',
+    Options = {'银行','珠宝店','沙滩','武器店（撬锁）','武士刀','射线枪','加特林','锯掉','沙漠之鹰','警察局（M4A1）','AUG','军事基地（军甲）'},
+    Callback = function(Value)
+    local epoh2 = game:GetService('Players')
+    local epoh3 = epoh2.LocalPlayer.Character.HumanoidRootPart
+    if Value == '银行' then
+        local epoh1 = CFrame.new(1055.94153, 15.11950874, -344.58374)
+        epoh3.CFrame = epoh1
+    elseif Value == '珠宝店' then
+        local epoh1 = CFrame.new(1719.02637, 14.2831011, -714.293091)
+        epoh3.CFrame = epoh1
+    elseif Value == '沙滩' then
+        local epoh1 = CFrame.new(998.4656372070312, 15, 395.9789733886719)
+        epoh3.CFrame = epoh1
+    elseif Value == '武器店（撬锁）' then
+        local epoh1 = CFrame.new(660.5284423828125, 6.4081127643585205, -716.489990234375)
+        epoh3.CFrame = epoh1
+    elseif Value == '武士刀' then
+        local epoh1 = CFrame.new(175.191, 13.937, -132.69)
+        epoh3.CFrame = epoh1
+    elseif Value == '射线枪' then
+        local epoh1 = CFrame.new(148.685471, -90, -529.280945)
+        epoh3.CFrame = epoh1
+    elseif Value == '加特林' then
+        local epoh1 = CFrame.new(364.97076416015625, 0.764974117279053, -1447.3302001953125)
+        epoh3.CFrame = epoh1
+    elseif Value == '锯掉' then
+        local epoh1 = CFrame.new(1179.98523,40,-436.812683)
+        epoh3.CFrame = epoh1
+    elseif Value == '沙漠之鹰' then
+        local epoh1 = CFrame.new(363.341461, 26.0798492, -259.681396)
+        epoh3.CFrame = epoh1
+    elseif Value == '警察局（M4A1）' then
+        local epoh1 = CFrame.new(603.4676513671875,25.662811279296875,-922.0442504882812)
+        epoh3.CFrame = epoh1
+    elseif Value == 'AUG' then
+        local epoh1 = CFrame.new(1170.500244140625,48.37138366699219,-772.55859375)
+        epoh3.CFrame = epoh1
+    elseif Value == '军事基地（军甲）' then
+        local epoh1 = CFrame.new(563.4422607421875,28.502071380615234,-1472.780517578125)
+        epoh3.CFrame = epoh1
+    end
+    end
+})
+Fram:AddToggle({
+    Name = '银行刷新提醒',
+    Callback = function(Value)
+    Bank1 = Value
+        if Bank1 then
+            Bank2()
         end
-    )
-    local creds = window:Tab("通用", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "玩家加入游戏提示",
-        function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))()
+    end    
+})
+Bank2 = function()
+    while Bank1 do
+    wait(0.1)
+    local Bank = game:GetService('Workspace').BankRobbery.BankCash.Cash:FindFirstChild('Bundle')
+        if Bank then
+            OrionLib:MakeNotification({
+                Name = '提示：',
+                Content = '银行已刷新！',
+                Image = 'rbxassetid://4483345998',
+                Time = 5
+            })
+            wait(30)
         end
-    )
-    credits:Button(
-        "传送工具",
-        function()
-            mouse = game.Players.LocalPlayer:GetMouse()
-            tool = Instance.new("Tool")
-            tool.RequiresHandle = false
-            tool.Name = "Click Teleport"
-            tool.Activated:connect(
-                function()
-                    local pos = mouse.Hit + Vector3.new(0, 2.5, 0)
-                    pos = CFrame.new(pos.X, pos.Y, pos.Z)
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-                end
-            )
-            tool.Parent = game.Players.LocalPlayer.Backpack
+    end
+end
+Fram:AddToggle({
+    Name = '珠宝店刷新提醒',
+    Callback = function(Value)
+    Gem1 = Value
+        if Gem1 then
+            Gem2()
         end
-    )
-    credits:Button(
-        "飞行",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/gqv7PXAa"))()
+    end    
+})
+Gem2 = function()
+    while Gem1 do
+    wait(0.1)
+    local Ge = game:GetService('Workspace').GemRobbery:FindFirstChild('Rubble')
+        if Ge then
+            OrionLib:MakeNotification({
+                Name = '提示：',
+                Content = '珠宝店已刷新！',
+                Image = 'rbxassetid://4483345998',
+                Time = 5
+            })
+            wait(30)
         end
-    )
-    credits:Button(
-        "光影V4",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/zZCaYYte"))()
+    end
+end
+Fram:AddToggle({
+    Name = '自动银行',
+    Callback = function(Value)
+    AutoBank1 = Value
+        if AutoBank1 then
+            AutoBank2()
         end
-    )
-    credits:Button(
-        "透视",
-        function()
-            loadstring(
-                game:HttpGet(
-                    "https://raw.githubusercontent.com/cool83birdcarfly02six/UNIVERSALESPLTX/main/README.md",
-                    true
-                )
-            )()
+    end    
+})
+AutoBank2 = function()
+    while AutoBank1 do
+        wait()
+        local BankDoor = game:GetService("Workspace").BankRobbery.VaultDoor
+        local BankCashs = game:GetService("Workspace").BankRobbery.BankCash
+        local epoh2 = game:GetService('Players')
+        local epoh3 = epoh2.LocalPlayer.Character.HumanoidRootPart
+        if BankDoor.Door.Attachment.ProximityPrompt.Enabled == true then
+            BankDoor.Door.Attachment.ProximityPrompt.HoldDuration = 0
+            BankDoor.Door.Attachment.ProximityPrompt.MaxActivationDistance = 16
+            local epoh1 = CFrame.new(1071.955810546875, 9, -343.80816650390625)
+            epoh3.CFrame = epoh1
+           wait(1)
+            BankDoor.Door.Attachment.ProximityPrompt:InputHoldBegin()
+            BankDoor.Door.Attachment.ProximityPrompt:InputHoldEnd()
+            BankDoor.Door.Attachment.ProximityPrompt.Enabled = false
         end
-    )
-    credits:Button(
-        "人物旋转",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/r97d7dS0", true))()
+        if BankCashs.Cash.Bundle then
+            local epoh1 = CFrame.new(1055.872802734375, 10, -344.6944580078125)
+            epoh3.CFrame = epoh1
+            BankCashs.Main.Attachment.ProximityPrompt.MaxActivationDistance = 16
+            if BankCashs.Cash.Bundle then
+            BankCashs.Main.Attachment.ProximityPrompt:InputHoldBegin()
+            wait(45)
+            BankCashs.Main.Attachment.ProximityPrompt:InputHoldEnd()
+            local epoh1 = CFrame.new(240.52850341796875, -120, -620)
+            epoh3.CFrame = epoh1
+            end
+        end   
+        if not BankCashs.Cash.Bundle then
+            local epoh1 = CFrame.new(240.52850341796875, -120, -620)
+            epoh3.CFrame = epoh1
         end
-    )
-    credits:Button(
-        "无限跳",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+    end
+end
+Fram:AddToggle({
+    Name = '自动金保险',
+    Callback = function(Value)
+    AutoSafe1 = Value
+        if AutoSafe1 then
+            AutoSafe2()
         end
-    )
-    credits:Button(
-        "飞车",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/ZWXWa1eP"))()
+    end    
+})
+AutoSafe2 = function()
+    while AutoSafe1 do
+        wait()
+        local BankDoor = game:GetService("Workspace").BankRobbery.VaultDoor
+        local epoh2 = game:GetService('Players')
+        local epoh3 = epoh2.LocalPlayer.Character.HumanoidRootPart
+        if BankDoor.Door.Attachment.ProximityPrompt.Enabled == true then
+            BankDoor.Door.Attachment.ProximityPrompt.HoldDuration = 0
+            BankDoor.Door.Attachment.ProximityPrompt.MaxActivationDistance = 16
+            local epoh1 = CFrame.new(1071.955810546875, 9, -343.80816650390625)
+            epoh3.CFrame = epoh1
+            wait(1)
+            BankDoor.Door.Attachment.ProximityPrompt:InputHoldBegin()
+            BankDoor.Door.Attachment.ProximityPrompt:InputHoldEnd()
+            BankDoor.Door.Attachment.ProximityPrompt.Enabled = false
         end
-    )
-    credits:Button(
-        "电脑键盘",
-        function()
-            loadstring(
-                game:HttpGet(
-                    "https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt",
-                    true
-                )
-            )()
-        end
-    )
-    credits:Button(
-        "炸房踢人无敌",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/8nxMMAfj", true))()
-        end
-    )
-    local creds = window:Tab("俄州", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "俄州指令脚本",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/BPZycx9e", true))()
-        end
-    )
-    credits:Button(
-        "玩家控制",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/WEj0kwT2"))()
-        end
-    )
-    local creds = window:Tab("伐木大亨", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "伐木大亨1",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/dwQDjMbp", true))()
-        end
-    )
-    credits:Button(
-        "伐木大亨2",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/Q7seVBTV"))()
-        end
-    )
-    credits:Button(
-        "伐木大亨3",
-        function()
-            loadstring(
-                game:HttpGet("https://raw.githubusercontent.com/darkxwin/darkxsourcethinkyoutousedarkx/main/darkx")
-            )()
-        end
-    )
-    local creds = window:Tab("爱德华食人列车", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "爱德华食人列车1",
-        function()
-            loadstring(
-                game:HttpGet(
-                    "https://raw.githubusercontent.com/GhostDuckyy/GhostDuckyy/main/Source/Edward%20the%20Man-Eating%20Train.lua"
-                )
-            )()
-        end
-    )
-    local creds = window:Tab("鱿鱼游戏", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "鱿鱼游戏1",
-        function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/LilFrench21/Hecta/main/Script/Squid%20Game"))()
-        end
-    )
-    local creds = window:Tab("奇怪严格的办法", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "奇怪严格的爸爸",
-        function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/yBloodz/Free-scripts/main/Weird%20Strict%20Dad"))(
-
-            )
-        end
-    )
-    local creds = window:Tab("造船寻宝", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "造船寻宝（复制别人船）",
-        function()
-            loadstring(
-                game:HttpGet("https://raw.githubusercontent.com/max2007killer/auto-build-not-limit/main/autobuild.txt")
-            )()
-        end
-    )
-    credits:Button(
-        "造船寻宝（刷钱）",
-        function()
-            loadstring(
-                game:HttpGet("https://raw.githubusercontent.com/urmomjklol69/GoldFarmBabft/main/GoldFarm.lua", true)
-            )()
-        end
-    )
-    local creds = window:Tab("自然灾害", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "自然灾害1",
-        function()
-            loadstring(
-                game:HttpGet(
-                    "https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringUjHI6RQpz2o8",
-                    true
-                )
-            )()
-        end
-    )
-    credits:Button(
-        "自然灾害2",
-        function()
-            loadstring(
-                game:HttpGet(
-                    "https://raw.githubusercontent.com/MrWitzbold/Natural-disaster-survival-GUI/main/main.lua",
-                    true
-                )
-            )()
-        end
-    )
-    credits:Button(
-        "自然灾害3",
-        function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/9NLK7/93qjoadnlaknwldk/main/main"))()
-        end
-    )
-    local creds = window:Tab("鲨口求生", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "鲨口求生",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/YYVLbzVg", true))()
-        end
-    )
-    local creds = window:Tab("监狱人生", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "监狱人生1",
-        function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))()
-        end
-    )
-    credits:Button(
-        "监狱人生2",
-        function()
-            loadstring(
-                game:HttpGet("https://raw.githubusercontent.com/i1nfinity/Project-X/master/Prison%20Breaker%20X", true)
-            )()
-        end
-    )
-    local creds = window:Tab("战争大亨", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "战争大亨1",
-        function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Nivex123456/War-Tycoon/main/Script"))()
-        end
-    )
-    local creds = window:Tab("兵工厂", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "兵工厂1",
-        function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/iZPW5vKH"))()
-        end
-    )
-    local creds = window:Tab("举重模拟器", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "举重模拟器汉化版1",
-        function()
-            local UILibrary =
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
-            local MainUI = UILibrary.Load("💪🏻举重模拟器")
-            local FirstPage = MainUI.AddPage("首页")
-            FirstPage.AddToggle(
-                "自动举重",
-                false,
-                function(Value)
-                    toggle = Value
-                    while toggle do
-                        wait()
-                        local ohTable1 = {[1] = "GainMuscle"}
-                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(ohTable1)
-                    end
-                end
-            )
-            FirstPage.AddToggle(
-                "自动售卖",
-                false,
-                function(Value)
-                    tog = Value
-                    while tog do
-                        wait()
-                        local ohTable1 = {[1] = "SellMuscle"}
-                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(ohTable1)
-                    end
-                end
-            )
-            FirstPage.AddButton(
-                "显示商店界面",
-                function()
-                    game:GetService("Players").LocalPlayer.PlayerGui["Main_Gui"]["UpgradeMenu_Frame"].Visible = true
-                end
-            )
-        end
-    )
-    local creds = window:Tab("越狱", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "越狱1",
-        function()
-            loadstring(game:GetObjects("rbxassetid://3762448307")[1].Source)()
-        end
-    )
-    local creds = window:Tab("力量传奇", "16060333448")
-    local credits = creds:section("内容", true)
-    credits:Button(
-        "力量传奇传送和自动汉化",
-        function()
-            local MuscleLegends = Instance.new("ScreenGui")
-            local balls = Instance.new("Frame")
-            local TextButton = Instance.new("TextButton")
-            local Frame = Instance.new("Frame")
-            local TextButton_2 = Instance.new("TextButton")
-            local MuscleL
+        local GoldJewelSafes = game:GetService("Workspace").Game.Entities.GoldJewelSafe
+        local foundModel = false
+        for _, model in pairs(GoldJewelSafes:GetChildren()) do
+            if model.ClassName == 'Model' then
+                foundModel = true
+                local epoh1 = model.WorldPivot
+                epoh3.CFrame = epoh1
+                wait(1)
+                model.Door["Meshes/LargeSafe_Cube.002_Cube.003_None (1)"].Attachment.ProximityPrompt.HoldDuration = 0
+                model.Door["Meshes/LargeSafe_Cube.002_Cube.003_None (1)"].Attachment.ProximityPrompt.MaxActivationDistance = 16
+                if model.Door["Meshes/LargeSafe_Cube.002_Cube.003_None (1)"].Attachment.ProximityPrompt.Enabled == true then
+                    model.Door["Meshes/LargeSafe_Cube.002_Cube.003_None (1)"].Attachment.ProximityPrompt:InputHoldBegin()
+                    model.Door["Meshes/La

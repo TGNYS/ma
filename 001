@@ -1,310 +1,68 @@
---!strict
---[[
-    Roblox 公告系统 v2.3
-    改进内容:
-    - 完全修复了事件监听器内存泄漏问题
-    - 添加了公告标题支持
-    - 支持富文本格式(RichText)
-    - 优化了文本滚动性能
-    - 添加了公告显示计数限制
-    - 支持自定义动画效果
-    - 添加了公告分组功能
-    - 支持屏幕边缘安全区域
-]]
+-- Announcement Script (Luau) for Roblox
 
-local AnnouncementSystem = {}
-AnnouncementSystem.__index = AnnouncementSystem
+-- This script displays an announcement GUI to the player and allows interaction
 
--- 导入服务
-local TweenService = game:GetService("TweenService")
-local RunService = game:GetService("RunService")
-
--- 公告类型定义
-local AnnouncementTypes = {
-    NORMAL = {
-        color = Color3.fromRGB(255, 255, 255),
-        bgColor = Color3.fromRGB(0, 0, 0),
-        bgTransparency = 0.7,
-        duration = 5,
-        icon = "rbxassetid://1234567890",
-        priority = 1,
-        sound = nil,
-        titleColor = Color3.fromRGB(200, 200, 200)
-    },
-    URGENT = {
-        color = Color3.fromRGB(255, 50, 50),
-        bgColor = Color3.fromRGB(50, 0, 0),
-        bgTransparency = 0.5,
-        duration = 8,
-        icon = "rbxassetid://1234567891",
-        priority = 3,
-        sound = "rbxassetid://9114338339",
-        titleColor = Color3.fromRGB(255, 150, 150)
-    },
-    EVENT = {
-        color = Color3.fromRGB(255, 215, 0),
-        bgColor = Color3.fromRGB(0, 50, 50),
-        bgTransparency = 0.6,
-        duration = 7,
-        icon = "rbxassetid://1234567892",
-        priority = 2,
-        sound = "rbxassetid://9114338341",
-        titleColor = Color3.fromRGB(255, 255, 150)
-    }
-}
-
--- 创建新公告系统
-function AnnouncementSystem.new(parentGui: Instance, position: UDim2?, anchorPoint: Vector2?, safeInset: {top: number?, bottom: number?}?)
-    local self = setmetatable({}, AnnouncementSystem)
-    
-    self.parentGui = parentGui
-    self.announcementQueue = {}
-    self.currentDisplay = nil
-    self.isShowing = false
-    self.history = {}
-    self.maxHistory = 50
-    self.activeConnections = {}
-    self.activeTweens = {}
-    self.groupCooldowns = {}
-    
-    -- UI配置
-    self.defaultPosition = position or UDim2.new(0.5, 0, 0.05, 0)
-    self.defaultAnchorPoint = anchorPoint or Vector2.new(0.5, 0)
-    self.safeInset = safeInset or {top = 0, bottom = 0}
-    
-    -- 创建UI
-    self:setupUI()
-    
-    return self
-end
-
--- 初始化UI
-function AnnouncementSystem:setupUI()
-    -- 主容器
-    self.container = Instance.new("Frame")
-    self.container.Name = "AnnouncementContainer"
-    self.container.Size = UDim2.new(0.8, 0, 0, 0) -- 宽度80%，高度动态
-    self.container.Position = self.defaultPosition
-    self.container.AnchorPoint = self.defaultAnchorPoint
-    self.container.BackgroundTransparency = 1
-    self.container.ClipsDescendants = true
-    self.container.Parent = self.parentGui
-    
-    -- 公告背景
-    self.bgFrame = Instance.new("Frame")
-    self.bgFrame.Name = "AnnouncementFrame"
-    self.bgFrame.Size = UDim2.new(1, 0, 0, 0) -- 高度动态
-    self.bgFrame.Position = UDim2.new(0, 0, 0, 0)
-    self.bgFrame.BackgroundTransparency = 1
-    self.bgFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    self.bgFrame.BorderSizePixel = 0
-    self.bgFrame.Visible = false
-    self.bgFrame.Parent = self.container
-    
-    -- 圆角效果
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 8)
-    corner.Parent = self.bgFrame
-    
-    -- 图标
-    self.icon = Instance.new("ImageLabel")
-    self.icon.Name = "Icon"
-    self.icon.Size = UDim2.new(0, 40, 0, 40)
-    self.icon.Position = UDim2.new(0, 15, 0, 15)
-    self.icon.BackgroundTransparency = 1
-    self.icon.Parent = self.bgFrame
-    
-    -- 标题标签
-    self.titleLabel = Instance.new("TextLabel")
-    self.titleLabel.Name = "TitleText"
-    self.titleLabel.Size = UDim2.new(1, -70, 0, 20)
-    self.titleLabel.Position = UDim2.new(0, 65, 0, 15)
-    self.titleLabel.BackgroundTransparency = 1
-    self.titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    self.titleLabel.TextSize = 18
-    self.titleLabel.Font = Enum.Font.GothamBold
-    self.titleLabel.TextXAlignment = Enum.TextXAlignment.Left
-    self.titleLabel.TextYAlignment = Enum.TextYAlignment.Top
-    self.titleLabel.TextWrapped = false
-    self.titleLabel.Text = ""
-    self.titleLabel.RichText = true
-    self.titleLabel.Parent = self.bgFrame
-    
-    -- 文本标签
-    self.textLabel = Instance.new("TextLabel")
-    self.textLabel.Name = "AnnouncementText"
-    self.textLabel.Size = UDim2.new(1, -20, 1, -60)
-    self.textLabel.Position = UDim2.new(0, 10, 0, 50)
-    self.textLabel.BackgroundTransparency = 1
-    self.textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    self.textLabel.TextSize = 16
-    self.textLabel.Font = Enum.Font.GothamSemibold
-    self.textLabel.TextXAlignment = Enum.TextXAlignment.Left
-    self.textLabel.TextYAlignment = Enum.TextYAlignment.Top
-    self.textLabel.TextWrapped = true
-    self.textLabel.Text = ""
-    self.textLabel.RichText = true
-    self.textLabel.Parent = self.bgFrame
-    
-    -- 滚动区域
-    self.scrollingFrame = Instance.new("ScrollingFrame")
-    self.scrollingFrame.Name = "ScrollingFrame"
-    self.scrollingFrame.Size = UDim2.new(1, -20, 1, -60)
-    self.scrollingFrame.Position = UDim2.new(0, 10, 0, 50)
-    self.scrollingFrame.BackgroundTransparency = 1
-    self.scrollingFrame.ScrollBarThickness = 4
-    self.scrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(200, 200, 200)
-    self.scrollingFrame.Visible = false
-    self.scrollingFrame.Parent = self.bgFrame
-    
-    -- 滚动文本
-    self.scrollTextLabel = Instance.new("TextLabel")
-    self.scrollTextLabel.Name = "ScrollText"
-    self.scrollTextLabel.Size = UDim2.new(1, 0, 0, 0) -- 高度自动
-    self.scrollTextLabel.Position = UDim2.new(0, 0, 0, 0)
-    self.scrollTextLabel.BackgroundTransparency = 1
-    self.scrollTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    self.scrollTextLabel.TextSize = 16
-    self.scrollTextLabel.Font = Enum.Font.GothamSemibold
-    self.scrollTextLabel.TextXAlignment = Enum.TextXAlignment.Left
-    self.scrollTextLabel.TextYAlignment = Enum.TextYAlignment.Top
-    self.scrollTextLabel.TextWrapped = true
-    self.scrollTextLabel.RichText = true
-    self.scrollTextLabel.AutomaticSize = Enum.AutomaticSize.Y
-    self.scrollTextLabel.Parent = self.scrollingFrame
-    
-    -- 关闭按钮
-    self.closeButton = Instance.new("ImageButton")
-    self.closeButton.Name = "CloseButton"
-    self.closeButton.Size = UDim2.new(0, 24, 0, 24)
-    self.closeButton.Position = UDim2.new(1, -32, 0, 15)
-    self.closeButton.BackgroundTransparency = 1
-    self.closeButton.Image = "rbxassetid://3926305904"
-    self.closeButton.ImageRectOffset = Vector2.new(284, 4)
-    self.closeButton.ImageRectSize = Vector2.new(24, 24)
-    self.closeButton.Parent = self.bgFrame
-    
-    -- 点击区域
-    self.clickArea = Instance.new("TextButton")
-    self.clickArea.Name = "ClickArea"
-    self.clickArea.Size = UDim2.new(1, 0, 1, 0)
-    self.clickArea.Position = UDim2.new(0, 0, 0, 0)
-    self.clickArea.BackgroundTransparency = 1
-    self.clickArea.Text = ""
-    self.clickArea.Parent = self.bgFrame
-    
-    -- 动画配置
-    self.fadeInInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-    self.fadeOutInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
-    self.slideInInfo = TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0)
-    self.slideOutInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In, 0, false, 0)
-end
-
--- 清理资源
-function AnnouncementSystem:cleanup()
-    -- 断开所有事件连接
-    for _, connection in pairs(self.activeConnections) do
-        connection:Disconnect()
-    end
-    self.activeConnections = {}
-    
-    -- 取消所有动画
-    for _, tween in pairs(self.activeTweens) do
-        tween:Cancel()
-    end
-    self.activeTweens = {}
-end
-
--- 添加公告
-function AnnouncementSystem:AddAnnouncement(text: string, announcementType: string, customSettings: {[string]: any}?)
-    -- 参数验证
-    if type(text) ~= "string" or text == "" then
-        warn("公告文本不能为空")
+local function createAnnouncement(player, title, content)
+    -- Check if the player has a PlayerGui
+    if not player:FindFirstChild("PlayerGui") then
+        warn("Player does not have a PlayerGui")
         return
     end
-    
-    local config = table.clone(AnnouncementTypes[announcementType] or AnnouncementTypes.NORMAL)
-    
-    -- 合并自定义设置
-    if customSettings then
-        for k, v in pairs(customSettings) do
-            if k ~= "type" then -- 防止覆盖类型
-                config[k] = v
-            end
-        end
-    end
-    
-    -- 检查过期时间
-    if config.expireTime and os.time() > config.expireTime then
-        return -- 公告已过期
-    end
-    
-    -- 检查分组冷却
-    if config.group and self.groupCooldowns[config.group] then
-        if os.time() < self.groupCooldowns[config.group] then
-            return -- 分组冷却中
-        end
-    end
-    
-    -- 检查显示限制
-    if config.maxShowCount and config.id then
-        local count = 0
-        for _, item in ipairs(self.history) do
-            if item.config.id == config.id then
-                count += 1
-                if count >= config.maxShowCount then
-                    return -- 达到最大显示次数
-                end
-            end
-        end
-    end
-    
-    local announcement = {
-        text = text,
-        config = config,
-        timestamp = os.time(),
-        callback = customSettings and customSettings.callback or nil,
-        title = customSettings and customSettings.title or nil
-    }
-    
-    -- 添加到历史记录
-    table.insert(self.history, 1, announcement)
-    if #self.history > self.maxHistory then
-        table.remove(self.history, self.maxHistory + 1)
-    end
-    
-    -- 根据优先级插入队列
-    local inserted = false
-    for i, item in ipairs(self.announcementQueue) do
-        if item.config.priority < config.priority then
-            table.insert(self.announcementQueue, i, announcement)
-            inserted = true
-            break
-        end
-    end
-    
-    if not inserted then
-        table.insert(self.announcementQueue, announcement)
-    end
-    
-    -- 如果没有正在显示的公告，立即显示
-    if not self.isShowing then
-        self:ShowNextAnnouncement()
-    end
+
+    -- Create the ScreenGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "AnnouncementGui"
+    screenGui.Parent = player.PlayerGui
+
+    -- Create the Frame for the Announcement
+    local announcementFrame = Instance.new("Frame")
+    announcementFrame.Size = UDim2.new(0, 300, 0, 150)
+    announcementFrame.Position = UDim2.new(0.5, -150, 0.5, -75)
+    announcementFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    announcementFrame.Parent = screenGui
+
+    -- Create the Title Label
+    local titleLabel = Instance.new("TextLabel")
+    titleLabel.Size = UDim2.new(1, 0, 0.3, 0)
+    titleLabel.Position = UDim2.new(0, 0, 0, 0)
+    titleLabel.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    titleLabel.Text = title
+    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    titleLabel.Font = Enum.Font.SourceSansBold
+    titleLabel.TextSize = 20
+    titleLabel.Parent = announcementFrame
+
+    -- Create the Content Label
+    local contentLabel = Instance.new("TextLabel")
+    contentLabel.Size = UDim2.new(1, -20, 0.5, -20)
+    contentLabel.Position = UDim2.new(0, 10, 0.4, 0)
+    contentLabel.BackgroundTransparency = 1
+    contentLabel.Text = content
+    contentLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    contentLabel.Font = Enum.Font.SourceSans
+    contentLabel.TextSize = 18
+    contentLabel.TextWrapped = true
+    contentLabel.Parent = announcementFrame
+
+    -- Create the Close Button
+    local closeButton = Instance.new("TextButton")
+    closeButton.Size = UDim2.new(0.3, 0, 0.2, 0)
+    closeButton.Position = UDim2.new(0.35, 0, 0.75, 0)
+    closeButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    closeButton.Text = "Close"
+    closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    closeButton.Font = Enum.Font.SourceSansBold
+    closeButton.TextSize = 18
+    closeButton.Parent = announcementFrame
+
+    -- Connect the Close Button
+    closeButton.MouseButton1Click:Connect(function()
+        screenGui:Destroy()
+    end)
 end
 
--- 显示下一条公告
-function AnnouncementSystem:ShowNextAnnouncement()
-    if #self.announcementQueue == 0 then
-        self.isShowing = false
-        return
-    end
-    
-    self:cleanup() -- 清理之前的资源
-    
-    self.isShowing = true
-    local announcement = table.remove(self.announcementQueue, 1)
-    
-    -- 更新UI内容
-    self.textLabel.Text = announcement.text
- 
+-- Listen for PlayerAdded event to show announcement
+game.Players.PlayerAdded:Connect(function(player)
+    wait(1) -- Wait for the PlayerGui to load
+    createAnnouncement(player, "Welcome!", "Thanks for joining the game. Have fun!")
+end)

@@ -1,327 +1,133 @@
-local CF = CFrame.new
-local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
-local ChaseStart = game:GetService("ReplicatedStorage").GameData.ChaseStart
-
-local bai={
-    jishi=false,
-    yucezuizhu=false,
-    yceguaiwu=false,
-    bookes=false,
-    fuces=false,
-    keyesp=false,
-    zidongkaimen=false
-}
-local bailib = loadstring(game:HttpGet"https://pastebin.com/raw/uT8BtRLA")()
-local win = bailib:new("白--doors",'')
-local Tab1 = win:Tab("玩家功能", "10882439086")
-local Section3 = Tab1:section("玩家")
-local Tab = win:Tab("主要功能", "10728953248")
-local Sectionts = Tab:section("功能")
-local lp=game.Players.LocalPlayer
-
-function tp(pos)
-  if typeof(pos) == "CFrame" then
-   lp.Character:SetPrimaryPartCFrame(pos)
-  elseif typeof(pos) == "Vector3" then
-    lp.Character:MoveTo(pos)
-  end
+local ByWho = "作者凡尘"
+local lol = true 
+local ScriptName = "凡尘脚本"
+while lol do wait
+local Key = "111"
 end
-function notify(Title,Text,Duration) -- Sends Notification in the bottom right of the screen
-    game.StarterGui:SetCore("SendNotification", {
-        Title = Title;
-        Text = Text;
-        Icon = nil;
-        Duration = Duration
-    })
-end
-Section3:Slider('设置速度', 'Sliderflag', 16, 16, 900,false, function(s)
-game:GetService("RunService").RenderStepped:Connect(function()
-        pcall(function()
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
-        end)
-    end)
-end)
-local KeyChams = {}
-Sectionts:Toggle("钥匙透视",'Toggleflag',false,function(s)
-	for i,v in pairs(KeyChams) do
-        v.Enabled = s
-    end
-   bai.keyesp=s
-end)
-
-
-local function ApplyKeyChams(inst)
-    wait()
-    local Cham = Instance.new("Highlight")
-    Cham.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    Cham.FillColor = Color3.new(0,0,0)
-    Cham.FillTransparency = 0
-    Cham.OutlineColor = Color3.new(0,0,0)
-    Cham.Parent = inst
-    Cham.Adornee = inst
-    Cham.Enabled = bai.keyesp
-    Cham.RobloxLocked = true
-    return Cham
-end
-
-local KeyCoroutine = coroutine.create(function()
-    workspace.CurrentRooms.DescendantAdded:Connect(function(inst)
-        if inst.Name == "KeyObtain" then
-            table.insert(KeyChams,ApplyKeyChams(inst))
-        end
-    end)
-end)
-for i,v in ipairs(workspace:GetDescendants()) do
-    if v.Name == "KeyObtain" then
-        table.insert(KeyChams,ApplyKeyChams(v))
-    end
-end
-coroutine.resume(KeyCoroutine)
-
-local BookChams = {}
-Sectionts:Toggle("书透视",'Toggleflag',false,function(s)
-    for i,v in pairs(BookChams) do
-        v.Enabled =s
-    end
-bai.bookes=s
-end)
-
-
-local FigureChams = {}
-Sectionts:Toggle("图形透视",'Toggleflag',false,function(s)
-    for i,v in pairs(FigureChams) do
-        v.Enabled =s
-    end
-	bai.fuces=s
-end)
-
-
-local function ApplyBookChams(inst)
-    wait()
-    local Cham = Instance.new("Highlight")
-    Cham.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    Cham.FillColor = Color3.new(0,0,0)
-    Cham.FillTransparency = 0
-    Cham.OutlineColor = Color3.new(0,0,0)
-    Cham.Parent = inst
-    Cham.Enabled = bai.bookes
-    Cham.Adornee = inst
-    Cham.RobloxLocked = true
-    return Cham
-end
-
-local function ApplyEntityChams(inst)
-    wait()
-    local Cham = Instance.new("Highlight")
-    Cham.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    Cham.FillColor = Color3.new(0,0,0)
-    Cham.FillTransparency = 0
-    Cham.OutlineColor = Color3.new(0,0,0)
-    Cham.Parent = inst
-    Cham.Enabled =bai.fuces
-    Cham.Adornee = inst
-    Cham.RobloxLocked = true
-    return Cham
-end
-
-local BookCoroutine = coroutine.create(function()
-    for i,v in pairs(game:GetService("Workspace").CurrentRooms["50"].Assets:GetDescendants()) do
-        if v.Name == "LiveHintBook" then
-            table.insert(BookChams,ApplyBookChams(v))
-            
-        end
-    end
-end)
-local EntityCoroutine = coroutine.create(function()
-    local Entity = game:GetService("Workspace").CurrentRooms["50"].FigureSetup:WaitForChild("FigureRagdoll",5)
-    Entity:WaitForChild("Torso",2.5)
-    table.insert(FigureChams,ApplyEntityChams(Entity))
-end)
+local QQ = "56117318118"
+local NoKey = "64664"
+local V = "卡密系统版本2.0 团队不招人"
 
 
 
+local Info = "看在开源的面子上 给个分享不过分吧"
 
+local ScreenGui = Instance.new("ScreenGui")
+local Frame_1 = Instance.new("Frame")
+local TextLabel_1 = Instance.new("TextLabel")
+local TextBox_1 = Instance.new("TextBox")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local TextButton_1 = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local TextButton_3 = Instance.new("TextButton")
 
-local function applyLight(value)
-    if value then 
-        local light = Instance.new('PointLight', game.Players.LocalPlayer.Character.Head)
-        light.Name='bai'
-        light.Range = 150
-        light.Brightness = 1.7
-    else
-        pcall(function()
-            game.Players.LocalPlayerp.Character.Head.bai:remove();
-        end);
-    end;
-end;
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
+Frame_1.Parent = ScreenGui
+Frame_1.BackgroundColor3 = Color3.fromRGB(170,170,255)
+Frame_1.BorderColor3 = Color3.fromRGB(0,0,0)
+Frame_1.BorderSizePixel = 0
+Frame_1.Position = UDim2.new(0.277888447, 0,0.0896414369, 0)
+Frame_1.Size = UDim2.new(0, 553,0, 300)
 
-Sectionts:Toggle("头部发光",'Toggleflag',false,function(s)
-	applyLight(s)
-end)
+TextLabel_1.Parent = ScreenGui
+TextLabel_1.BackgroundColor3 = Color3.fromRGB(134,94,255)
+TextLabel_1.BorderColor3 = Color3.fromRGB(0,0,0)
+TextLabel_1.BorderSizePixel = 0
+TextLabel_1.Position = UDim2.new(0.276892424, 0,0.0896414369, 0)
+TextLabel_1.Size = UDim2.new(0, 554,0, 29)
+TextLabel_1.Font = Enum.Font.SourceSans
+TextLabel_1.Text = ScriptName.."卡密系统"
+TextLabel_1.TextColor3 = Color3.fromRGB(215,219,255)
+TextLabel_1.TextSize = 32
 
+TextBox_1.Parent = ScreenGui
+TextBox_1.Active = true
+TextBox_1.BackgroundColor3 = Color3.fromRGB(113,110,156)
+TextBox_1.BorderColor3 = Color3.fromRGB(0,0,0)
+TextBox_1.BorderSizePixel = 0
+TextBox_1.CursorPosition = -1
+TextBox_1.Position = UDim2.new(0.4741036, 0,0.334661365, 0)
+TextBox_1.Size = UDim2.new(0, 158,0, 41)
+TextBox_1.Font = Enum.Font.SourceSans
+TextBox_1.PlaceholderColor3 = Color3.fromRGB(178,178,178)
+TextBox_1.PlaceholderText = ""
+TextBox_1.Text = ""
+TextBox_1.TextSize = 14
 
+TextLabel_2.Parent = ScreenGui
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(170,170,255)
+TextLabel_2.BorderColor3 = Color3.fromRGB(0,0,0)
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(0.4741036, 0,0.416334659, 0)
+TextLabel_2.Size = UDim2.new(0, 158,0, 18)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = "在这上面输入"
+TextLabel_2.TextSize = 15
 
-Sectionts:Toggle("即时交互",'Toggleflag',false,function(s)
-	bai.jishi=s
-end)
+TextLabel_3.Parent = ScreenGui
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(170,170,255)
+TextLabel_3.BorderColor3 = Color3.fromRGB(0,0,0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0.417330682, 0,0.213147417, 0)
+TextLabel_3.Size = UDim2.new(0, 273,0, 40)
+TextLabel_3.Font = Enum.Font.SourceSans
+TextLabel_3.Text = "请输入卡密"
+TextLabel_3.TextColor3 = Color3.fromRGB(130,111,203)
+TextLabel_3.TextScaled = true
+TextLabel_3.TextSize = 25
+TextLabel_3.TextWrapped = true
 
+TextButton_1.Parent = ScreenGui
+TextButton_1.Active = true
+TextButton_1.BackgroundColor3 = Color3.fromRGB(151,151,255)
+TextButton_1.BorderColor3 = Color3.fromRGB(0,0,0)
+TextButton_1.BorderSizePixel = 0
+TextButton_1.Position = UDim2.new(0.375497997, 0,0.539840639, 0)
+TextButton_1.Size = UDim2.new(0, 99,0, 37)
+TextButton_1.Font = Enum.Font.SourceSans
+TextButton_1.Text = "验证卡密"
+TextButton_1.TextSize = 20
+TextButton_1.MouseButton1Click:Connect(function()
+if TextBox_1.Text == Key then
+ScreenGui:Destroy()
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "!卡密验证成功!"; Text = ScriptName.."loadstring(game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/917"))()"; Duration = 2; })
+local lol = false
 
-
-
-game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(prompt)
-    if bai.jishi == true then
-        fireproximityprompt(prompt)
-    end
-end)
-Sectionts:Toggle("事件预测",'Toggleflag',false,function(s)
-	bai.yucezuizhu=s
-end)
-Sectionts:Toggle("当怪物出现时弹提升",'Toggleflag',false,function(s)
-	bai.yceguaiwu=s
-end)
-
-
-local NotificationCoroutine = coroutine.create(function()
-    LatestRoom.Changed:Connect(function()
-        spwan(function()
-        if bai.yucezuizhu == true then
-            local n = ChaseStart.Value - LatestRoom.Value
-            if 0 < n and n < 4 then
-                notify("注意!","事件发生在 " .. tostring(n) .. "房间",5)
-                
-            end
-        end
-        if bai.bookes == true then
-            if LatestRoom.Value == 50 then
-                coroutine.resume(BookCoroutine)
-            end
-        end
-        if bai.fuces == true then
-            if LatestRoom.Value == 50 then
-                coroutine.resume(EntityCoroutine)
-            end
-        end
-    end)
-    end)
-    end)
-    
-    workspace.ChildAdded:Connect(function(inst)
-        spawn(function()
-        if inst.Name == "RushMoving" and bai.yceguaiwu == true then
-            notify("警告!", "Rush已出现!藏起来!",7)
-
-        elseif inst.Name == "AmbushMoving" and bai.yceguaiwu == true then
-            notify("警告!", "Ambush!已出现藏起来!",7)
-         
-        end
-    end)
-end)
-Section3:Button("获得十字架",function()
-local shadow=game:GetObjects("rbxassetid://11498423088")[1]
-shadow.Parent = game.Players.LocalPlayer.Backpack
-local Players = game:GetService("Players")
-local Plr = Players.LocalPlayer
-local Char = Plr.Character or Plr.CharacterAdded:Wait()
-local Hum = Char:WaitForChild("Humanoid")
-local RightArm = Char:WaitForChild("RightUpperArm")
-local LeftArm = Char:WaitForChild("LeftUpperArm")
-local RightC1 = RightArm.RightShoulder.C1
-local LeftC1 = LeftArm.LeftShoulder.C1
-        local function setupCrucifix(tool)
-        RightArm.Name = "R_Arm"
-        LeftArm.Name = "L_Arm"
-        
-        RightArm.RightShoulder.C1 = RightC1 * CFrame.Angles(math.rad(-90), math.rad(-15), 0)
-        LeftArm.LeftShoulder.C1 = LeftC1 * CFrame.new(-0.2, -0.3, -0.5) * CFrame.Angles(math.rad(-125), math.rad(25), math.rad(25))
-        for _, v in next, Hum:GetPlayingAnimationTracks() do
-            v:Stop()
-        end
-        end
-shadow.Equipped:Connect(function()
-setupCrucifix(shadow)
-game.Players.LocalPlayer:SetAttribute("Hidden", true)
-end)
- 
-shadow.Unequipped:Connect(function()
-    game.Players.LocalPlayer:SetAttribute("Hidden", false)
-        RightArm.Name = "RightUpperArm"
-        LeftArm.Name = "LeftUpperArm"
-        
-        RightArm.RightShoulder.C1 = RightC1
-        LeftArm.LeftShoulder.C1 = LeftC1
-end)
-end)
-Section3:Textbox("设置血量",'TextBoxfalg',"输入数字",function(s)	
-spawn(function()
-while task.wait() do
-game.Players.LocalPlayer.Character.Humanoid.Health = s
-end
-end)
-end)
-local Noclip = nil
-local Clip = nil
-
-function noclip()
-	Clip = false
-	local function Nocl()
-		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
-			for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-				if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
-					v.CanCollide = false
-				end
-			end
-		end
-		wait(0.21) -- basic optimization
-	end
-	Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
-end
-
-function clip()
-	if Noclip then Noclip:Disconnect() end
-	Clip = true
-end
-
-Section3:Toggle("穿墙",'Toggleflag',false,function(s)
-if s then
-noclip()
 else
-clip()
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "验证失败"; Text ="正在复制脚本官方群聊"; Duration = 1; })
+game.Players.LocalPlayer:Kick(NoKey)
 end
 end)
-Sectionts:Toggle("自动开门",'Toggleflag',false,function(s)
-	bai.zidongkaimen=s
+
+TextButton_2.Parent = ScreenGui
+TextButton_2.Active = true
+TextButton_2.BackgroundColor3 = Color3.fromRGB(151,151,255)
+TextButton_2.BorderColor3 = Color3.fromRGB(0,0,0)
+TextButton_2.BorderSizePixel = 0
+TextButton_2.Position = UDim2.new(0.631474078, 0,0.539840639, 0)
+TextButton_2.Size = UDim2.new(0, 99,0, 37)
+TextButton_2.Font = Enum.Font.SourceSans
+TextButton_2.Text = "退出UI"
+TextButton_2.TextSize = 20
+TextButton_2.MouseButton1Click:Connect(function()
+ScreenGui:Destroy()
 end)
-local AutoSkipCoro = coroutine.create(function()
-        while true do
-            task.wait()
-            pcall(function()
-            if bai.zidongkaimen == true and game:GetService("ReplicatedStorage").GameData.LatestRoom.Value < 100 then
-                local HasKey = false
-                local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom.Value
-                local CurrentDoor = workspace.CurrentRooms[tostring(LatestRoom)]:WaitForChild("Door")
-                for i,v in ipairs(CurrentDoor.Parent:GetDescendants()) do
-                    if v.Name == "KeyObtain" then
-                        HasKey = v
-                    end
-                end
-                if HasKey then
-                    game.Players.LocalPlayer.Character:PivotTo(CF(HasKey.Hitbox.Position))
-                    task.wait(0.3)
-                    fireproximityprompt(HasKey.ModulePrompt,0)
-                    game.Players.LocalPlayer.Character:PivotTo(CF(CurrentDoor.Door.Position))
-                    task.wait(0.3)
-                    fireproximityprompt(CurrentDoor.Lock.UnlockPrompt,0)
-                end
-                if LatestRoom == 50 then
-                    CurrentDoor = workspace.CurrentRooms[tostring(LatestRoom+1)]:WaitForChild("Door")
-                end
-                game.Players.LocalPlayer.Character:PivotTo(CF(CurrentDoor.Door.Position))
-                task.wait(0.3)
-                CurrentDoor.ClientOpen:FireServer()
-            end
-        end)
-        end
+
+TextButton_3.Parent = ScreenGui
+TextButton_3.Active = true
+TextButton_3.BackgroundColor3 = Color3.fromRGB(151,151,255)
+TextButton_3.BorderColor3 = Color3.fromRGB(0,0,0)
+TextButton_3.BorderSizePixel = 0
+TextButton_3.Position = UDim2.new(0.75, 0,0.159362555, 0)
+TextButton_3.Size = UDim2.new(0, 79,0, 33)
+TextButton_3.Font = Enum.Font.SourceSans
+TextButton_3.Text = "复制脚本官群"
+TextButton_3.TextScaled = true
+TextButton_3.TextSize = 11
+TextButton_3.TextWrapped = true
+TextButton_3.MouseButton1Click:Connect(function()
+setclipboard(QQ)
 end)
-Section3:Button("飞行", function()
-	loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53

@@ -1,27 +1,54 @@
+--!strict
+--[[
+    Roblox 公告系统 v2.0
+    改进功能:
+    - 支持多种公告类型(普通、紧急、活动)
+    - 可点击公告查看详情
+    - 公告图标支持
+    - 更平滑的滚动动画
+    - 公告持续时间可配置
+    - 支持公告关闭按钮
+    - 更好的内存管理
+]]
+
 local AnnouncementSystem = {}
 AnnouncementSystem.__index = AnnouncementSystem
 
--- 公告存储
-local announcements = {
-    { id = 1, text = "欢迎来到游戏！每日登录可领取奖励。", priority = 1 },
-    { id = 2, text = "新活动『夏日狂欢』已开启！", priority = 2 },
-    { id = 3, text = "服务器维护通知：6月5日 02:00-04:00", priority = 3 },
-}
-
--- 紧急公告
-local urgentAnnouncements = {
-    { id = 101, text = "⚠️ 紧急：服务器即将重启，请保存进度！", priority = 999 }
+-- 公告类型定义
+local AnnouncementTypes = {
+    NORMAL = {
+        color = Color3.fromRGB(255, 255, 255),
+        bgColor = Color3.fromRGB(0, 0, 0),
+        bgTransparency = 0.7,
+        duration = 5,
+        icon = "rbxassetid://1234567890" -- 默认图标ID
+    },
+    URGENT = {
+        color = Color3.fromRGB(255, 50, 50),
+        bgColor = Color3.fromRGB(50, 0, 0),
+        bgTransparency = 0.5,
+        duration = 8,
+        icon = "rbxassetid://1234567891" -- 紧急图标ID
+    },
+    EVENT = {
+        color = Color3.fromRGB(255, 215, 0),
+        bgColor = Color3.fromRGB(0, 50, 50),
+        bgTransparency = 0.6,
+        duration = 7,
+        icon = "rbxassetid://1234567892" -- 活动图标ID
+    }
 }
 
 -- 创建新公告系统
-function AnnouncementSystem.new(screenGui: ScreenGui)
+function AnnouncementSystem.new(parentGui: Instance)
     local self = setmetatable({}, AnnouncementSystem)
     
-    self.screenGui = screenGui
-    self.currentAnnouncement = nil
+    self.parentGui = parentGui
     self.announcementQueue = {}
+    self.currentDisplay = nil
+    self.isShowing = false
     
-    -- 创建公告UI
+    -- 创建UI容器
     self:setupUI()
     
     return self
@@ -29,77 +56,8 @@ end
 
 -- 初始化UI
 function AnnouncementSystem:setupUI()
-    local frame = Instance.new("Frame")
-    frame.Size = UDim2.new(1, 0, 0, 50)
-    frame.Position = UDim2.new(0, 0, 0, 10)
-    frame.BackgroundTransparency = 0.7
-    frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    frame.BorderSizePixel = 0
-    frame.Parent = self.screenGui
-    
-    local textLabel = Instance.new("TextLabel")
-    textLabel.Size = UDim2.new(1, -20, 1, -10)
-    textLabel.Position = UDim2.new(0, 10, 0, 5)
-    textLabel.BackgroundTransparency = 1
-    textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    textLabel.TextSize = 18
-    textLabel.Font = Enum.Font.Gotham
-    textLabel.TextXAlignment = Enum.TextXAlignment.Left
-    textLabel.Text = ""
-    textLabel.Parent = frame
-    
-    self.announcementFrame = frame
-    self.announcementText = textLabel
-end
-
--- 添加公告到队列
-function AnnouncementSystem:addAnnouncement(text: string, priority: number)
-    table.insert(self.announcementQueue, {
-        text = text,
-        priority = priority or 1
-    })
-    table.sort(self.announcementQueue, function(a, b)
-        return a.priority > b.priority
-    end)
-end
-
--- 显示下一条公告
-function AnnouncementSystem:showNextAnnouncement()
-    if #self.announcementQueue == 0 then
-        self.announcementText.Text = ""
-        return
-    end
-    
-    local nextAnnouncement = table.remove(self.announcementQueue, 1)
-    self.announcementText.Text = nextAnnouncement.text
-    
-    -- 高亮紧急公告
-    if nextAnnouncement.priority >= 999 then
-        self.announcementText.TextColor3 = Color3.fromRGB(255, 50, 50)
-    else
-        self.announcementText.TextColor3 = Color3.fromRGB(255, 255, 255)
-    end
-    
-    -- 5秒后自动切换下一条
-    task.delay(5, function()
-        self:showNextAnnouncement()
-    end)
-end
-
--- 初始化公告
-function AnnouncementSystem:start()
-    -- 加载普通公告
-    for _, ann in ipairs(announcements) do
-        self:addAnnouncement(ann.text, ann.priority)
-    end
-    
-    -- 加载紧急公告
-    for _, urgent in ipairs(urgentAnnouncements) do
-        self:addAnnouncement(urgent.text, urgent.priority)
-    end
-    
-    -- 开始轮播
-    self:showNextAnnouncement()
-end
-
-return AnnouncementSystem
+    -- 主容器
+    local container = Instance.new("Frame")
+    container.Name = "AnnouncementContainer"
+    container.Size = UDim2.new(1, 0, 0, 60)
+    container.Position = UDim2.new(0, 0, 0

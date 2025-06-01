@@ -1,4 +1,4 @@
-    local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/IIIlll1ll1/Cracks/main/BearUI.lua", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/IIIlll1ll1/Cracks/main/BearUI.lua", true))()
     local window = library:new("傻逼熊脚本")
     local creds = window:Tab("关于", "6035145364")
     local bin = creds:section("信息", true)
@@ -308,4 +308,4 @@
             local TextButton = Instance.new("TextButton")
             local Frame = Instance.new("Frame")
             local TextButton_2 = Instance.new("TextButton")
-            local MuscleLegends_2 = Instance.new("TextButt
+            local MuscleL

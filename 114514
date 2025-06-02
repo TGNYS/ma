@@ -1,65 +1,158 @@
 -- 客户端脚本 (StarterPlayerScripts/AnnouncementGUI.lua)
-local Player = game:GetService("Players").LocalPlayer
-local PlayerGui = Player:WaitForChild("PlayerGui")
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
 
--- 创建GUI
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+-- 创建GUI（使用更现代的设计）
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "AnnouncementGui"
+screenGui.IgnoreGuiInset = true  -- 覆盖整个屏幕
+screenGui.ResetOnSpawn = false
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 screenGui.Parent = PlayerGui
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(1, 0, 0.15, 0)
-frame.Position = UDim2.new(0, 0, 0.1, 0)
-frame.BackgroundTransparency = 1
-frame.Parent = screenGui
+-- 使用Frame作为公告容器
+local container = Instance.new("Frame")
+container.Size = UDim2.new(1, 0, 0, 80)
+container.Position = UDim2.new(0, 0, 0, -80)  -- 初始位置在屏幕外
+container.AnchorPoint = Vector2.new(0.5, 0)
+container.Position = UDim2.new(0.5, 0, 0, -80)
+container.BackgroundTransparency = 1
+container.ClipsDescendants = true
+container.Parent = screenGui
 
+-- 渐变背景
+local gradient = Instance.new("UIGradient")
+gradient.Rotation = 90
+gradient.Transparency = NumberSequence.new({
+    NumberSequenceKeypoint.new(0, 0.7),
+    NumberSequenceKeypoint.new(0.3, 0.5),
+    NumberSequenceKeypoint.new(1, 0.3)
+})
+
+local background = Instance.new("Frame")
+background.Size = UDim2.new(1, 0, 1, 0)
+background.BackgroundColor3 = Color3.new(0, 0, 0)
+background.BorderSizePixel = 0
+background.ZIndex = 1
+gradient.Parent = background
+background.Parent = container
+
+-- 公告文本
 local textLabel = Instance.new("TextLabel")
-textLabel.Size = UDim2.new(1, 0, 1, 0)
-textLabel.BackgroundTransparency = 0.7
-textLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+textLabel.Size = UDim2.new(0.9, 0, 0.8, 0)
+textLabel.Position = UDim2.new(0.05, 0, 0.1, 0)
+textLabel.BackgroundTransparency = 1
 textLabel.Font = Enum.Font.GothamBold
-textLabel.TextScaled = true
+textLabel.TextSize = 28
+textLabel.TextScaled = false
+textLabel.TextWrapped = true
 textLabel.TextColor3 = Color3.new(1, 1, 1)
-textLabel.TextStrokeTransparency = 0.5
+textLabel.TextStrokeTransparency = 0.7
 textLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
-textLabel.Visible = false
-textLabel.Parent = frame
+textLabel.TextXAlignment = Enum.TextXAlignment.Center
+textLabel.TextYAlignment = Enum.TextYAlignment.Center
+textLabel.ZIndex = 2
+textLabel.RichText = true  -- 支持富文本格式
+textLabel.Parent = container
+
+-- 图标装饰（可选）
+local icon = Instance.new("ImageLabel")
+icon.Size = UDim2.new(0, 48, 0, 48)
+icon.Position = UDim2.new(0.01, 0, 0.5, -24)
+icon.BackgroundTransparency = 1
+icon.Image = "rbxassetid://1234567890"  -- 替换为实际图标ID
+icon.Visible = false  -- 默认隐藏
+icon.ZIndex = 3
+icon.Parent = container
 
 -- 监听公告事件
 local announceEvent = ReplicatedStorage:WaitForChild("AnnounceEvent")
 
-announceEvent.OnClientEvent:Connect(function(message, duration, color)
+-- 公告队列系统
+local announcementQueue = {}
+local isShowingAnnouncement = false
+
+-- 动画预设
+local ANIMATION_DURATION = {
+    SLIDE_IN = 0.8,
+    SLIDE_OUT = 0.8,
+    HOLD = 5  -- 默认持续时间
+}
+
+-- 显示公告的函数
+local function showAnnouncement(message, duration, color, iconId)
+    -- 添加到队列
+    table.insert(announcementQueue, {
+        message = message,
+        duration = duration or ANIMATION_DURATION.HOLD,
+        color = color or Color3.new(1, 1, 1),
+        iconId = iconId
+    })
+    
+    -- 如果当前没有显示公告，则开始显示
+    if not isShowingAnnouncement then
+        processQueue()
+    end
+end
+
+-- 处理公告队列
+local function processQueue()
+    if #announcementQueue == 0 then
+        isShowingAnnouncement = false
+        return
+    end
+    
+    isShowingAnnouncement = true
+    local current = table.remove(announcementQueue, 1)
+    
     -- 更新公告内容
-    textLabel.Text = message
-    textLabel.TextColor3 = color
-    textLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+    textLabel.Text = current.message
+    textLabel.TextColor3 = current.color
     
-    -- 显示公告
-    textLabel.Visible = true
+    -- 设置图标
+    if current.iconId then
+        icon.Image = "rbxassetid://" .. current.iconId
+        icon.Visible = true
+    else
+        icon.Visible = false
+    end
     
-    -- 创建动画效果
-    local tweenService = game:GetService("TweenService")
-    local fadeIn = tweenService:Create(
-        textLabel,
-        TweenInfo.new(0.5, Enum.EasingStyle.Quad),
-        {BackgroundTransparency = 0.3}
+    -- 滑入动画
+    local slideIn = TweenService:Create(
+        container,
+        TweenInfo.new(ANIMATION_DURATION.SLIDE_IN, Enum.EasingStyle.Quint),
+        {Position = UDim2.new(0.5, 0, 0, 20)}
     )
-    fadeIn:Play()
+    
+    slideIn:Play()
+    slideIn.Completed:Wait()
     
     -- 等待显示时间
-    task.wait(duration)
+    wait(current.duration)
     
-    -- 淡出效果
-    local fadeOut = tweenService:Create(
-        textLabel,
-        TweenInfo.new(1, Enum.EasingStyle.Quad),
-        {BackgroundTransparency = 1, TextTransparency = 1}
+    -- 滑出动画
+    local slideOut = TweenService:Create(
+        container,
+        TweenInfo.new(ANIMATION_DURATION.SLIDE_OUT, Enum.EasingStyle.Quint),
+        {Position = UDim2.new(0.5, 0, 0, -80)}
     )
-    fadeOut:Play()
     
-    fadeOut.Completed:Wait()
-    textLabel.Visible = false
-    textLabel.BackgroundTransparency = 0.7
-    textLabel.TextTransparency = 0
+    slideOut:Play()
+    slideOut.Completed:Wait()
+    
+    -- 处理下一个公告
+    processQueue()
+end
+
+-- 监听事件
+announceEvent.OnClientEvent:Connect(showAnnouncement)
+
+-- 响应屏幕尺寸变化（确保公告居中）
+RunService.RenderStepped:Connect(function()
+    container.Size = UDim2.new(1, 0, 0, math.clamp(PlayerGui.AbsoluteSize.Y * 0.12, 60, 100))
 end)

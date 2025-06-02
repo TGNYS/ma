@@ -1,85 +1,343 @@
-local correctPassword = "凡尘"
+!print("Welcome to Zeus")print("Welcome to Zeus")local ScreenGui = Instance.new("ScreenGui")
+local UI = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local Frame = Instance.new("Frame")
+local Key = Instance.new("TextBox")
+local Start = Instance.new("TextButton")
 
--- 导入音乐相关库
-local SoundService = game:GetService("SoundService")
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- 创建一个屏幕GUI用于显示密码输入界面
-local passwordGui = Instance.new("ScreenGui")
-passwordGui.Name = "PasswordGui"
-passwordGui.Parent = game.Players.LocalPlayer.PlayerGui
+UI.Name = "卡密系统名字"
+UI.Parent = ScreenGui
+UI.Active = true
+UI.BackgroundColor3 = Color3.new(0, 0, 0)
+UI.BackgroundTransparency = 0
+UI.BorderSizePixel = 3
+UI.Position = UDim2.new(0.5, -150, 0.5, -67)
+UI.Size = UDim2.new(0, 260, 0, 250)
+UI.Draggable = true
 
--- 创建一个框架来容纳其他元素
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0.4, 0, 0.35, 0)  -- 适当增加框架高度，为元素留出更多空间
-frame.Position = UDim2.new(0.3, 0, 0.3, 0)
-frame.BackgroundColor3 = Color3.new(0, 0, 0)
-frame.Parent = passwordGui
+Title.Name = "Title"
+Title.Parent = UI
+Title.BackgroundColor3 = Color3.new(68, 68, 68)
+Title.BackgroundTransparency = 1
+Title.BorderSizePixel = 2
+Title.Position = UDim2.new(0, 0, 0.02, 0)
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.Font = Enum.Font.SourceSans
+Title.Text = "猫脚本卡密系统"
+Title.TextColor3 = Color3.new(0, 0, 255)
+Title.TextScaled = true
+Title.TextSize = 14
+Title.TextWrapped = true
 
--- 创建一个文本标签用于显示"Q群: 793336700"文字
-local qqGroupLabel = Instance.new("TextLabel")
-qqGroupLabel.Size = UDim2.new(1, 0, 0.15, 0)  -- 调整Q群标签大小
-qqGroupLabel.BackgroundTransparency = 1
-qqGroupLabel.TextColor3 = Color3.new(0.5, 0.5, 0.5)  -- 设置Q群标签颜色为灰色，与其他文字区分开
-qqGroupLabel.Font = Enum.Font.SourceSansBold
-qqGroupLabel.TextSize = 16
-qqGroupLabel.Text = "Q群: 56117318118"
-qqGroupLabel.Position = UDim2.new(0, 0, 0.05, 0)  -- 调整Q群标签位置在上方
-qqGroupLabel.Parent = frame
+Frame.Parent = Title
+Frame.BackgroundColor3 = Color3.new(0, 0, 255)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.07, 0, 0.9, 0)
+Frame.Size = UDim2.new(0.85, 0, 0, 6)
 
--- 创建一个文本标签用于提示玩家输入密码
-local passwordPrompt = Instance.new("TextLabel")
-passwordPrompt.Size = UDim2.new(1, 0, 0.3, 0)
-passwordPrompt.BackgroundTransparency = 1
-passwordPrompt.TextColor3 = Color3.new(1, 1, 1)  -- 设置GT脚本秘钥系统文字颜色为白色
-passwordPrompt.Font = Enum.Font.SourceSansBold
-passwordPrompt.TextSize = 20
-passwordPrompt.Text = "凡尘脚本秘钥系统"
-passwordPrompt.Position = UDim2.new(0, 0, 0.2, 0)  -- 调整GT脚本秘钥系统位置在下方
-passwordPrompt.Parent = frame
+Key.Name = "Key"
+Key.Parent = UI
+Key.BackgroundColor3 = Color3.new(1, 1, 1)
+Key.BorderSizePixel = 0
+Key.Position = UDim2.new(0.1, 0, 0.31, 0)
+Key.Size = UDim2.new(0.8, 0, 0, 50)
+Key.Font = Enum.Font.SourceSans
+Key.PlaceholderText = "输入卡密"
+Key.Text = ""
+Key.TextColor3 = Color3.new(0, 0, 0)
+Key.TextScaled = true
+Key.TextSize = 14
+Key.TextWrapped = true
 
--- 创建一个文本框用于玩家输入密码
-local passwordTextBox = Instance.new("TextBox")
-passwordTextBox.Size = UDim2.new(1, 0, 0.2, 0)
-passwordTextBox.Position = UDim2.new(0, 0, 0.5, 0)  -- 适当调整文本框位置
-passwordTextBox.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
-passwordTextBox.TextColor3 = Color3.new(1, 1, 1)
-passwordTextBox.Font = Enum.Font.SourceSans
-passwordTextBox.TextSize = 18
-passwordTextBox.Parent = frame
+Start.Name = "Start"
+Start.Parent = UI
+Start.BackgroundColor3 = Color3.new(0, 0, 255)
+Start.BackgroundTransparency = 0
+Start.BorderSizePixel = 2
+Start.Position = UDim2.new(0.25, 0, 0.65, 0)
+Start.Size = UDim2.new(0.5, 0, 0, 45)
+Start.Font = Enum.Font.Gotham
+Start.Text = "检查卡密"
+Start.TextColor3 = Color3.new(0, 0, 0)
+Start.TextScaled = true
+Start.TextSize = 10
+Start.TextWrapped = true
 
--- 创建一个提交按钮
-local submitButton = Instance.new("TextButton")
-submitButton.Size = UDim2.new(0.3, 0, 0.2, 0)
-submitButton.Position = UDim2.new(0.35, 0, 0.75, 0)  -- 适当调整提交按钮位置
-submitButton.BackgroundColor3 = Color3.new(0, 0.5, 0)
-submitButton.TextColor3 = Color3.new(1, 1, 1)
-submitButton.Font = Enum.Font.SourceSansBold
-submitButton.TextSize = 20
-submitButton.Text = "提交"
-submitButton.Parent = frame
+Start.MouseButton1Click:Connect(function()
+    if Key.Text == "猫王" then
+        ScreenGui:Destroy()
+      
 
--- 创建一个音乐对象并播放音乐
-local music = Instance.new("Sound")
-music.SoundId = "rbxassetid://1840172845" -- 将<音乐ID>替换为你实际的音乐ID
-music.Volume = 0.5 -- 设置音量，可根据需要调整
-music.Parent = SoundService
-music:Play()
+local LBLG = Instance.new("ScreenGui", getParent)
+local LBL = Instance.new("TextLabel", getParent)
+local player = game.Players.LocalPlayer
 
--- 提交按钮的点击事件处理函数
-submitButton.MouseButton1Click:Connect(function()
-    local enteredPassword = passwordTextBox.Text
-    if enteredPassword == correctPassword then
-        passwordGui:Destroy()  -- 如果密码正确，销毁密码输入界面
-        music:Stop() -- 停止音乐播放
-        -- 以下是加载并执行外部脚本的代码，不建议在实际中使用，存在风险
-        local scriptContent = game:HttpGet("https://raw.githubusercontent.com/TGNYS/ma/refs/heads/main/001")
-        local func = loadstring(scriptContent)
-        if func then
-            func()
-        else
-            print("加载脚本失败")
-        end
-    else
-        passwordTextBox.Text = ""  -- 如果密码错误，清空文本框，让玩家重新输入
-    end
-end)
+LBLG.Name = "LBLG"
+LBLG.Parent = game.CoreGui
+LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+LBLG.Enabled = true
+LBL.Name = "LBL"
+LBL.Parent = LBLG
+LBL.BackgroundColor3 = Color3.new(1, 1, 1)
+LBL.BackgroundTransparency = 1
+LBL.BorderColor3 = Color3.new(0, 0, 0)
+LBL.Position = UDim2.new(0.75,0,0.010,0)
+LBL.Size = UDim2.new(0, 133, 0, 30)
+LBL.Font = Enum.Font.GothamSemibold
+LBL.Text = "TextLabel"
+LBL.TextColor3 = Color3.new(1, 1, 1)
+LBL.TextScaled = true
+LBL.TextSize = 14
+LBL.TextWrapped = true
+LBL.Visible = true
+
+local FpsLabel = LBL
+local Heartbeat = game:GetService("RunService").Heartbeat
+local LastIteration, Start
+local FrameUpdateTable = { }
+
+local function HeartbeatUpdate()
+	LastIteration = tick()
+	for Index = #FrameUpdateTable, 1, -1 do
+		FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
+	end
+	FrameUpdateTable[1] = LastIteration
+	local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
+	CurrentFPS = CurrentFPS - CurrentFPS % 1
+	FpsLabel.Text = ("北京时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+end
+Start = tick()
+Heartbeat:Connect(HeartbeatUpdate)
+local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/nJJPrp2w"))()
+local Window = OrionLib:MakeWindow({Name = "猫", HidePremium = false, SaveConfig = true,IntroText = "猫(阴星帮忙)脚本", ConfigFolder = "猫脚本"})
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "猫(阴星帮忙)脚本"; Text ="猫(阴星帮忙)脚本"; Duration = 4; })
+
+local about = Window:MakeTab({
+    Name = "猫(阴星帮忙)制作",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+about:AddParagraph("脚本为白名单脚本")
+about:AddParagraph("848")
+
+local Tab =Window:MakeTab({
+	Name = "公告",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local Tab = Window:MakeTab({
+	Name = "⭐主要的",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+Tab:AddSlider({
+	Name = "速度",
+	Min = 16,
+	Max = 200,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "数值",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+Tab:AddSlider({
+	Name = "跳跃高度",
+	Min = 50,
+	Max = 200,
+	Default = 50,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "数值",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end    
+})
+
+Tab:AddTextbox({
+	Name = "跳跃高度设置",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end
+})
+
+Tab:AddTextbox({
+	Name = "移动速度设置",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end
+})
+
+Tab:AddTextbox({
+	Name = "重力设置",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Workspace.Gravity = Value
+	end
+})
+
+Tab:AddToggle({
+	Name = "夜视",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+		    game.Lighting.Ambient = Color3.new(1, 1, 1)
+		else
+		    game.Lighting.Ambient = Color3.new(0, 0, 0)
+		end
+	end
+})
+
+Tab:AddButton({
+	Name = "飞行（阴星）",
+	Callback = function()
+game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "Credits";
+                Text ="zhanghuihuihui";
+                Duration = 2.5;
+            })
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local main = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local up = Instance.new("TextButton")
+local down = Instance.new("TextButton")
+local onof = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local plus = Instance.new("TextButton")
+local speed = Instance.new("TextLabel")
+local mine = Instance.new("TextButton")
+
+--Properties:
+
+main.Name = "main"
+main.Parent = game.CoreGui
+main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = main
+Frame.BackgroundColor3 = Color3.fromRGB(163, 255, 137)
+Frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
+Frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
+Frame.Size = UDim2.new(0, 190, 0, 57)
+
+up.Name = "向上"
+up.Parent = Frame
+up.BackgroundColor3 = Color3.fromRGB(79, 255, 152)
+up.Size = UDim2.new(0, 44, 0, 28)
+up.Font = Enum.Font.SourceSans
+up.Text = "向上"
+up.TextColor3 = Color3.fromRGB(0, 0, 0)
+up.TextSize = 14.000
+
+down.Name = "向下"
+down.Parent = Frame
+down.BackgroundColor3 = Color3.fromRGB(215, 255, 121)
+down.Position = UDim2.new(0, 0, 0.491228074, 0)
+down.Size = UDim2.new(0, 44, 0, 28)
+down.Font = Enum.Font.SourceSans
+down.Text = "向下"
+down.TextColor3 = Color3.fromRGB(0, 0, 0)
+down.TextSize = 14.000
+
+onof.Name = "onof"
+onof.Parent = Frame
+onof.BackgroundColor3 = Color3.fromRGB(255, 249, 74)
+onof.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
+onof.Size = UDim2.new(0, 56, 0, 28)
+onof.Font = Enum.Font.SourceSans
+onof.Text = "乐迪起飞了！"
+onof.TextColor3 = Color3.fromRGB(0, 0, 0)
+onof.TextSize = 14.000
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(242, 60, 255)
+TextLabel.Position = UDim2.new(0.469327301, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 100, 0, 28)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "阴星🚔"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+plus.Name = "plus"
+plus.Parent = Frame
+plus.BackgroundColor3 = Color3.fromRGB(133, 145, 255)
+plus.Position = UDim2.new(0.231578946, 0, 0, 0)
+plus.Size = UDim2.new(0, 45, 0, 28)
+plus.Font = Enum.Font.SourceSans
+plus.Text = "乐迪加速"
+plus.TextColor3 = Color3.fromRGB(0, 0, 0)
+plus.TextScaled = true
+plus.TextSize = 14.000
+plus.TextWrapped = true
+
+speed.Name = "speed"
+speed.Parent = Frame
+speed.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
+speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
+speed.Size = UDim2.new(0, 44, 0, 28)
+speed.Font = Enum.Font.SourceSans
+speed.Text = "1"
+speed.TextColor3 = Color3.fromRGB(0, 0, 0)
+speed.TextScaled = true
+speed.TextSize = 14.000
+speed.TextWrapped = true
+
+mine.Name = "mine"
+mine.Parent = Frame
+mine.BackgroundColor3 = Color3.fromRGB(123, 255, 247)
+mine.Position = UDim2.new(0.231578946, 0, 0.491228074, 0)
+mine.Size = UDim2.new(0, 45, 0, 29)
+mine.Font = Enum.Font.SourceSans
+mine.Text = "乐迪坠机"
+mine.TextColor3 = Color3.fromRGB(0, 0, 0)
+mine.TextScaled = true
+mine.TextSize = 14.000
+mine.TextWrapped = true
+
+speeds = 1
+
+local speaker = game:GetService("Players").LocalPlayer
+
+local chr = game.Players.LocalPlayer.Character
+local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+
+nowe = false
+
+Frame.Active = true -- main = gui
+Frame.Draggable = true
+
+onof.MouseButton1Down:connect(function()
+
+	if nowe == true then
+		nowe = false
+
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.S

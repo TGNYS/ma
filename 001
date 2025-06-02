@@ -1,248 +1,294 @@
-local OrionLib = loadstring(game:HttpGet(('https://pastebin.com/raw/KuEsRX44')))()
-local Window = OrionLib:MakeWindow({Name = 'YFHUB', HidePremium = false, SaveConfig = true, ConfigFolder = 'OrionTest', IntroText = 'YFHUB BY YF'})
-OrionLib:MakeNotification({
-    Name = '尊敬的用户：',
-    Content = '感谢您支持YF！',
-    Image = 'rbxassetid://4483345998',
-    Time = 5
-})
-local Home = Window:MakeTab({
-    Name = '主页',
-    Icon = 'rbxassetid://7733960981',
-    PremiumOnly = false
-})
-local jyrs = Window:MakeTab({
-    Name = '监狱人生',
-    Icon = 'rbxassetid://7733771891',
-    PremiumOnly = false
-})
-local xsdsd = Window:MakeTab({
-    Name = '现实的深度',
-    Icon = 'rbxassetid://7733771891',
-    PremiumOnly = false
-})
-local race = Window:MakeTab({
-    Name = 'Race Click',
-    Icon = 'rbxassetid://7733771891',
-    PremiumOnly = false
-})
-Home:AddParagraph('YF制作','官方QQ群156778698')
-Home:AddDropdown({
-    Name = '脚本',
-    Default = '',
-    Options = {'俄亥俄州','吸人','命令行','追踪','DEX'},
-    Callback = function(Value)
-    if Value == '俄亥俄州' then
-local OrionLib = loadstring(game:HttpGet(('https://pastebin.com/raw/KuEsRX44')))()
-local Window = OrionLib:MakeWindow({Name = 'YFHUB|OHIO', HidePremium = false, SaveConfig = true, ConfigFolder = 'OrionTest', IntroText = 'YFHUB|OHIO'})
-game:GetService('Players').LocalPlayer.PlayerGui.Hotbar.Enabled = true
-game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Visible = true
-game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Position = UDim2.new(0, 0, 0, 40)
-game:GetService('Players').LocalPlayer.PlayerGui.Money.Container.premium.Shadow.Visible = false
-game:GetService('Players').LocalPlayer.PlayerGui.Money.Container['2x cash'].Shadow.Visible = false
-game:GetService('Players').LocalPlayer.PlayerGui.Money.Container.premium.Visible = true
-game:GetService('Players').LocalPlayer.PlayerGui.Money.Container.premium.TextLabel.Text = 'OHIO.YF'
-game:GetService('Players').LocalPlayer.PlayerGui.Money.Container['2x cash'].Visible = true
-game:GetService('Players').LocalPlayer.PlayerGui.Money.Container['2x cash'].TextLabel.Text = '双倍现金 永久有效'
-game:GetService('Workspace').BlackMarket.Dealer.Dealer.ProximityPrompt.HoldDuration = 0
-game:GetService('Workspace').BlackMarket.BlackMarketBillboard.TopLabel.Text = 'YF黑市'
-game:GetService('Workspace').BlackMarket.BlackMarketBillboard.BottomLabel.Text = '向YF出售物品以获得钱!'
-game:GetService('Workspace').OhioSign.Screen.SurfaceGui.Frame.Population.Text = 'YF祝您玩的愉快'
-local Teams = game:GetService('Teams')
-local newTeam = Instance.new('Team')
-newTeam.Name = 'DevvGames'
-newTeam.Parent = Teams
-local player = game:GetService('Players').LocalPlayer
-player.Team = newTeam
-local UserInputService = game:GetService('UserInputService')
-UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
-    if input.KeyCode == Enum.KeyCode.Z then
-        game:GetService('Players').LocalPlayer.PlayerGui.Backpack.Holder.Locker.Visible = true
-    end
+local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/lenglengui/refs/heads/main/JMJMUI.lua"))()        
+local win = ui:new("凡尘脚本中心V2")
+--
+local UITab84 = win:Tab("信息",'16060333448')
+
+local about = UITab84:section("『介绍』",true)
+about:Label("凡尘脚本")
+about:Label("永久免费")
+about:Label("拒绝倒卖")
+about:Label("作者：凡尘")
+about:Label("感谢夜路，我的朋友")
+about:Label("感谢支持我的人")
+about:Label("本脚本为V2版本")
+about:Label("已支持俄亥俄州")
+about:Button("点我复制作者QQ",function()
+    setclipboard("2846706821")
 end)
-local Fram = Window:MakeTab({
-    Name = '资源类',
-    Icon = 'rbxassetid://7733771891',
-    PremiumOnly = false
-})
-local Cheat = Window:MakeTab({
-    Name = '修改类',
-    Icon = 'rbxassetid://7733771891',
-    PremiumOnly = false
-})
-Fram:AddDropdown({
-    Name = '瞬移',
-    Default = '',
-    Options = {'银行','珠宝店','沙滩','武器店（撬锁）','武士刀','射线枪','加特林','锯掉','沙漠之鹰','警察局（M4A1）','AUG','军事基地（军甲）'},
-    Callback = function(Value)
-    local epoh2 = game:GetService('Players')
-    local epoh3 = epoh2.LocalPlayer.Character.HumanoidRootPart
-    if Value == '银行' then
-        local epoh1 = CFrame.new(1055.94153, 15.11950874, -344.58374)
-        epoh3.CFrame = epoh1
-    elseif Value == '珠宝店' then
-        local epoh1 = CFrame.new(1719.02637, 14.2831011, -714.293091)
-        epoh3.CFrame = epoh1
-    elseif Value == '沙滩' then
-        local epoh1 = CFrame.new(998.4656372070312, 15, 395.9789733886719)
-        epoh3.CFrame = epoh1
-    elseif Value == '武器店（撬锁）' then
-        local epoh1 = CFrame.new(660.5284423828125, 6.4081127643585205, -716.489990234375)
-        epoh3.CFrame = epoh1
-    elseif Value == '武士刀' then
-        local epoh1 = CFrame.new(175.191, 13.937, -132.69)
-        epoh3.CFrame = epoh1
-    elseif Value == '射线枪' then
-        local epoh1 = CFrame.new(148.685471, -90, -529.280945)
-        epoh3.CFrame = epoh1
-    elseif Value == '加特林' then
-        local epoh1 = CFrame.new(364.97076416015625, 0.764974117279053, -1447.3302001953125)
-        epoh3.CFrame = epoh1
-    elseif Value == '锯掉' then
-        local epoh1 = CFrame.new(1179.98523,40,-436.812683)
-        epoh3.CFrame = epoh1
-    elseif Value == '沙漠之鹰' then
-        local epoh1 = CFrame.new(363.341461, 26.0798492, -259.681396)
-        epoh3.CFrame = epoh1
-    elseif Value == '警察局（M4A1）' then
-        local epoh1 = CFrame.new(603.4676513671875,25.662811279296875,-922.0442504882812)
-        epoh3.CFrame = epoh1
-    elseif Value == 'AUG' then
-        local epoh1 = CFrame.new(1170.500244140625,48.37138366699219,-772.55859375)
-        epoh3.CFrame = epoh1
-    elseif Value == '军事基地（军甲）' then
-        local epoh1 = CFrame.new(563.4422607421875,28.502071380615234,-1472.780517578125)
-        epoh3.CFrame = epoh1
-    end
-    end
-})
-Fram:AddToggle({
-    Name = '银行刷新提醒',
-    Callback = function(Value)
-    Bank1 = Value
-        if Bank1 then
-            Bank2()
+
+about:Button("点我复制凡尘脚本官方群",function()
+    setclipboard("56117318118")
+end)
+
+about:Button("点我复制凡尘脚本二群",function()
+    setclipboard("715266495")
+end)
+
+local about = UITab84:section("『介绍』",true)
+
+about:Toggle("脚本框架变小一点", "", false, function(state)
+        if state then
+        game:GetService("CoreGui")["frosty"].Main.Style = "DropShadow"
+        else
+            game:GetService("CoreGui")["frosty"].Main.Style = "Custom"
         end
-    end    
-})
-Bank2 = function()
-    while Bank1 do
-    wait(0.1)
-    local Bank = game:GetService('Workspace').BankRobbery.BankCash.Cash:FindFirstChild('Bundle')
-        if Bank then
-            OrionLib:MakeNotification({
-                Name = '提示：',
-                Content = '银行已刷新！',
-                Image = 'rbxassetid://4483345998',
-                Time = 5
-            })
-            wait(30)
-        end
+    end)
+    about:Button("关闭脚本",function()
+        game:GetService("CoreGui")["frosty"]:Destroy()
+    end)
+
+
+local UITab84 = win:Tab("普通功能",'16060333448')
+
+local about = UITab84:section("『功能』",true)
+  
+
+        about:Button("玩家加入游戏提示",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))()
+end)
+
+about:Button("获得管理员权限",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/sZpgTVas"))()
+end)
+
+about:Button("死亡笔记",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/tt/main/%E6%AD%BB%E4%BA%A1%E7%AC%94%E8%AE%B0%20(1).txt"))()
+end)
+
+about:Button("汉化穿墙",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TtmScripter/OtherScript/main/Noclip"))()
+end)
+    
+about:Button("飞行",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/tt/main/jm%E9%A3%9E..lua"))()
+end)
+
+about:Button("透视",function()  
+    _G.FriendColor = Color3.fromRGB(0, 0, 255)
+        local function ApplyESP(v)
+       if v.Character and v.Character:FindFirstChildOfClass'Humanoid' then
+           v.Character.Humanoid.NameDisplayDistance = 9e9
+           v.Character.Humanoid.NameOcclusion = "NoOcclusion"
+           v.Character.Humanoid.HealthDisplayDistance = 9e9
+           v.Character.Humanoid.HealthDisplayType = "AlwaysOn"
+           v.Character.Humanoid.Health = v.Character.Humanoid.Health -- triggers changed
+       end
     end
-end
-Fram:AddToggle({
-    Name = '珠宝店刷新提醒',
-    Callback = function(Value)
-    Gem1 = Value
-        if Gem1 then
-            Gem2()
-        end
-    end    
-})
-Gem2 = function()
-    while Gem1 do
-    wait(0.1)
-    local Ge = game:GetService('Workspace').GemRobbery:FindFirstChild('Rubble')
-        if Ge then
-            OrionLib:MakeNotification({
-                Name = '提示：',
-                Content = '珠宝店已刷新！',
-                Image = 'rbxassetid://4483345998',
-                Time = 5
-            })
-            wait(30)
+    for i,v in pairs(game.Players:GetPlayers()) do
+       ApplyESP(v)
+       v.CharacterAdded:Connect(function()
+           task.wait(0.33)
+           ApplyESP(v)
+       end)
+    end
+    
+    game.Players.PlayerAdded:Connect(function(v)
+       ApplyESP(v)
+       v.CharacterAdded:Connect(function()
+           task.wait(0.33)
+           ApplyESP(v)
+       end)
+    end)
+    
+        local Players = game:GetService("Players"):GetChildren()
+    local RunService = game:GetService("RunService")
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "Highlight"
+    
+    for i, v in pairs(Players) do
+        repeat wait() until v.Character
+        if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+            local highlightClone = highlight:Clone()
+            highlightClone.Adornee = v.Character
+            highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            highlightClone.Name = "Highlight"
         end
     end
-end
-Fram:AddToggle({
-    Name = '自动银行',
-    Callback = function(Value)
-    AutoBank1 = Value
-        if AutoBank1 then
-            AutoBank2()
+    
+    game.Players.PlayerAdded:Connect(function(player)
+        repeat wait() until player.Character
+        if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+            local highlightClone = highlight:Clone()
+            highlightClone.Adornee = player.Character
+            highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
+            highlightClone.Name = "Highlight"
         end
-    end    
-})
-AutoBank2 = function()
-    while AutoBank1 do
-        wait()
-        local BankDoor = game:GetService("Workspace").BankRobbery.VaultDoor
-        local BankCashs = game:GetService("Workspace").BankRobbery.BankCash
-        local epoh2 = game:GetService('Players')
-        local epoh3 = epoh2.LocalPlayer.Character.HumanoidRootPart
-        if BankDoor.Door.Attachment.ProximityPrompt.Enabled == true then
-            BankDoor.Door.Attachment.ProximityPrompt.HoldDuration = 0
-            BankDoor.Door.Attachment.ProximityPrompt.MaxActivationDistance = 16
-            local epoh1 = CFrame.new(1071.955810546875, 9, -343.80816650390625)
-            epoh3.CFrame = epoh1
-           wait(1)
-            BankDoor.Door.Attachment.ProximityPrompt:InputHoldBegin()
-            BankDoor.Door.Attachment.ProximityPrompt:InputHoldEnd()
-            BankDoor.Door.Attachment.ProximityPrompt.Enabled = false
-        end
-        if BankCashs.Cash.Bundle then
-            local epoh1 = CFrame.new(1055.872802734375, 10, -344.6944580078125)
-            epoh3.CFrame = epoh1
-            BankCashs.Main.Attachment.ProximityPrompt.MaxActivationDistance = 16
-            if BankCashs.Cash.Bundle then
-            BankCashs.Main.Attachment.ProximityPrompt:InputHoldBegin()
-            wait(45)
-            BankCashs.Main.Attachment.ProximityPrompt:InputHoldEnd()
-            local epoh1 = CFrame.new(240.52850341796875, -120, -620)
-            epoh3.CFrame = epoh1
+    end)
+    
+    game.Players.PlayerRemoving:Connect(function(playerRemoved)
+        playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
+    end)
+    
+    RunService.Heartbeat:Connect(function()
+        for i, v in pairs(Players) do
+            repeat wait() until v.Character
+            if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+                local highlightClone = highlight:Clone()
+                highlightClone.Adornee = v.Character
+                highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+                highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                highlightClone.Name = "Highlight"
+                task.wait()
             end
-        end   
-        if not BankCashs.Cash.Bundle then
-            local epoh1 = CFrame.new(240.52850341796875, -120, -620)
-            epoh3.CFrame = epoh1
-        end
     end
+    end)
+    end)
+
+about:Toggle("夜视脚本", "", false, function(state)
+        if state then
+        game.Lighting.Ambient = Color3.new(1, 1, 1)
+        else
+            game.Lighting.Ambient = Color3.new(0, 0, 0)
+        end
+    end)
+
+about:Toggle(
+        "无限跳跃",
+        function()
+         loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()   
+        end
+    )
+
+about:Button(
+    "自瞄",
+    function()
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+Frame.BorderColor3 = Color3.fromRGB(16, 16, 16)
+Frame.Position = UDim2.new(0.326547235, 0, 0.442340851, 0)
+Frame.Size = UDim2.new(0.346905529, 0, 0.194492236, 0)
+
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+Frame_2.BorderColor3 = Color3.fromRGB(16, 16, 16)
+Frame_2.Size = UDim2.new(1, 0, 0.26777932, 0)
+
+TextLabel.Parent = Frame_2
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Size = UDim2.new(1.00234735, 0, 1.08253634, 0)
+TextLabel.Font = Enum.Font.SourceSansSemibold
+TextLabel.Text = "神青自瞄"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 16.000
+
+TextButton.Parent = Frame_2
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.Position = UDim2.new(0.92957741, 0, 0, 0)
+TextButton.Size = UDim2.new(0.0697798356, 0, 0.991438508, 0)
+TextButton.Font = Enum.Font.SourceSansSemibold
+TextButton.Text = "_"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextSize = 14.000
+
+TextButton_2.Parent = Frame
+TextButton_2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+TextButton_2.BorderColor3 = Color3.fromRGB(20, 20, 20)
+TextButton_2.Position = UDim2.new(0.0492957756, 0, 0.495575249, 0)
+TextButton_2.Size = UDim2.new(0.0469483584, 0, 0.176991165, 0)
+TextButton_2.Font = Enum.Font.SourceSansSemibold
+TextButton_2.Text = ""
+TextButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_2.TextScaled = true
+TextButton_2.TextSize = 20.000
+TextButton_2.TextWrapped = true
+
+TextLabel_2.Parent = TextButton_2
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(1.54999995, 0, 0, 0)
+TextLabel_2.Size = UDim2.new(17.7999992, 0, 1, 0)
+TextLabel_2.Font = Enum.Font.SourceSansSemibold
+TextLabel_2.Text = "开"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextSize = 16.000
+TextLabel_2.TextWrapped = true
+TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+
+-- Scripts:
+
+local function RPTXOJ_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	local state = true
+	script.Parent.MouseButton1Down:Connect(function()
+		print"t"
+		state = not state
+		local LB_Size = script.Parent.Parent.AbsoluteSize
+		local NW_Size = UDim2.new(0, LB_Size.X, 0, LB_Size.Y)
+		if not state then
+			script.Parent.Text = "+"
+			game:GetService("TweenService"):Create(script.Parent.Parent.Parent, TweenInfo.new(0.5, Enum.EasingStyle.Linear), {
+				BackgroundTransparency = 1
+			}):Play()
+			for i, v in pairs(script.Parent.Parent.Parent:GetChildren()) do
+				if v:IsA("TextButton") then 
+					v.Visible = false
+					v.TextLabel.Visible = false
+				end
+			end
+		else
+			script.Parent.Text = "_"
+			game:GetService("TweenService"):Create(script.Parent.Parent.Parent, TweenInfo.new(0.5, Enum.EasingStyle.Linear), {
+				BackgroundTransparency = 0
+			}):Play()
+			for i, v in pairs(script.Parent.Parent.Parent:GetChildren()) do
+				if v:IsA("TextButton") then 
+					v.Visible = true
+					v.TextLabel.Visible = true
+				end
+			end
+		end
+	end)
 end
-Fram:AddToggle({
-    Name = '自动金保险',
-    Callback = function(Value)
-    AutoSafe1 = Value
-        if AutoSafe1 then
-            AutoSafe2()
-        end
-    end    
-})
-AutoSafe2 = function()
-    while AutoSafe1 do
-        wait()
-        local BankDoor = game:GetService("Workspace").BankRobbery.VaultDoor
-        local epoh2 = game:GetService('Players')
-        local epoh3 = epoh2.LocalPlayer.Character.HumanoidRootPart
-        if BankDoor.Door.Attachment.ProximityPrompt.Enabled == true then
-            BankDoor.Door.Attachment.ProximityPrompt.HoldDuration = 0
-            BankDoor.Door.Attachment.ProximityPrompt.MaxActivationDistance = 16
-            local epoh1 = CFrame.new(1071.955810546875, 9, -343.80816650390625)
-            epoh3.CFrame = epoh1
-            wait(1)
-            BankDoor.Door.Attachment.ProximityPrompt:InputHoldBegin()
-            BankDoor.Door.Attachment.ProximityPrompt:InputHoldEnd()
-            BankDoor.Door.Attachment.ProximityPrompt.Enabled = false
-        end
-        local GoldJewelSafes = game:GetService("Workspace").Game.Entities.GoldJewelSafe
-        local foundModel = false
-        for _, model in pairs(GoldJewelSafes:GetChildren()) do
-            if model.ClassName == 'Model' then
-                foundModel = true
-                local epoh1 = model.WorldPivot
-                epoh3.CFrame = epoh1
-                wait(1)
-                model.Door["Meshes/LargeSafe_Cube.002_Cube.003_None (1)"].Attachment.ProximityPrompt.HoldDuration = 0
-                model.Door["Meshes/LargeSafe_Cube.002_Cube.003_None (1)"].Attachment.ProximityPrompt.MaxActivationDistance = 16
-                if model.Door["Meshes/LargeSafe_Cube.002_Cube.003_None (1)"].Attachment.ProximityPrompt.Enabled == true then
-                    model.Door["Meshes/LargeSafe_Cube.002_Cube.003_None (1)"].Attachment.ProximityPrompt:InputHoldBegin()
-                    model.Door["Meshes/La
+coroutine.wrap(RPTXOJ_fake_script)()
+local function CIXXD_fake_script() -- TextButton_2.LocalScript 
+	local script = Instance.new('LocalScript', TextButton_2)
+
+	local state = false
+	script.Parent.MouseButton1Down:Connect(function()
+		state = not state
+		if state then 
+			script.Parent.Text = "关闭"
+		else
+			script.Parent.Text = ""
+		end
+	end)
+	
+	local Cam = workspace.CurrentCamera
+	
+	local hotkey = true
+	function lookAt(target, eye)
+		Cam.CFrame = CFrame.new(target, eye)
+	end
+	
+	function getClosestPlayerToCursor(trg_part)
+		local nearest = nil
+		local last = math.huge
+		for i,v in pairs(game.Players:GetPlayers()) do
+			if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character and v.Character and v.Character:FindFirstChild(trg_part) then
+				if game.Players.LocalPlayer.Character:FindFirstChild(trg_part) then
+					local ePos, vissss = workspace.CurrentCamera:WorldToViewportPoint(v.Character[trg_part].Position)
+					local AccPos = Vector2.new(ePos.x, ePos.y)
+					local mousePos = Vector2.new(workspace.CurrentCamera.ViewportSize.x / 2, workspace.CurrentCamera.ViewportSize.y / 2)
+					local distance = (AccPos - mousePos).magnitude
+					if distance < last

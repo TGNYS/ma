@@ -1,19 +1,94 @@
-=local dropdown = {}
-local playernamedied = ""
+local Settings = {
+        Esp = false,
+        PlayerEsp = false,
+        Tracers = false,
+}
 
-for i, player in pairs(game.Players:GetPlayers()) do
-    dropdown[i] = player.Name
+local SafeSpot = Instance.new("Part", workspace)
+
+SafeSpot.Position = Vector3.new(-1860.61,-399.9,927.21)
+
+SafeSpot.Name = "Vip"
+
+SafeSpot.Size = Vector3.new(0,0.1,0)
+
+SafeSpot.Anchored = true
+
+SafeSpot.Transparency = 1
+
+
+local SafeSpot = Instance.new("Part", workspace)
+
+SafeSpot.Position = Vector3.new(-1920.71,-399.9,929.66)
+
+SafeSpot.Name = "Laaabby"
+
+SafeSpot.Size = Vector3.new(0,0.1,0)
+
+SafeSpot.Anchored = true
+
+SafeSpot.Transparency = 1
+
+
+local SafeSpot = Instance.new("Part", workspace)
+
+SafeSpot.Position = Vector3.new(-0.81,1,-7.31)
+
+SafeSpot.Name = "Game"
+
+SafeSpot.Size = Vector3.new(0,0.1,0)
+
+SafeSpot.Anchored = true
+
+SafeSpot.Transparency = 1
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local VirtualUser = game:GetService("VirtualUser")
+
+local LocalPlayer = Players.LocalPlayer
+
+getgenv().Settings = {
+    Win = false,
+    Rebirth = false,
+}
+
+function getHash()
+    for _, v in pairs(game:GetService("Workspace").PlayerTycoons:GetDescendants()) do
+        if v:IsA("ObjectValue") and v.Name == "Owner" then
+            if tostring(v.Value) == game.Players.LocalPlayer.Name then
+                return (v.Parent.Parent.Name)
+            end
+        end
+    end
 end
 
-function Notify(top, text, ico, dur)
-  game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = top,
-    Text = text,
-    Icon = ico,
-    Duration = dur,
-  })
-end
+local Settings = {
+    Names = false,
+}
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Camera = game:GetService("Workspace").CurrentCamera
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Mouse = Player:GetMouse()
 
+local msg = Instance.new("Message",workspace)
+msg.Text = "欢迎使用猫剑脚本"
+wait(1.8)
+msg:Destroy()
+
+local msg = Instance.new("Message",workspace)
+msg.Text = "作者:猫王 支持60款游戏"
+wait(1.8)
+msg:Destroy()
+
+local msg = Instance.new("Message",workspace)
+msg.Text = "更新公告"
+wait(3)
+msg:Destroy()
+
+local OrionLib = loadstring(game:HttpGet("https://shz.al/~dito-wooooooooo/Ditoo-ui/I-GOT-NO-TIME-TO-LOSE-RA-TATATA"))()
 local LBLG = Instance.new("ScreenGui", getParent)
 local LBL = Instance.new("TextLabel", getParent)
 local player = game.Players.LocalPlayer
@@ -43,82 +118,322 @@ local LastIteration, Start
 local FrameUpdateTable = { }
 
 local function HeartbeatUpdate()
-    LastIteration = tick()
-    for Index = #FrameUpdateTable, 1, -1 do
-        FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
-    end
-    FrameUpdateTable[1] = LastIteration
-    local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
-    CurrentFPS = CurrentFPS - CurrentFPS % 1
-    FpsLabel.Text = ("时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+	LastIteration = tick()
+	for Index = #FrameUpdateTable, 1, -1 do
+		FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
+	end
+	FrameUpdateTable[1] = LastIteration
+	local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
+	CurrentFPS = CurrentFPS - CurrentFPS % 1
+	FpsLabel.Text = ("北京时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
 end
 Start = tick()
 Heartbeat:Connect(HeartbeatUpdate)
+local Window = OrionLib:MakeWindow({Name = "猫剑脚本", IntroIcon = "rbxassetid://4335482575", HidePremium = false, SaveConfig = true,IntroText = "猫剑脚本", ConfigFolder = "猫剑脚本"})
 
-local FpsGui = Instance.new("ScreenGui") local FpsXS = Instance.new("TextLabel") FpsGui.Name = "FPSGui" FpsGui.ResetOnSpawn = false FpsGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling FpsXS.Name = "FpsXS" FpsXS.Size = UDim2.new(0, 100, 0, 50) FpsXS.Position = UDim2.new(0, 10, 0, 10) FpsXS.BackgroundTransparency = 1 FpsXS.Font = Enum.Font.SourceSansBold FpsXS.Text = "帧率: 0" FpsXS.TextSize = 20 FpsXS.TextColor3 = Color3.new(1, 1, 1) FpsXS.Parent = FpsGui function updateFpsXS() local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait()) FpsXS.Text = "帧率: " .. fps end game:GetService("RunService").RenderStepped:Connect(updateFpsXS) FpsGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local about = Window:MakeTab({
+    Name = "公告",
+    Icon = "rbxassetid://4335482575",
+    PremiumOnly = false
 
-local Lengui = loadstring(game:HttpGet("https://raw.githubusercontent.com/whenheer/iuop/refs/heads/main/Protected_7843953596944453.lua"))()     
-local win = Lengui:new("大司马脚本付费版v1")
---
-local UITab1 = win:Tab("『信息』",'16060333448')
+})
 
-local about = UITab1:section("『LENG Script』",false)
+about:AddParagraph("作者: 猫王")
+about:AddParagraph("副作者: 小天牛叔小魔阴星")
+about:AddParagraph("制作者: 纳西妲")
 
-about:Label("大司马脚本付费版")
-about:Label("QQ主群：794818500")
-about:Label("QQ二群：1006551752")
-about:Label("作者：大司马")
-about:Label("有bug进群反馈")
-about:Label("对该脚本有帮助的，猫王")
+local Tab = Window:MakeTab({
+    Name = "通用功能",
+    Icon = "rbxassetid://4335482575",
+    PremiumOnly = false
 
-local UITab4 = win:Tab("『加入服务器』",'16060333448')
+})
 
-local about = UITab4:section("『LENG Script』",false)
+Tab:AddButton({
+	Name = "甩飞所有人",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/8B4iDhvf/raw"))()
+	end
+})
 
-about:Button("加入极速传奇",function()
-local game_id = 3101667897
-        local game_url = "https://www.roblox.com/games/"..game_id
-        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+Tab:AddButton({
+	Name = "后厅竞赛",
+	Callback = function()
+	local plr = game.Players.LocalPlayer.Character.Head
+for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+        if v.Name == "TouchInterest" and v.Parent then
+        firetouchinterest(plr, v.Parent, 0)
+    end
+end
+	end
+})
+
+local plrs = game.Players
+
+local playerNames = {}
+local players = plrs:GetPlayers()
+
+for _, player in ipairs(players) do
+    table.insert(playerNames, player.Name)
+end
+
+Tab:AddDropdown({
+    Name = "传送玩家",
+    Default = playerNames[1] or "No Players",
+    Options = playerNames,
+    Callback = function(selectedplrName)
+        local targetPlayer = plrs:FindFirstChild(selectedplrName)
+        
+        if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            -- Teleporting your character to the selected player's position
+            local targetPosition = targetPlayer.Character.HumanoidRootPart.Position
+            local localPlayerRoot = plrs.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            
+            if localPlayerRoot then
+                localPlayerRoot.CFrame = CFrame.new(targetPosition)
+            end
+        end
+        print(selectedplrName)
+    end    
+})
+
+Tab:AddTextbox({
+	Name = "范围修改",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(value)
+	  print(value)
+_G.HeadSize = value
+_G.Disabled = true
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
 end)
-
-about:Button("加入鲨口生求2",function()
-local game_id = 8908228901
-        local game_url = "https://www.roblox.com/games/"..game_id
-        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+end
+end
+end
 end)
+   end
+})
 
-about:Button("加入监狱人生",function()
-local game_id = 155615604
-        local game_url = "https://www.roblox.com/games/"..game_id
-        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
-end)
+Tab:AddButton({
+	Name = "bf自动刷钱",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/yPYIf7Wh/raw"))()
+	end
+})
 
-about:Button("加入忍者传奇",function()
-local game_id = 3956818381
-        local game_url = "https://www.roblox.com/games/"..game_id
-        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
-end)
+Tab:AddButton({
+	Name = "飞行V3",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+	end
+})
 
-about:Button("加入Break in (故事)",function()
-local game_id = 1318971886
-        local game_url = "https://www.roblox.com/games/"..game_id
-        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
-end)
+local Tab = Window:MakeTab({
+    Name = "游戏1",
+    Icon = "rbxassetid://4335482575",
+    PremiumOnly = false
 
-about:Button("加入自然灾害生存游戏",function()
-local game_id = 189707
-        local game_url = "https://www.roblox.com/games/"..game_id
-        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
-end)
+})
 
-about:Button("加入力量传奇",function()
-local game_id = 3623096087
-        local game_url = "https://www.roblox.com/games/"..game_id
-        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
-end)
+Tab:AddButton({
+	Name = "巴掌模拟器",
+	Callback = function()
+    loadstring(game:HttpGet("https://pastefy.app/8m5sOjLh/raw"))()
+    end
+})
 
-about:Button("加入餐厅大亨2",function()
-local game_id = 3398014311
-        local game_url = "https://www.roblox.com/games/"..game_id
-        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
-end)
+Tab:AddButton({
+	Name = "刀刃球",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/qSE847gd/raw"))()
+    end
+})
+
+Tab:AddButton({
+	Name = "彩虹朋友",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/XoNv04vR/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "河北唐县",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/s20nni0h/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "力量传奇",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/vdthUtsS/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "Blox fruit",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "极速传奇",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/R98GDbTZ/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "忍者传奇",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/0jVTrdxV/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "监狱人生",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/mCzxPi9H/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "蜂群模拟器",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/QtYmKaQ1/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "一路向西",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/q08owYGG/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "造般寻宝",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/hvV1c4nO/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "doors",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/Su9RsViT/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "俄亥俄州",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/QbXPfsgC/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "兵工厂",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/2YdrWHxV/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "餐厅大亨2",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/Ppqt0Gib/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "超级大力士模拟器",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/aO18ZEB9/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "自然灾害模拟器",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/fUmGKuol/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "举重模拟器",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/KSriAk53/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "汽车经销大亨",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/5o594Q0i/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "幸运方块",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/eAWNSTyw/raw"))()
+	end
+})
+
+local Tab = Window:MakeTab({
+    Name = "游戏2",
+    Icon = "rbxassetid://4335482575",
+    PremiumOnly = false
+
+})
+
+Tab:AddButton({
+	Name = "模仿者",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Yumiara/Script/main/TheMimic.lua"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "水下公司",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/mQokS412/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "火箭发射",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/CMW6b0kZ/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "驾驶帝国",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/0KZI6tmc/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "极限捉迷藏",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastefy.app/pW2Ly8my/raw"))()
+	end
+})
+
+Tab:AddButton({
+	Name = "感染力微笑",
+	Callback = function()
+	loadstrin

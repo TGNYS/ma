@@ -1,3 +1,4 @@
+
 -- 创建加载界面
 local LoadingGUI = Instance.new("ScreenGui")
 LoadingGUI.Name = "LoadingScreen"

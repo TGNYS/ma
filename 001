@@ -198,7 +198,7 @@ currency:AddToggle({
 	Name = "刷钱",
 	Default = false,
 	Callback = function(Value)
-local args = {
+    local args = {
     [1] = "MadeVideoManually"
 }
 while true do
@@ -206,6 +206,6 @@ game:GetService("ReplicatedStorage").RemoteEvent_1:FireServer(unpack(args))
 
 wait(0.1)
 end
-   print("执行切换/预加载(拾取)")
+    print("执行切换/预加载(夜视)")
 	end
 })

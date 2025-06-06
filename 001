@@ -201,7 +201,6 @@ currency:AddToggle({
     local args = {
     [1] = "MadeVideoManually"
 }
-while true do
 game:GetService("ReplicatedStorage").RemoteEvent_1:FireServer(unpack(args))
 
 wait(0.1)

@@ -112,7 +112,7 @@ coroutine.wrap(function()
     LoadingGUI:Destroy()
 end)()
 local function createAdaptiveWatermark()
-    if game.CoreGui:FindFirstChild("凡尘_Watermark") then
+    if game.CoreGui:FindFirstChild("洛天依_Watermark") then
         game.CoreGui.H_Watermark:Destroy()
     end
 
@@ -120,7 +120,7 @@ local function createAdaptiveWatermark()
     local screenSize = workspace.CurrentCamera.ViewportSize
 
     local watermarkGui = Instance.new("ScreenGui")
-    watermarkGui.Name = "凡尘_Watermark"
+    watermarkGui.Name = "洛天依_Watermark"
     watermarkGui.Parent = game.CoreGui
     watermarkGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     watermarkGui.ResetOnSpawn = false
@@ -128,7 +128,7 @@ local function createAdaptiveWatermark()
     local watermarkText = Instance.new("TextLabel")
     watermarkText.Name = "WatermarkText"
     watermarkText.Parent = watermarkGui
-    watermarkText.Text = "正式版凡尘脚本" 
+    watermarkText.Text = "正式版洛天依脚本" 
     watermarkText.TextColor3 = Color3.fromRGB(255, 255, 255)
     watermarkText.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
     watermarkText.TextStrokeTransparency = 0.3 
@@ -178,11 +178,11 @@ local Heartbeat = game:GetService("RunService").Heartbeat
 local LastIteration, Start
 local FrameUpdateTable = { }
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本加载1"; Text ="爱你😘"; Duration = 2; })wait("3")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "洛天依脚本加载1"; Text ="爱你😘"; Duration = 2; })wait("3")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本加载2"; Text ="每天更新"; Duration = 2; })wait("3")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "洛天依脚本加载2"; Text ="每天更新"; Duration = 2; })wait("3")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本加载完毕"; Text ="更新使用脚本"; Duration = 2; })wait("3")
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "洛天依脚本加载完毕"; Text ="更新使用脚本"; Duration = 2; })wait("3")
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "H脚本"; Text ="载入成功"; Duration = 2; })
 
@@ -232,16 +232,16 @@ local playerGui = game.Players.LocalPlayer.PlayerGui
  game:GetService("RunService").RenderStepped:Connect(updateFpsCounter) 
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/renlua/UI-lib/refs/heads/main/AL_V3"))()
-local win = library:new("凡尘脚本")
+local win = library:new("洛天依脚本")
 --
 local UITab1 = win:Tab("信息",'16060333448')
 
 local about = UITab1:section("作者信息",false)
 
-about:Label("由AUG脚本正式改名叫凡尘脚本")
-about:Label("凡尘制作")
+about:Label("由AUG脚本正式改名叫洛天依脚本")
+about:Label("洛天依制作")
 about:Label("每星期天星期六一定更新")
-about:Label("此脚本是测试的有bug告诉凡尘")
+about:Label("此脚本是测试的有bug告诉洛天依")
 about:Label("感谢游玩")
 
 local UITab3 = win:Tab("脚本版本",'16060333448')
@@ -272,7 +272,7 @@ about:Toggle("脚本框架变小一点", "", false, function(state)
         game:GetService("CoreGui")["frosty"]:Destroy()
     end)
     
-about:Label("凡尘脚本")
+about:Label("洛天依脚本")
 about:Label("作者QQ：为什么要告诉你")
 about:Button("点击复作者QQ群",function()
 setclipboard("149437754")
@@ -296,4 +296,4 @@ end)
 
 about:Button("加入监狱人生",function()
 local game_id = 155615604
-        local game_url = "htt
+        local game

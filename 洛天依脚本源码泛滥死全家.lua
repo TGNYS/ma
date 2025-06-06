@@ -46,7 +46,7 @@ ProgressText.BackgroundTransparency = 1
 ProgressText.Font = Enum.Font.GothamBold
 ProgressText.TextColor3 = Color3.fromRGB(255, 255, 255)
 ProgressText.TextSize = 18
-ProgressText.Text = "正在初始化H脚本..."
+ProgressText.Text = "正在初始化凡尘脚本..."
 ProgressText.Parent = Container
 
 -- 进度条

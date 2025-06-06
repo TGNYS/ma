@@ -206,6 +206,6 @@ game:GetService("ReplicatedStorage").RemoteEvent_1:FireServer(unpack(args))
 
 wait(0.1)
 end
-    print("执行切换/预加载(夜视)")
+    print("执行切换/预加载(刷钱)")
 	end
 })

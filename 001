@@ -195,11 +195,17 @@ local currency = Window:MakeTab({
 	PremiumOnly = false
 })
 currency:AddToggle({
-	Name = "拾取",
+	Name = "刷钱",
 	Default = false,
 	Callback = function(Value)
-game:GetService("ReplicatedStorage").Events.ClickMoney:FireServer()
+local args = {
+    [1] = "MadeVideoManually"
+}
+while true do
+game:GetService("ReplicatedStorage").RemoteEvent_1:FireServer(unpack(args))
 
-    print("执行切换/预加载(拾取)")
+wait(0.1)
+end
+   print("执行切换/预加载(拾取)")
 	end
 })

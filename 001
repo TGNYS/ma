@@ -198,12 +198,8 @@ currency:AddToggle({
 	Name = "拾取",
 	Default = false,
 	Callback = function(Value)
-    for i,v in ipairs(workspace.Items:GetChildren()) do
-local args = {
-	v.Name
-}
-game:GetService("ReplicatedStorage"):WaitForChild("shared/network/MiningNetwork@GlobalMiningEvents"):WaitForChild("CollectItem"):FireServer(unpack(args))
-end
+game:GetService("ReplicatedStorage").Events.ClickMoney:FireServer()
+
     print("执行切换/预加载(拾取)")
 	end
 })

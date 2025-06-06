@@ -1,94 +1,155 @@
-local Settings = {
-        Esp = false,
-        PlayerEsp = false,
-        Tracers = false,
+
+-- 创建加载界面
+local LoadingGUI = Instance.new("ScreenGui")
+LoadingGUI.Name = "LoadingScreen"
+LoadingGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+LoadingGUI.Parent = game:GetService("CoreGui")
+
+-- 全屏背景
+local Background = Instance.new("Frame")
+Background.Size = UDim2.new(1, 0, 1, 0)
+Background.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+Background.BorderSizePixel = 0
+Background.Parent = LoadingGUI
+
+-- 加载容器
+local Container = Instance.new("Frame")
+Container.Size = UDim2.new(0, 300, 0, 200)
+Container.Position = UDim2.new(0.5, 0, 0.5, 0)
+Container.AnchorPoint = Vector2.new(0.5, 0.5)
+Container.BackgroundTransparency = 1
+Container.Parent = Background
+
+-- 动态加载图标
+local LoadingCircle = Instance.new("ImageLabel")
+LoadingCircle.Image = "rbxassetid://3570695787"  -- 默认旋转图标
+LoadingCircle.Size = UDim2.new(0, 80, 0, 80)
+LoadingCircle.Position = UDim2.new(0.5, 0, 0.3, 0)
+LoadingCircle.AnchorPoint = Vector2.new(0.5, 0.5)
+LoadingCircle.BackgroundTransparency = 1
+LoadingCircle.ImageColor3 = Color3.fromRGB(94, 234, 212)
+LoadingCircle.Parent = Container
+
+-- 旋转动画
+local RotateTween = game:GetService("TweenService"):Create(
+    LoadingCircle,
+    TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1),
+    {Rotation = 360}
+)
+RotateTween:Play()
+
+-- 进度文本
+local ProgressText = Instance.new("TextLabel")
+ProgressText.Size = UDim2.new(1, 0, 0, 30)
+ProgressText.Position = UDim2.new(0, 0, 0.6, 0)
+ProgressText.BackgroundTransparency = 1
+ProgressText.Font = Enum.Font.GothamBold
+ProgressText.TextColor3 = Color3.fromRGB(255, 255, 255)
+ProgressText.TextSize = 18
+ProgressText.Text = "正在初始化凡尘脚本v4..."
+ProgressText.Parent = Container
+
+-- 进度条
+local ProgressBar = Instance.new("Frame")
+ProgressBar.Size = UDim2.new(0.7, 0, 0, 4)
+ProgressBar.Position = UDim2.new(0.15, 0, 0.8, 0)
+ProgressBar.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+ProgressBar.BorderSizePixel = 0
+ProgressBar.Parent = Container
+
+local ProgressFill = Instance.new("Frame")
+ProgressFill.Size = UDim2.new(0, 0, 1, 0)
+ProgressFill.BackgroundColor3 = Color3.fromRGB(94, 234, 212)
+ProgressFill.BorderSizePixel = 0
+ProgressFill.Parent = ProgressBar
+
+-- 分阶段加载动画
+local LoadSteps = {
+    {text = "正在加载核心模块...", progress = 25},
+    {text = "初始化用户界面...", progress = 50},
+    {text = "验证功能完整性...", progress = 75},
+    {text = "准备就绪！", progress = 100}
 }
 
-local SafeSpot = Instance.new("Part", workspace)
-
-SafeSpot.Position = Vector3.new(-1860.61,-399.9,927.21)
-
-SafeSpot.Name = "Vip"
-
-SafeSpot.Size = Vector3.new(0,0.1,0)
-
-SafeSpot.Anchored = true
-
-SafeSpot.Transparency = 1
-
-
-local SafeSpot = Instance.new("Part", workspace)
-
-SafeSpot.Position = Vector3.new(-1920.71,-399.9,929.66)
-
-SafeSpot.Name = "Laaabby"
-
-SafeSpot.Size = Vector3.new(0,0.1,0)
-
-SafeSpot.Anchored = true
-
-SafeSpot.Transparency = 1
-
-
-local SafeSpot = Instance.new("Part", workspace)
-
-SafeSpot.Position = Vector3.new(-0.81,1,-7.31)
-
-SafeSpot.Name = "Game"
-
-SafeSpot.Size = Vector3.new(0,0.1,0)
-
-SafeSpot.Anchored = true
-
-SafeSpot.Transparency = 1
-
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local VirtualUser = game:GetService("VirtualUser")
-
-local LocalPlayer = Players.LocalPlayer
-
-getgenv().Settings = {
-    Win = false,
-    Rebirth = false,
-}
-
-function getHash()
-    for _, v in pairs(game:GetService("Workspace").PlayerTycoons:GetDescendants()) do
-        if v:IsA("ObjectValue") and v.Name == "Owner" then
-            if tostring(v.Value) == game.Players.LocalPlayer.Name then
-                return (v.Parent.Parent.Name)
-            end
+coroutine.wrap(function()
+    for _, step in pairs(LoadSteps) do
+        ProgressText.Text = step.text
+        game:GetService("TweenService"):Create(
+            ProgressFill,
+            TweenInfo.new(0.5, Enum.EasingStyle.Quad),
+            {Size = UDim2.new(step.progress/100, 0, 1, 0)}
+        ):Play()
+        
+        -- 添加粒子效果
+        if step.progress == 100 then
+            LoadingCircle.Image = "rbxassetid://3926305904"  -- 完成图标
+            LoadingCircle.ImageColor3 = Color3.fromRGB(94, 234, 212)
+            LoadingCircle.Rotation = 0
+            RotateTween:Pause()
+            
+            -- 完成特效
+            local particles = Instance.new("ParticleEmitter")
+            particles.Color = ColorSequence.new(Color3.fromRGB(94, 234, 212))
+            particles.Size = NumberSequence.new(0.5)
+            particles.Lifetime = NumberRange.new(1)
+            particles.Rate = 50
+            particles.Speed = NumberRange.new(50)
+            particles.Parent = LoadingCircle
+            wait(1)
+            particles:Destroy()
         end
+        
+        wait(1)  -- 每个阶段持续时间
     end
+    
+    -- 渐变退出
+    game:GetService("TweenService"):Create(
+        Background,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad),
+        {BackgroundTransparency = 1}
+    ):Play()
+    wait(0.5)
+    LoadingGUI:Destroy()
+end)()
+local function createAdaptiveWatermark()
+    if game.CoreGui:FindFirstChild("凡尘_Watermark") then
+        game.CoreGui.H_Watermark:Destroy()
+    end
+
+
+    local screenSize = workspace.CurrentCamera.ViewportSize
+
+    local watermarkGui = Instance.new("ScreenGui")
+    watermarkGui.Name = "凡尘_Watermark"
+    watermarkGui.Parent = game.CoreGui
+    watermarkGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    watermarkGui.ResetOnSpawn = false
+
+    local watermarkText = Instance.new("TextLabel")
+    watermarkText.Name = "WatermarkText"
+    watermarkText.Parent = watermarkGui
+    watermarkText.Text = "凡尘脚本v4" 
+    watermarkText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    watermarkText.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+    watermarkText.TextStrokeTransparency = 0.3 
+    watermarkText.Font = Enum.Font.GothamBold 
+    watermarkText.TextSize = math.floor(screenSize.Y * 0.02)
+    watermarkText.BackgroundTransparency = 1 
+    watermarkText.AnchorPoint = Vector2.new(1, 0) 
+    watermarkText.Position = UDim2.new(1, -10, 0, 10) 
+    watermarkText.TextXAlignment = Enum.TextXAlignment.Right 
+
+    watermarkText.Size = UDim2.new(0, watermarkText.TextBounds.X + 20, 0, watermarkText.TextBounds.Y + 10)
+
+    workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(function()
+        screenSize = workspace.CurrentCamera.ViewportSize
+        watermarkText.TextSize = math.floor(screenSize.Y * 0.02)
+        watermarkText.Size = UDim2.new(0, watermarkText.TextBounds.X + 20, 0, watermarkText.TextBounds.Y + 10)
+    end)
 end
 
-local Settings = {
-    Names = false,
-}
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-local Camera = game:GetService("Workspace").CurrentCamera
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-local Mouse = Player:GetMouse()
+createAdaptiveWatermark()
 
-local msg = Instance.new("Message",workspace)
-msg.Text = "欢迎使用猫剑脚本"
-wait(1.8)
-msg:Destroy()
-
-local msg = Instance.new("Message",workspace)
-msg.Text = "作者:猫王 支持60款游戏"
-wait(1.8)
-msg:Destroy()
-
-local msg = Instance.new("Message",workspace)
-msg.Text = "更新公告"
-wait(3)
-msg:Destroy()
-
-local OrionLib = loadstring(game:HttpGet("https://shz.al/~dito-wooooooooo/Ditoo-ui/I-GOT-NO-TIME-TO-LOSE-RA-TATATA"))()
 local LBLG = Instance.new("ScreenGui", getParent)
 local LBL = Instance.new("TextLabel", getParent)
 local player = game.Players.LocalPlayer
@@ -117,6 +178,14 @@ local Heartbeat = game:GetService("RunService").Heartbeat
 local LastIteration, Start
 local FrameUpdateTable = { }
 
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本加载1"; Text ="爱你😘"; Duration = 2; })wait("3")
+
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本加载2"; Text ="每天更新"; Duration = 2; })wait("3")
+
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本加载完毕"; Text ="更新使用脚本"; Duration = 2; })wait("3")
+
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "凡尘脚本v4"; Text ="载入成功"; Duration = 2; })
+
 local function HeartbeatUpdate()
 	LastIteration = tick()
 	for Index = #FrameUpdateTable, 1, -1 do
@@ -125,315 +194,106 @@ local function HeartbeatUpdate()
 	FrameUpdateTable[1] = LastIteration
 	local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
 	CurrentFPS = CurrentFPS - CurrentFPS % 1
-	FpsLabel.Text = ("北京时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+	FpsLabel.Text = ("现在时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
 end
 Start = tick()
 Heartbeat:Connect(HeartbeatUpdate)
-local Window = OrionLib:MakeWindow({Name = "猫剑脚本", IntroIcon = "rbxassetid://4335482575", HidePremium = false, SaveConfig = true,IntroText = "猫剑脚本", ConfigFolder = "猫剑脚本"})
 
-local about = Window:MakeTab({
-    Name = "公告",
-    Icon = "rbxassetid://4335482575",
-    PremiumOnly = false
+local playerGui = game.Players.LocalPlayer.PlayerGui 
+  
+ local fpsGui = Instance.new("ScreenGui") 
+ fpsGui.Name = "FpsGui" 
+ fpsGui.Parent = playerGui 
+  
+ local fpsLabel = Instance.new("TextLabel") 
+ fpsLabel.Name = "FpsLabel" 
+ fpsLabel.Size = UDim2.new(0, 100, 0, 20) 
+ fpsLabel.Position = UDim2.new(0, 20, 0, 20) 
+ fpsLabel.BackgroundColor3 = Color3.new(0, 0, 0) 
+ fpsLabel.TextColor3 = Color3.new(1, 1, 1) 
+ fpsLabel.Font = Enum.Font.SourceSans 
+ fpsLabel.FontSize = Enum.FontSize.Size14 
+ fpsLabel.Text = "帧数: " 
+ fpsLabel.Parent = fpsGui 
+  
+ local lastUpdate = tick() 
+  
+ local fps = 0 
+  
+ local function updateFpsCounter() 
+     local deltaTime = tick() - lastUpdate 
+     lastUpdate = tick() 
+  
+     fps = math.floor(1 / deltaTime) 
+  
+     fpsLabel.Text = "帧数: " .. fps 
+ end 
+  
+ game:GetService("RunService").RenderStepped:Connect(updateFpsCounter) 
 
-})
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/renlua/UI-lib/refs/heads/main/AL_V3"))()
+local win = library:new("凡尘脚本v4")
+--
+local UITab1 = win:Tab("信息",'16060333448')
 
-about:AddParagraph("作者: 猫王")
-about:AddParagraph("副作者: 小天牛叔小魔阴星")
-about:AddParagraph("制作者: 纳西妲")
+local about = UITab1:section("作者信息",false)
 
-local Tab = Window:MakeTab({
-    Name = "通用功能",
-    Icon = "rbxassetid://4335482575",
-    PremiumOnly = false
+about:Label("师傅:洛天依")
+about:Label("感谢师傅提供的ui和源码")
+about:Label("每星期天星期六一定更新")
+about:Label("联合洛天依同做")
+about:Label("师傅QQ2群1053397474")
 
-})
+local UITab3 = win:Tab("脚本版本",'16060333448')
 
-Tab:AddButton({
-	Name = "甩飞所有人",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/8B4iDhvf/raw"))()
-	end
-})
+local about = UITab3:section("脚本版本",true)
 
-Tab:AddButton({
-	Name = "后厅竞赛",
-	Callback = function()
-	local plr = game.Players.LocalPlayer.Character.Head
-for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-        if v.Name == "TouchInterest" and v.Parent then
-        firetouchinterest(plr, v.Parent, 0)
-    end
-end
-	end
-})
+about:Label("您的脚本为测试版V4.0")
+about:Label("支持10多个服务器")
 
-local plrs = game.Players
+local about = UITab1:section("你的信息",false)
 
-local playerNames = {}
-local players = plrs:GetPlayers()
-
-for _, player in ipairs(players) do
-    table.insert(playerNames, player.Name)
-end
-
-Tab:AddDropdown({
-    Name = "传送玩家",
-    Default = playerNames[1] or "No Players",
-    Options = playerNames,
-    Callback = function(selectedplrName)
-        local targetPlayer = plrs:FindFirstChild(selectedplrName)
-        
-        if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            -- Teleporting your character to the selected player's position
-            local targetPosition = targetPlayer.Character.HumanoidRootPart.Position
-            local localPlayerRoot = plrs.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-            
-            if localPlayerRoot then
-                localPlayerRoot.CFrame = CFrame.new(targetPosition)
-            end
+about:Label("你的注入器:"..identifyexecutor())
+about:Label("你的账号年龄:"..player.AccountAge.."天")
+about:Label("你的注入器:"..identifyexecutor())
+about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
+about:Label("你现在的服务器名称:"..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
+about:Label("你现在的服务器id:"..game.GameId)
+about:Label("你的用户ID:"..game.Players.LocalPlayer.UserId)
+about:Label("获取客户端ID:"..game:GetService("RbxAnalyticsService"):GetClientId())
+about:Toggle("脚本框架变小一点", "", false, function(state)
+        if state then
+        game:GetService("CoreGui")["frosty"].Main.Style = "DropShadow"
+        else
+            game:GetService("CoreGui")["frosty"].Main.Style = "Custom"
         end
-        print(selectedplrName)
-    end    
-})
-
-Tab:AddTextbox({
-	Name = "范围修改",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(value)
-	  print(value)
-_G.HeadSize = value
-_G.Disabled = true
-game:GetService('RunService').RenderStepped:connect(function()
-if _G.Disabled then
-for i,v in next, game:GetService('Players'):GetPlayers() do
-if v.Name ~= game:GetService('Players').LocalPlayer.Name then
-pcall(function()
-v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
-v.Character.HumanoidRootPart.Transparency = 0.7
-v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
-v.Character.HumanoidRootPart.Material = "Neon"
-v.Character.HumanoidRootPart.CanCollide = false
+    end)
+    about:Button("关闭脚本",function()
+        game:GetService("CoreGui")["frosty"]:Destroy()
+    end)
+    
+about:Label("凡尘脚本v4")
+about:Label("作者QQ：2846706821")
+about:Button("点击复作者QQ群",function()
+setclipboard("56117318118")
 end)
-end
-end
-end
+
+local UITab4 = win:Tab("『加入服务器』",'16060333448')
+
+local about = UITab4:section("『LENG Script』",false)
+
+about:Button("加入极速传奇",function()
+local game_id = 3101667897
+        local game_url = "https://www.roblox.com/games/"..game_id
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
 end)
-   end
-})
 
-Tab:AddButton({
-	Name = "bf自动刷钱",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/yPYIf7Wh/raw"))()
-	end
-})
+about:Button("加入鲨口生求2",function()
+local game_id = 8908228901
+        local game_url = "https://www.roblox.com/games/"..game_id
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+end)
 
-Tab:AddButton({
-	Name = "飞行V3",
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
-	end
-})
-
-local Tab = Window:MakeTab({
-    Name = "游戏1",
-    Icon = "rbxassetid://4335482575",
-    PremiumOnly = false
-
-})
-
-Tab:AddButton({
-	Name = "巴掌模拟器",
-	Callback = function()
-    loadstring(game:HttpGet("https://pastefy.app/8m5sOjLh/raw"))()
-    end
-})
-
-Tab:AddButton({
-	Name = "刀刃球",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/qSE847gd/raw"))()
-    end
-})
-
-Tab:AddButton({
-	Name = "彩虹朋友",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/XoNv04vR/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "河北唐县",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/s20nni0h/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "力量传奇",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/vdthUtsS/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "Blox fruit",
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "极速传奇",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/R98GDbTZ/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "忍者传奇",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/0jVTrdxV/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "监狱人生",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/mCzxPi9H/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "蜂群模拟器",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/QtYmKaQ1/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "一路向西",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/q08owYGG/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "造般寻宝",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/hvV1c4nO/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "doors",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/Su9RsViT/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "俄亥俄州",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/QbXPfsgC/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "兵工厂",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/2YdrWHxV/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "餐厅大亨2",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/Ppqt0Gib/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "超级大力士模拟器",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/aO18ZEB9/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "自然灾害模拟器",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/fUmGKuol/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "举重模拟器",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/KSriAk53/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "汽车经销大亨",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/5o594Q0i/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "幸运方块",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/eAWNSTyw/raw"))()
-	end
-})
-
-local Tab = Window:MakeTab({
-    Name = "游戏2",
-    Icon = "rbxassetid://4335482575",
-    PremiumOnly = false
-
-})
-
-Tab:AddButton({
-	Name = "模仿者",
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Yumiara/Script/main/TheMimic.lua"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "水下公司",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/mQokS412/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "火箭发射",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/CMW6b0kZ/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "驾驶帝国",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/0KZI6tmc/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "极限捉迷藏",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastefy.app/pW2Ly8my/raw"))()
-	end
-})
-
-Tab:AddButton({
-	Name = "感染力微笑",
-	Callback = function()
-	loadstrin
+about:Button("加入监狱人生",function()
+local game_id = 155615604
+        loca

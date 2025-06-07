@@ -1,5 +1,4 @@
-local OrionLib =
-loadstring(game:HttpGet("https://pastebin.com/raw/j9TdK86G"))()
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 local LBLG = Instance.new("ScreenGui", getParent)
 local LBL = Instance.new("TextLabel", getParent)
 local player = game.Players.LocalPlayer
@@ -40,202 +39,243 @@ local function HeartbeatUpdate()
 end
 Start = tick()
 Heartbeat:Connect(HeartbeatUpdate)
-print("初始化成功✅")
-print("脚本已运行")
-print("测试阶段后果自负")
 
-OrionLib:MakeNotification({
-                    Name = "警告⚠", 
-                    Content = "请勿去死铁轨服务器执行这个脚本",
-                    Time = 10 -- 持续时间
-                })    
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
-wait(1)
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 30)
+Title.Position = UDim2.new(0, 0, 0.05, 0)
+Title.Text = "卡密系统"
+Title.TextSize = 18
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1
+Title.Parent = Frame
 
-print("UI加载成功✅")
-print("弹出(凡尘-UI)")
+local Instructions = Instance.new("TextLabel")
+Instructions.Size = UDim2.new(1, 0, 0, 30)
+Instructions.Position = UDim2.new(0, 0, 0.2, 0)
+Instructions.Text = "请输入卡密开启脚本！"
+Instructions.TextSize = 13
+Instructions.TextColor3 = Color3.fromRGB(150, 150, 150)
+Instructions.BackgroundTransparency = 1
+Instructions.Parent = Frame
 
-OrionLib:MakeNotification({
-                    Name = "凡尘", 
-                    Content = "欢迎使用凡尘脚本",
-                    Time = 10 -- 持续时间
-                })    
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
-wait(1)
+local TextBox = Instance.new("TextBox")
+TextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
+TextBox.Position = UDim2.new(0.1, 0, 0.4, 0)
+TextBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+TextBox.PlaceholderText = "输入卡密"
+TextBox.Text = ""
+TextBox.TextSize = 18
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.Parent = Frame
 
-print("弹出(凡尘脚本-欢迎使用凡尘脚本)")
+local TextBoxCorner = Instance.new("UICorner")
+TextBoxCorner.CornerRadius = UDim.new(0, 5)
+TextBoxCorner.Parent = TextBox
 
-OrionLib:MakeNotification({
-                    Name = "凡尘脚本", 
-                    Content = "防反挂机已自动启动",
-                    Time = 10 -- 持续时间
-                })    
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
-wait(1)
-print("防反挂机✅")
+local GetKey = Instance.new("TextButton")
+GetKey.Size = UDim2.new(0.35, 0, 0.15, 0)
+GetKey.Position = UDim2.new(0.1, 0, 0.7, 0)
+GetKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+GetKey.Text = "获取卡密"
+GetKey.TextSize = 18
+GetKey.TextColor3 = Color3.fromRGB(150, 150, 150)
+GetKey.Parent = Frame
 
-print("弹出(凡尘脚本-防反挂机已自动启动)")
+local GetKeyCorner = Instance.new("UICorner")
+GetKeyCorner.CornerRadius = UDim.new(0, 5)
+GetKeyCorner.Parent = GetKey
 
-local vu = game:GetService("VirtualUser")
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-    vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-    wait(1)
-    vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+local CheckKey = Instance.new("TextButton")
+CheckKey.Size = UDim2.new(0.35, 0, 0.15, 0)
+CheckKey.Position = UDim2.new(0.55, 0, 0.7, 0)
+CheckKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+CheckKey.Text = "确认卡密"
+CheckKey.TextSize = 18
+CheckKey.TextColor3 = Color3.fromRGB(150, 150, 150)
+CheckKey.Parent = Frame
+
+local CheckKeyCorner = Instance.new("UICorner")
+CheckKeyCorner.CornerRadius = UDim.new(0, 5)
+CheckKeyCorner.Parent = CheckKey
+
+GetKey.MouseButton1Click:Connect(function()
+    setclipboard("群号: 324108046")
 end)
 
-print("执行(防反挂机)")
+CheckKey.MouseButton1Click:Connect(function()
+    if Verify({
+        ["nahida_cn"] = "pswd",
+        ["name"] = "pswd",
+        [HAGOU2] = "250",
+        ["yyds141"] = "60",
+        ["qwq88qwq"] = "2",
+        ["zbsswl"] = "耗子",
+        ["ZPHBWLB"] = "5",
+        ["hexxdhdgw"] = "6",
+        ["ljknbhjnoihvr"] = "神权大玉",
+        ["15072613915ABC"] = "8",
+        ["calamitynotem"] = "9",
+        ["Surprised267"] = "10",
+        ["244uhf"] = "tftdtl5881fcij",
+        ["hh159249"] = "12",
+        ["ghuxhyf"] = "14",
+        ["dx2009d"] = "15",
+        ["u7fFEK7VJk1eVe"] = "16",
+        ["UTtdfiig"] = "17",
+        ["HAGOU2"] = "hauaggoo",
+        ["1q2w3e4rhhhhh"] = "20",
+        ["sfekefeted"] = "21",
+        ["jiege089"] = "qqq123456",
+        ["nicooooo_oooooc"] = "23",
+        ["DF_9bdc"] = "24",
+        ["CN_OPH"] = "25",
+        ["wzhwudi7"] = "26",
+        ["Stgfkv"] = "海涵",
+        ["zaoze_119"] = "28",
+        ["Qing_Feng82"] = "29",
+        ["HUBAK1112"] = "30",
+        ["lmwufeihua"] = "31",
+        ["yaakpkl"] = "32",
+        ["brush8848"] = "33",
+        ["haklud2"] = "34",
+        ["Experience413"] = "35",
+        ["fblERROR404"] = "36",
+        ["CN_DiaoBaLaoDi"] = "37",
+        ["hhngla"] = "114514",
+        ["hdbdhdhdhduh26"] = "38",
+        ["uaisihriEfo"] = "39",
+        ["a123279u"] = "40",
+        ["Surprised267"] = "41",
+        ["ogwveuxiaohao"] = "42",
+        ["carpacemk"] = "43",
+        ["Augw271"] = "44",
+        ["qqrtqra"] = "45",
+        ["ikun5465"] = "46",
+        ["baigekx"] = "47",
+        ["yaojiafang2"] = "48",
+        ["HCDT675"] = "q",
+        ["hhhhhhhhh5551"] = "333",
+        ["baigekx"] = "白给天天开心",
+        ["159258w"] = "254",
+        ["fuhua2000"] = "原神114514",
+        ["hrurjjk"] = "龙叔最牛",
+        ["a123279u"] = "a1234567890",
+        ["yuhjnmnmhjyu"] = "小天nb",
+        ["jsksjskdssa"] = "250",
+        ["Tuxcqp"] = "Yuiin",
+        ["ghilkjghjk"] = "A5",
+        ["ikunl08"] = "dfxxfdfxz",
+        ["cxkdzhzl"] = "888889999",
+        ["lzh12233"] = "976807",
+        ["12okplmnbv"] = "Q88784",
+        ["qrefeyshdy"] = "123",
+        ["fhh6661"] = "fhh",
+        ["12345qwrt12"] = "suzui888",
+        ["zyj114"] = "217662",
+        ["jdjfjgjgjgjfj"] = "1",
+    }, TextBox.Text, 33842965) then
+        ScreenGui:Destroy()
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
+ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
 
-OrionLib:MakeNotification({
-                    Name = "凡尘脚本", 
-                    Content = "你的注入器是:"..identifyexecutor(),
-                    Time = 10 -- 持续时间
-                })    
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
-wait(1)
+ wait(2) 
+ Notification:Notify( 
+     {Title = "猫王", Description = "正在加载"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+ ) 
+ wait(4) 
+ Notification:Notify( 
+     {Title = "猫王", Description = "准备好了！"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+ )
+ wait(0.4)
+ Notification:Notify( 
+     {Title = "猫王", Description = "支持作者猫王和纳西和牛叔"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+ )
+ wait(0.4)
+ 
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("ImageButton")
+local REN = Instance.new("UICorner")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local UICorner = Instance.new("UICorner")
 
-print("弹出(凡尘脚本-你的注入器是)"..identifyexecutor())
 
-OrionLib:MakeNotification({
-                    Name = "凡尘脚本", 
-                    Content = "你的用户名是:"..game.Players.LocalPlayer.Character.Name,
-                    Time = 10 -- 持续时间
-                })    
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
 
-print("弹出(凡尘脚本-你的用户名是)"..game.Players.LocalPlayer.Character.Name)
 
-print("弹出(凡尘脚本-检测到你是高级版，需要入门版请前往3557736755)")
+      local r = math.random(1,6)
+      local r1 = 'rbxassetid://15717435079'
+      local r2 = 'rbxassetid://16223596759'
+      local r3 = 'rbxassetid://16234894414'
+      local r4 = 'rbxassetid://16234974826'
+      local r5 = 'rbxassetid://16235038119'
+      local r6 = 'rbxassetid://16235057072'
+      
+      if r ==1 then
+        Imagr = r1
+      end
+      if r ==2 then
+        Imagr = r2
+      end
+      if r ==3 then
+        Imagr = r3
+      end
+      if r ==4 then
+        Imagr = r4
+      end
+      if r ==5 then
+        Imagr = r5
+      end
+      if r ==6 then
+        Imagr = r6
+      end   
+      
+TextButton.Parent = ScreenGui
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Position = UDim2.new(0.00829315186, 0, 0.31107837, 0)
+TextButton.Size = UDim2.new(0, 37, 0, 37)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.Image = Imagr
+TextButton.Active = true
+TextButton.Draggable = true
+TextButton.MouseButton1Click:Connect(function()
+    game:GetService("VirtualInputManager"):SendKeyEvent(true, "E" , false , game)
+end)
 
-local Window = OrionLib:MakeWindow({Name = "凡尘脚本", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用凡尘脚本", ConfigFolder = "123"})
+REN.CornerRadius = UDim.new(0, 360)
+REN.Parent = TextButton
+UITextSizeConstraint.Parent = TextButton
+UITextSizeConstraint.MaxTextSize = 30
 
-print("脚本加载成功✅")
-print("创建主UI(凡尘脚本-凡尘脚本-123)")
+local lib = loadstring(game:HttpGet("https://shz.al/~vapeui"))()
 
-local announcement = Window:MakeTab({
-    Name = "主页",
-	Icon = "rbxassetid://7734068321",
-	PremiumOnly = false
+local win = lib:Window("整合",Color3.fromRGB(0, 255, 0), Enum.KeyCode.E) -- your own keybind 
+
+local tab1 = window:Tab("主要功能")
+
+
+local Tab = Window:MakeTab({
+    Name = "游戏",
+    Icon = "rbxassetid://4335482575",
+    PremiumOnly = false
+
 })
-announcement:AddParagraph("作者","凡尘")
-announcement:AddParagraph("版本","高级")
-announcement:AddParagraph("警告","别去死铁轨执行这个脚本")
-announcement:AddLabel("你的注入器:"..identifyexecutor())
-announcement:AddLabel("你的用户名:"..game.Players.LocalPlayer.Character.Name)
-announcement:AddLabel("你的客户端ID:"..game:GetService("RbxAnalyticsService"):GetClientId())
-announcement:AddLabel("当前服务器ID:"..game.GameId)
-announcement:AddLabel("你的账号年龄:"..game.Players.LocalPlayer.AccountAge)
-announcement:AddLabel("你的账号ID:"..game.Players.LocalPlayer.UserId)
-announcement:AddButton({
-	Name = "QQ群56117318118点击复制",
+
+Tab:AddButton({
+	Name = "60个服务器",
 	Callback = function()
-print("执行(复制561173181)并弹出(复制成功-你已复制QQ群号)")
-setclipboard("561173181")
-OrionLib:MakeNotification({
-                    Name = "复制成功", 
-                    Content = "你已复制QQ群号",
-                    Time = 10 -- 持续时间
-                })    
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
-end
-})    
-announcement:AddButton({
-	Name = "启动指令版空脚本",
-	Callback = function()
-print("执行(指令版空脚本)")
-loadstring(game:HttpGet("https://pastebin.com/raw/UGnRD4xU"))()
-end
-})   
-
-print("创建分类(announcement-主页)")
-
-local TEST = Window:MakeTab({
-    Name = "注入器/脚本/测试或调试",
-	Icon = "rbxassetid://4483345998", -- roblox图片ID
-	PremiumOnly = false
-})
-TEST:AddButton({
-	Name = "打开F9(调试控制台)",
-	Callback = function() -- 被调整值
-    print("执行(打开F9(调试控制台))")
-    game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
-end
-})    
-TEST:AddButton({
-	Name = "测试注入器等级键盘按F9查看",
-	Callback = function()
-    print("执行(测试注入器等级)")
-    getgenv().printidentity = nil printidentity()
-end
-})   
-TEST:AddButton({
-	Name = "测试注入器UNC键盘按F9查看",
-	Callback = function()
-print("执行(测试注入器UNC)")
-loadstring(game:HttpGet("https://pastebin.com/raw/aR4dJHGT"))()
-end
-})   
-
-print("创建分类(TEST-注入器/脚本/测试或调试)")
-
-local currency = Window:MakeTab({
-    Name = "忍者传奇",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-currency:AddTextbox({
-	Name = "移动速度",
-	Default = "", -- 默认值
-	TextDisappear = true,
-	Callback = function(Value)
-print("执行(修改移动速度)")
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-end
-})
-currency:AddTextbox({
-	Name = "跳跃高度",
-	Default = "", -- 默认值
-	TextDisappear = true,
-	Callback = function(Value)
-print("执行(修改跳跃高度)")
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-end
-})
-currency:AddTextbox({
-	Name = "重力",
-	Default = "", -- 默认值
-	TextDisappear = true,
-	Callback = function(Value)
-print("执行(修改重力)")
-game.Workspace.Gravity = Value
-end
-})
-currency:AddToggle({
-	Name = "忍者技术自动刷",
-	Default = false,
-	Callback = function(Value)
-wait(0.1)
-end
-
-local args = {
-    [1] = "swingKatana"
-}
-while true do
-game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
-
-wait(0.1)
-end
-    print("执行切换/预加载(夜视)")
+	loadstring(game:HttpGet("https://pastebin.com/jGnht4LB"))()
 	end
 })
+    else
+        print("检查密钥和用户名或检查是否加入群组")
+    end
+end)

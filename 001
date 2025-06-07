@@ -190,22 +190,52 @@ end
 print("创建分类(TEST-注入器/脚本/测试或调试)")
 
 local currency = Window:MakeTab({
-    Name = "通用",
+    Name = "忍者传奇",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+currency:AddTextbox({
+	Name = "移动速度",
+	Default = "", -- 默认值
+	TextDisappear = true,
+	Callback = function(Value)
+print("执行(修改移动速度)")
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+end
+})
+currency:AddTextbox({
+	Name = "跳跃高度",
+	Default = "", -- 默认值
+	TextDisappear = true,
+	Callback = function(Value)
+print("执行(修改跳跃高度)")
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+end
+})
+currency:AddTextbox({
+	Name = "重力",
+	Default = "", -- 默认值
+	TextDisappear = true,
+	Callback = function(Value)
+print("执行(修改重力)")
+game.Workspace.Gravity = Value
+end
+})
 currency:AddToggle({
-	Name = "刷钱",
+	Name = "忍者技术自动刷",
 	Default = false,
 	Callback = function(Value)
+wait(0.1)
+end
+
 local args = {
-    [1] = "MadeVideoManually"
+    [1] = "swingKatana"
 }
 while true do
-game:GetService("ReplicatedStorage").RemoteEvent_1:FireServer(unpack(args))
+game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
 
 wait(0.1)
 end
-    print("执行切换/预加载(刷钱)")
+    print("执行切换/预加载(夜视)")
 	end
 })

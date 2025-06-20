@@ -14,7 +14,7 @@ Notify("拒绝跑路", "拒绝倒卖","rbxassetid://17360377302",3)
 Notify("启动完成", "祝你玩的开心","rbxassetid://17360377302",5)
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/XiaoYunCN/UWU/main/Library%2FSilent%20ui'))()
-local Window = Library:new("落叶中心 fa");
+local Window = Library:new("落叶中心 X");
 
 local creds = Window:Tab("公告",'16060333448')
 local bin = creds:section("信息",true)
@@ -215,4 +215,4 @@ QU:Toggle("人物显示", "RWXS", false, function(RWXS)
 end)
 
 QW:Button("死亡笔记", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/dfhj/main/%E6%AD%BB%E
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/dfhj/main/%E6%AD%BB%E4

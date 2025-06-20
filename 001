@@ -1,281 +1,218 @@
-local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
-local LBLG = Instance.new("ScreenGui", getParent)
-local LBL = Instance.new("TextLabel", getParent)
-local player = game.Players.LocalPlayer
-
-LBLG.Name = "LBLG"
-LBLG.Parent = game.CoreGui
-LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-LBLG.Enabled = true
-LBL.Name = "LBL"
-LBL.Parent = LBLG
-LBL.BackgroundColor3 = Color3.new(1, 1, 1)
-LBL.BackgroundTransparency = 1
-LBL.BorderColor3 = Color3.new(0, 0, 0)
-LBL.Position = UDim2.new(0.75,0,0.010,0)
-LBL.Size = UDim2.new(0, 133, 0, 30)
-LBL.Font = Enum.Font.GothamSemibold
-LBL.Text = "TextLabel"
-LBL.TextColor3 = Color3.new(1, 1, 1)
-LBL.TextScaled = true
-LBL.TextSize = 14
-LBL.TextWrapped = true
-LBL.Visible = true
-
-local FpsLabel = LBL
-local Heartbeat = game:GetService("RunService").Heartbeat
-local LastIteration, Start
-local FrameUpdateTable = { }
-
-local function HeartbeatUpdate()
-	LastIteration = tick()
-	for Index = #FrameUpdateTable, 1, -1 do
-		FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
-	end
-	FrameUpdateTable[1] = LastIteration
-	local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
-	CurrentFPS = CurrentFPS - CurrentFPS % 1
-	FpsLabel.Text = ("北京时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+function Notify(Title1, Text1, Icon1, Time1)
+  game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = Title1,
+    Text = Text1,
+    Icon = Icon1,
+    Duration = Time1,
+  })
 end
-Start = tick()
-Heartbeat:Connect(HeartbeatUpdate)
+Notify("落叶中心", "作者krX", "rbxassetid://17360377302", 3)
+Notify("永久免费", "祝你玩的开心","rbxassetid://17360377302",3)
+Notify("永久免费", "没有盈利","rbxassetid://17360377302",3)
+Notify("落叶中心", "永久免费","rbxassetid://17360377302",3)
+Notify("拒绝跑路", "拒绝倒卖","rbxassetid://17360377302",3)
+Notify("启动完成", "祝你玩的开心","rbxassetid://17360377302",5)
 
-local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1, 0, 0, 30)
-Title.Position = UDim2.new(0, 0, 0.05, 0)
-Title.Text = "卡密系统"
-Title.TextSize = 18
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.BackgroundTransparency = 1
-Title.Parent = Frame
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/XiaoYunCN/UWU/main/Library%2FSilent%20ui'))()
+local Window = Library:new("落叶中心 X");
 
-local Instructions = Instance.new("TextLabel")
-Instructions.Size = UDim2.new(1, 0, 0, 30)
-Instructions.Position = UDim2.new(0, 0, 0.2, 0)
-Instructions.Text = "请输入卡密开启脚本！"
-Instructions.TextSize = 13
-Instructions.TextColor3 = Color3.fromRGB(150, 150, 150)
-Instructions.BackgroundTransparency = 1
-Instructions.Parent = Frame
+local creds = Window:Tab("公告",'16060333448')
+local bin = creds:section("信息",true)
+local about = creds:section("作者",true)
 
-local TextBox = Instance.new("TextBox")
-TextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
-TextBox.Position = UDim2.new(0.1, 0, 0.4, 0)
-TextBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-TextBox.PlaceholderText = "输入卡密"
-TextBox.Text = ""
-TextBox.TextSize = 18
-TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextBox.Parent = Frame
+local Main = Window:Tab("主要",'16060333448')
+local General = Main:section("玩家",true)
+local GX = Main:section("通用",true)
+local QU = Main:section("ESP",true)
+local QW = Main:section("其他",true)
 
-local TextBoxCorner = Instance.new("UICorner")
-TextBoxCorner.CornerRadius = UDim.new(0, 5)
-TextBoxCorner.Parent = TextBox
+local JSDGt = Window:Tab("驾驶帝国",'16060333448')
+local JSDG = JSDGt:section("自动&刷钱",true)
 
-local GetKey = Instance.new("TextButton")
-GetKey.Size = UDim2.new(0.35, 0, 0.15, 0)
-GetKey.Position = UDim2.new(0.1, 0, 0.7, 0)
-GetKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-GetKey.Text = "获取卡密"
-GetKey.TextSize = 18
-GetKey.TextColor3 = Color3.fromRGB(150, 150, 150)
-GetKey.Parent = Frame
+local FMDHt = Window:Tab("伐木大亨2",'16060333448')
+local FMDH = FMDHt:section("伐木大亨2",true)
 
-local GetKeyCorner = Instance.new("UICorner")
-GetKeyCorner.CornerRadius = UDim.new(0, 5)
-GetKeyCorner.Parent = GetKey
+local SKQSt = Window:Tab("鲨口求生2",'16060333448')
+local SKQS = SKQSt:section("鲨口&求生",true)
 
-local CheckKey = Instance.new("TextButton")
-CheckKey.Size = UDim2.new(0.35, 0, 0.15, 0)
-CheckKey.Position = UDim2.new(0.55, 0, 0.7, 0)
-CheckKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-CheckKey.Text = "确认卡密"
-CheckKey.TextSize = 18
-CheckKey.TextColor3 = Color3.fromRGB(150, 150, 150)
-CheckKey.Parent = Frame
+local DoorsT = Window:Tab("doors",'16060333448')
+local Doors = DoorsT:section("通用&功能",true)
+local DOORSR = DoorsT:section("透视",true)
+local BP = DoorsT:section("其他",true)
 
-local CheckKeyCorner = Instance.new("UICorner")
-CheckKeyCorner.CornerRadius = UDim.new(0, 5)
-CheckKeyCorner.Parent = CheckKey
+local LLCQt = Window:Tab("力量传奇",'16060333448')
+local LLCQ = LLCQt:section("主要&功能",true)
+local LLQR = LLCQt:section("自动收集",true)
+local LLRQ = LLCQt:section("跑步机",true)
+local LLRE = LLCQt:section("岩石",true)
+local LLQQ = LLCQt:section("传送位置",true)
 
-GetKey.MouseButton1Click:Connect(function()
-    setclipboard("群号: 324108046")
+local JSCQt = Window:Tab("极速传奇",'16060333448')
+local JSCQ = JSCQt:section("自动&玩家",true)
+local JSQC = JSCQt:section("传送位置",true)
+
+local RZCQt = Window:Tab("忍者传奇",'16060333448')
+local RZCQ = RZCQt:section("自动&模式",true)
+local RZQC = RZCQt:section("传送位置",true)
+
+local JYRSt = Window:Tab("监狱人生",'16060333448')
+local TLT = JYRSt:section("整合",true)
+local JYRS = JYRSt:section("监狱&主要",true)
+local DL = JYRSt:section("身份",true)
+local DP = JYRSt:section("其他",true)
+local DX = JYRSt:section("传送地点",true)
+
+local ZDYSt = Window:Tab("战斗勇士",'16060333448')
+local ZDYS = ZDYSt:section("主要",true)
+
+local HBTXt = Window:Tab("河北唐县",'16060333448')
+local HBTX = HBTXt:section("主的",true)
+local HBXT = HBTXt:section("传送位置",true)
+
+local ZRZHt = Window:Tab("自然灾害",'16060333448')
+local ZRZH = ZRZHt:section("自然&灾害",true)
+local RHE = ZRZHt:section("玩家",true)
+
+local EVt = Window:Tab("Evade",'16060333448')
+local EV = EVt:section("Evade",true)
+
+local XGt = Window:Tab("新更",'16060333448')
+local XG = XGt:section("新更",true)
+local GN = XGt:section("实用工具",true)
+
+local OSCt = Window:Tab("其他脚本",'16060333448')
+local OSC = OSCt:section("通用脚本",true)
+
+local SIJt = Window:Tab("视觉",'16060333448')
+local SIJ = SIJt:section("视觉",true)
+local GIY = SIJt:section("光影",true)
+
+local QH = Window:Tab("俄亥俄州",'16060333448')
+local QB = QH:section("自动模式",true)
+
+local EF = Window:Tab("FE",'16060333448')
+local FE = EF:section("FE",true)
+
+local EN = Window:Tab("作者通告",'16060333448')
+local NE = EN:section("玩家公告!",true)
+
+local VT = Window:Tab("其他注入器",'16060333448')
+local YV = VT:section("输入器整合",true)
+
+local OH = Window:Tab("火箭发射模拟",'16060333448')
+local HO = OH:section("主要",true)
+local HQ = OH:section("传送位置",true)
+
+local UR = Window:Tab("超级大力士",'16060333448')
+local RU = UR:section("主要的",true)
+local OR = UR:section("其他",true)
+local QS = UR:section("位置传送",true)
+
+local OSQ = Window:Tab("战争大亨",'16060333448')
+local QOS = OSQ:section("主要",true)
+local SQO = OSQ:section("其他",true)
+local Tab2 = OSQ:section("传送位置",true)
+
+bin:Label("你的用户名:"..game.Players.LocalPlayer.Name)
+bin:Label("你的注入器:"..identifyexecutor())
+bin:Label("服务器id:"..game.GameId)
+
+about:Label("作者kr X")
+about:Label("作者qq3648447529")
+about:Label("正在努力优化")
+about:Label("请勿倒卖")
+about:Button("复制作者QQ", function()
+    setclipboard("3648447529")
 end)
-
-CheckKey.MouseButton1Click:Connect(function()
-    if Verify({
-        ["nahida_cn"] = "pswd",
-        ["name"] = "pswd",
-        [HAGOU2] = "250",
-        ["yyds141"] = "60",
-        ["qwq88qwq"] = "2",
-        ["zbsswl"] = "耗子",
-        ["ZPHBWLB"] = "5",
-        ["hexxdhdgw"] = "6",
-        ["ljknbhjnoihvr"] = "神权大玉",
-        ["15072613915ABC"] = "8",
-        ["calamitynotem"] = "9",
-        ["Surprised267"] = "10",
-        ["244uhf"] = "tftdtl5881fcij",
-        ["hh159249"] = "12",
-        ["ghuxhyf"] = "14",
-        ["dx2009d"] = "15",
-        ["u7fFEK7VJk1eVe"] = "16",
-        ["UTtdfiig"] = "17",
-        ["HAGOU2"] = "hauaggoo",
-        ["1q2w3e4rhhhhh"] = "20",
-        ["sfekefeted"] = "21",
-        ["jiege089"] = "qqq123456",
-        ["nicooooo_oooooc"] = "23",
-        ["DF_9bdc"] = "24",
-        ["CN_OPH"] = "25",
-        ["wzhwudi7"] = "26",
-        ["Stgfkv"] = "海涵",
-        ["zaoze_119"] = "28",
-        ["Qing_Feng82"] = "29",
-        ["HUBAK1112"] = "30",
-        ["lmwufeihua"] = "31",
-        ["yaakpkl"] = "32",
-        ["brush8848"] = "33",
-        ["haklud2"] = "34",
-        ["Experience413"] = "35",
-        ["fblERROR404"] = "36",
-        ["CN_DiaoBaLaoDi"] = "37",
-        ["hhngla"] = "114514",
-        ["hdbdhdhdhduh26"] = "38",
-        ["uaisihriEfo"] = "39",
-        ["a123279u"] = "40",
-        ["Surprised267"] = "41",
-        ["ogwveuxiaohao"] = "42",
-        ["carpacemk"] = "43",
-        ["Augw271"] = "44",
-        ["qqrtqra"] = "45",
-        ["ikun5465"] = "46",
-        ["baigekx"] = "47",
-        ["yaojiafang2"] = "48",
-        ["HCDT675"] = "q",
-        ["hhhhhhhhh5551"] = "333",
-        ["baigekx"] = "白给天天开心",
-        ["159258w"] = "254",
-        ["fuhua2000"] = "原神114514",
-        ["hrurjjk"] = "龙叔最牛",
-        ["a123279u"] = "a1234567890",
-        ["yuhjnmnmhjyu"] = "小天nb",
-        ["jsksjskdssa"] = "250",
-        ["Tuxcqp"] = "Yuiin",
-        ["ghilkjghjk"] = "A5",
-        ["ikunl08"] = "dfxxfdfxz",
-        ["cxkdzhzl"] = "888889999",
-        ["lzh12233"] = "976807",
-        ["12okplmnbv"] = "Q88784",
-        ["qrefeyshdy"] = "123",
-        ["fhh6661"] = "fhh",
-        ["12345qwrt12"] = "suzui888",
-        ["zyj114"] = "217662",
-        ["jdjfjgjgjgjfj"] = "1",
-    }, TextBox.Text, 33842965) then
-        ScreenGui:Destroy()
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
- local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
-
- wait(2) 
- Notification:Notify( 
-     {Title = "猫王", Description = "正在加载"}, 
-     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
-     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
- ) 
- wait(4) 
- Notification:Notify( 
-     {Title = "猫王", Description = "准备好了！"}, 
-     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
-     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
- )
- wait(0.4)
- Notification:Notify( 
-     {Title = "猫王", Description = "支持作者猫王和纳西和牛叔"}, 
-     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "image"}, 
-     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
- )
- wait(0.4)
- 
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local TextButton = Instance.new("ImageButton")
-local REN = Instance.new("UICorner")
-local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
-local UICorner = Instance.new("UICorner")
-
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.ResetOnSpawn = false
-
-
-      local r = math.random(1,6)
-      local r1 = 'rbxassetid://15717435079'
-      local r2 = 'rbxassetid://16223596759'
-      local r3 = 'rbxassetid://16234894414'
-      local r4 = 'rbxassetid://16234974826'
-      local r5 = 'rbxassetid://16235038119'
-      local r6 = 'rbxassetid://16235057072'
-      
-      if r ==1 then
-        Imagr = r1
-      end
-      if r ==2 then
-        Imagr = r2
-      end
-      if r ==3 then
-        Imagr = r3
-      end
-      if r ==4 then
-        Imagr = r4
-      end
-      if r ==5 then
-        Imagr = r5
-      end
-      if r ==6 then
-        Imagr = r6
-      end   
-      
-TextButton.Parent = ScreenGui
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.Position = UDim2.new(0.00829315186, 0, 0.31107837, 0)
-TextButton.Size = UDim2.new(0, 37, 0, 37)
-TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.Image = Imagr
-TextButton.Active = true
-TextButton.Draggable = true
-TextButton.MouseButton1Click:Connect(function()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true, "E" , false , game)
+about:Button("复制QQ群", function()
+    setclipboard("341063007")
 end)
-
-REN.CornerRadius = UDim.new(0, 360)
-REN.Parent = TextButton
-UITextSizeConstraint.Parent = TextButton
-UITextSizeConstraint.MaxTextSize = 30
-
-local lib = loadstring(game:HttpGet("https://shz.al/~vapeui"))()
-
-local win = lib:Window("整合",Color3.fromRGB(0, 255, 0), Enum.KeyCode.E) -- your own keybind 
-
-local tab1 = window:Tab("主要功能")
-
-
-local Tab = Window:MakeTab({
-    Name = "游戏",
-    Icon = "rbxassetid://4335482575",
-    PremiumOnly = false
-
-})
-
-Tab:AddButton({
-	Name = "60个服务器",
-	Callback = function()
-	loadstring(game:HttpGet("https://pastebin.com/jGnht4LB"))()
-	end
-})
+about:Toggle("移除UI辉光", "DHG", false, function(DHG)
+    if DHG then
+        game:GetService("CoreGui")["frosty is cute"].Main.DropShadowHolder.Visible = false
     else
-        print("检查密钥和用户名或检查是否加入群组")
+        game:GetService("CoreGui")["frosty is cute"].Main.DropShadowHolder.Visible = true
     end
 end)
+about:Toggle("彩虹UI", "RBUI", false, function(RBUI)
+    if RBUI then
+        game:GetService("CoreGui")["frosty is cute"].Main.Style = "DropShadow"
+    else
+        game:GetService("CoreGui")["frosty is cute"].Main.Style = "Custom"
+    end
+end)
+about:Button("摧毁界面", function()
+    game:GetService("CoreGui")["frosty is cute"]:Destroy()
+end)
+
+General:Slider("步行速度!", "WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 400, false, function(Speed)
+  spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed end end)
+end)
+General:Slider("跳跃高度!", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 400, false, function(Jump)
+  spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
+end)
+General:Textbox("重力设置!", "Gravity", "输入", function(Gravity)
+  spawn(function() while task.wait() do game.Workspace.Gravity = Gravity end end)
+end)
+General:Toggle("夜视", "Light", false, function(Light)
+  spawn(function() while task.wait() do if Light then game.Lighting.Ambient = Color3.new(1, 1, 1) else game.Lighting.Ambient = Color3.new(0, 0, 0) end end end)
+end)
+General:Button("透视", function()
+  local Players = game:GetService("Players"):GetChildren() local RunService = game:GetService("RunService") local highlight = Instance.new("Highlight") highlight.Name = "Highlight" for i, v in pairs(Players) do repeat wait() until v.Character if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then local highlightClone = highlight:Clone() highlightClone.Adornee = v.Character highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart") highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop highlightClone.Name = "Highlight" end end game.Players.PlayerAdded:Connect(function(player) repeat wait() until player.Character if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then local highlightClone = highlight:Clone() highlightClone.Adornee = player.Character highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart") highlightClone.Name = "Highlight" end end) game.Players.PlayerRemoving:Connect(function(playerRemoved) playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy() end) RunService.Heartbeat:Connect(function() for i, v in pairs(Players) do repeat wait() until v.Character if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then local highlightClone = highlight:Clone() highlightClone.Adornee = v.Character highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart") highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop highlightClone.Name = "Highlight" task.wait() end end end)
+end)
+General:Button("隐身道具", function()
+  loadstring(game:HttpGet("https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)",true))()
+end)
+General:Toggle("穿墙(可用)", "NoClip", false, function(NC)
+  local Workspace = game:GetService("Workspace") local Players = game:GetService("Players") if NC then Clipon = true else Clipon = false end Stepped = game:GetService("RunService").Stepped:Connect(function() if not Clipon == false then for a, b in pairs(Workspace:GetChildren()) do if b.Name == Players.LocalPlayer.Name then for i, v in pairs(Workspace[Players.LocalPlayer.Name]:GetChildren()) do if v:IsA("BasePart") then v.CanCollide = false end end end end else Stepped:Disconnect() end end)
+end)
+
+GX:Button("最强透视",function()
+  loadstring(game:HttpGet("https://pastebin.com/raw/uw2P2fbY"))()
+end)
+GX:Button("飞行v3",function()
+  loadstring(game:HttpGet'https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt')()
+end)
+GX:Button("甩人",function()
+  loadstring(game:HttpGet("https://pastebin.com/raw/zqyDSUWX"))()
+end)
+GX:Button("反挂机v2",function()
+  loadstring(game:HttpGet("https://pastebin.com/raw/9fFu43FF"))()
+end)
+GX:Button("铁拳",function()
+  loadstring(game:HttpGet('https://raw.githubusercontent.com/0Ben1/fe/main/obf_rf6iQURzu1fqrytcnLBAvW34C9N55kS9g9G3CKz086rC47M6632sEd4ZZYB0AYgV.lua.txt'))()
+end)
+GX:Button("键盘",function()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+end)
+GX:Button("动画中心",function()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui", true))()
+end)
+GX:Button("立即死亡",function()
+  game.Players.LocalPlayer.Character.Humanoid.Health=0
+end)
+GX:Button("爬墙",function()
+  loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+end)
+GX:Button("转起来",function()
+  loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+end)
+GX:Button("子弹追踪",function()
+  loadstring(game:HttpGet("https://pastebin.com/raw/1AJ69eRG"))()
+end)
+GX:Button("飞车",function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/63T0fkBm"))()
+end)
+GX:Button("吸人",function()
+    loadstring(game:HttpGet("https://shz.al/~HHAKS"))()
+end)
+GX:Button("无限跳跃",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+end)
+
+QU:Toggle("人物显示", "RWXS", false, function(RWXS)
+    getgenv().enabled = RWXS getgenv().filluseteamcolor = true getgenv().outlineuseteamcolor = true getgenv().fillcolor = Color3.new(1, 0, 0) getgenv().outlinecolor = Color3.new(1, 1, 1) getgenv().filltrans = 0.5 getgenv().outlinetrans = 0.5 loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/RobloxScripts/main/Highlight-ESP.lua"))()
+end)
+
+QW:Button("死亡笔记", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/dfhj/main/%E6%AD%BB%E4

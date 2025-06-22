@@ -12,7 +12,7 @@ if table.find(whitelist, game.Players.LocalPlayer.Name) then
 	})
 
 	loadstring(game:HttpGet("https://pastebin.com/raw/6xQ5gtbj"))();
-	local ui = loadstring(game:HttpGet"https://pastebin.com/raw/E9PzvbeX")()
+	local ui = loadstring(game:HttpGet("https://pastebin.com/raw/6xQ5gtbj"))();
 	local window = ui:new("西脚本--重置版")
 
 	local UITab1 = window:Tab("UI设置",'6035145364')

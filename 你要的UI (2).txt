@@ -1,0 +1,355 @@
+whitelist = {
+	"twiwvsy","QWERTYuphhthxjfvh","名字","114514ap092","名字","名字","名字","名字","名字","名字","名字","名字"
+}
+if table.find(whitelist, game.Players.LocalPlayer.Name) then
+
+	local CoreGui = game:GetService("StarterGui") 
+
+	CoreGui:SetCore("SendNotification", { 
+		Title = "白名单验证提示",
+		Text = "身份验证成功正在转入脚本", 
+		Duration = 5,  
+	})
+
+	loadstring(game:HttpGet("https://pastebin.com/raw/6xQ5gtbj"))();
+	local ui = loadstring(game:HttpGet"https://pastebin.com/raw/E9PzvbeX")()
+	local window = ui:new("西脚本--重置版")
+
+	local UITab1 = window:Tab("UI设置",'6035145364')
+	local Player1 = window:Tab("基础",'6035145364')
+	local Player = Player1:section("人物",true)
+	local UITab = UITab1:section("UI设置",true)
+
+
+	UITab:Button("摧毁UI",function()
+		game:GetService("CoreGui")["frosty"]:Destroy()
+	end)
+
+	UITab:Toggle("彩虹UI", "", false, function(state)
+		if state then
+			game:GetService("CoreGui")["frosty"].Main.Style = "DropShadow"
+		else
+			game:GetService("CoreGui")["frosty"].Main.Style = "Custom"
+		end
+	end)
+
+	Player:AddParagraph("您的用户名:"," "..game.Players.LocalPlayer.Name.."")
+	Player:AddParagraph("您的注入器:"," "..identifyexecutor().."")
+	Player:AddParagraph("您当前服务器的ID"," "..game.GameId.."")
+
+
+	local Tab = Window:MakeTab({
+		Name = "介绍",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+
+	Tab:AddButton({
+		Name = "本脚本永久免费，倒卖死全家",
+		Callback = function()
+
+		end
+	})    
+
+	Tab:AddButton({
+		Name = "制作人：西瓜酱",
+		Callback = function()
+
+		end
+	})    
+
+	Tab:AddButton({
+		Name = "压缩人：字母哥",
+		Callback = function()
+
+		end
+	})    
+
+	Tab:AddButton({
+		Name = "提供脚本人：空白哥",
+		Callback = function()
+
+		end
+	})    
+
+	Tab:AddButton({
+		Name = "加密人：白玖",
+		Callback = function()
+
+		end
+	})    
+
+	Tab:AddButton({
+		Name = "复制作者QQ号",
+		Callback = function()
+			setclipboard("3555086492")
+		end
+	})    
+
+	Tab:AddButton({
+		Name = "复制QQ群",
+		Callback = function()
+			setclipboard("927596504")
+		end
+	})    
+
+	Player:Textbox({
+		Name = "移动速度",
+		Default = "",
+		TextDisappear = true,
+		Callback = function(Value)
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+		end	 
+	})
+
+	Player:Textbox({
+		Name = "跳跃高度",
+		Default = "",
+		TextDisappear = true,
+		Callback = function(Value)
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+		end	 
+	})
+
+	Player:Textbox({
+		Name = "重力设置",
+		Default = "",
+		TextDisappear = true,
+		Callback = function(Value)
+			game.Workspace.Gravity = Value
+		end
+	})
+
+	Player:Toggle("踏空行走", "", false, function(Value)
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Float'))()
+	end)
+
+	Player:Toggle("夜视", "", false, function(Value)
+		Light = Value
+		game.RunService.Stepped:Connect(function()
+			if Light then
+				game.Lighting.Ambient = Color3.new(1, 1, 1)
+			else
+				game.Lighting.Ambient = Color3.new(0, 0, 0)
+			end
+		end)
+
+	end)
+
+	Player:AddButton({
+		Name = "飞行",
+		Callback = function()
+			loadstring(game:HttpGet("https://ayangwp.cn/api/v3/file/get/8322/%E8%85%8A%E9%B8%A1%E9%A3%9E%E8%A1%8C.txt?sign=UrGb_-PBXoFAQkOI6c-ovOSIPkVc3eCYrBlWKldMv8o%3D%3A0"))()
+		end
+	})    
+
+	Player:AddButton({
+		Name = "爬墙",
+		Callback = function()
+			loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+		end
+	})    
+
+	Player:AddButton({
+		Name = "甩飞",
+		Callback = function()
+			loadstring(game:HttpGet("https://pastebin.com/raw/GnvPVBEi"))()
+		end
+	})    
+
+	local Player = Player1:section("其他",true)
+
+	Player:Toggle("无敌（FE）", "", false, function(Value)
+		loadstring(game:HttpGet('https://pastebin.com/raw/H3RLCWWZ'))()
+	end)
+
+	Player:AddButton({
+		Name = "飞车",
+		Callback = function()
+			loadstring(game:HttpGet("https://pastebin.com/raw/MHE1cbWF"))()
+		end
+	})
+
+	Player:Toggle("最强透视", "", false, function(Value)
+		loadstring(game:HttpGet("https://pastebin.com/raw/uw2P2fbY"))()
+	end)
+
+	Player:Toggle("穿墙", "", false, function(Value)
+		if Value then
+			Noclip = true
+			Stepped = game.RunService.Stepped:Connect(function()
+				if Noclip == true then
+					for a, b in pairs(game.Workspace:GetChildren()) do
+						if b.Name == game.Players.LocalPlayer.Name then
+							for i, v in pairs(game.Workspace[game.Players.LocalPlayer.Name]:GetChildren()) do
+								if v:IsA("BasePart") then
+									v.CanCollide = false
+								end
+							end
+						end
+					end
+				else
+					Stepped:Disconnect()
+				end
+			end)
+		else
+			Noclip = false
+		end
+	end)
+
+	Player:AddButton({
+		Name = "转",
+		Callback = function()
+			loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+		end
+	})
+
+	Player:AddButton({
+		Name = "隐身甩人",
+		Callback = function()
+			loadstring(game:HttpGet("https://pastebin.com/raw/kenX0BHc"))()
+		end
+	})
+
+	Player:AddButton({
+		Name = "键盘",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
+	})
+
+	Player:AddButton({
+		Name = "鼠标",
+		Callback = function()
+			loadstring(game:HttpGet(('https://pastefy.ga/V75mqzaz/raw'),true))()
+		end
+	})
+
+	Player:AddButton({
+		Name = "隐身",
+		Callback = function()
+			loadstring(game:HttpGet("https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)",true))()
+		end
+	})
+
+	Player:AddButton({
+		Name = "跟踪玩家",
+		Callback = function()
+			loadstring(game:HttpGet("https://pastebin.com/raw/F9PNLcXk"))()
+		end
+	})
+
+	Player:AddButton({
+		Name = "吸玩家",
+		Callback = function()
+			loadstring(game:HttpGet('https://pastebin.com/raw/hQSBGsw2'))()
+		end    
+	})
+
+	Player:AddButton({
+		Name = "伪名说话",
+		Callback = function()
+			loadstring(game:HttpGet(('https://pastefy.ga/zCFEwaYq/raw'),true))()
+		end 
+	})
+
+	local Player1 = window:Tab("DOORS",'6035145364')
+	local Player = Player1:section("脚本",true)
+
+	Player:AddButton({
+		Name = "点击即用",
+		Callback = function()
+
+		end 
+	})
+
+	Player:AddButton({
+		Name = "白脚本doors破解版",
+		Callback = function()
+			game.Players.LocalPlayer:Kick("哈哈，被骗了吧")
+		end 
+	})
+
+	local Player = Player1:section("功能",true)
+
+	Player:AddButton({
+		Name = "十字架",
+		Callback = function()
+			loadstring(game:HttpGet('https://pastebin.com/raw/ibbWwU6q'))()
+		end
+	})
+
+	Player:AddButton({
+		Name = "吸铁石",
+		Callback = function()
+
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/MagnetByNerd.lua"))()
+		end
+	})
+	Player:AddButton({
+		Name = "剪刀",
+		Callback = function()
+
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/shears_done.lua"))()
+		end
+	})    
+	Player:AddButton({
+		Name = "激光枪",
+		Callback = function()
+
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Laser%20Gun"))()
+		end
+	})
+	Player:AddButton({
+		Name = "夜视仪",
+		Callback = function()
+
+			_G.OnShop = trueloadstring(game:HttpGet('https://raw.githubusercontent.com/DeividComSono/Scripts/main/Scanner.lua'))()
+		end
+	})    
+
+	Player:AddButton({
+		Name = "能量罐",
+		Callback = function()
+
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/cbhlyy/lyycbh/main/nengliangtiao"))()
+		end
+	})   
+	Player:AddButton({
+		Name = "紫色手电筒（在电梯购买东西的时候使用）",
+		Callback = function()
+
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Purple%20Flashlight"))()
+		end
+	})  
+
+	local Tab = Window:MakeTab({
+		Name = "蜂群",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+
+	Tab:AddButton({
+		Name = "点击即用",
+		Callback = function()
+
+		end    
+	})
+
+	local Tab = Window:MakeTab({
+		Name = "NEXTBOTS",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+
+	Tab:AddButton({
+		Name = "点击即用",
+		Callback = function()
+
+		end
+	})
+else
+
+	game.Players.LocalPlayer:Kick("输入踢除说的话")
+
+end

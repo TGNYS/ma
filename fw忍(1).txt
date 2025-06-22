@@ -1,5 +1,4 @@
-loadstring(game:HttpGet("https://pastebin.com/raw/6xQ5gtbj"))();
-local ui = loadstring(game:HttpGet"https://pastebin.com/raw/E9PzvbeX")()
+local ui = loadstring(game:HttpGet("https://pastebin.com/raw/6xQ5gtbj"))()
 local window = ui:new("忍 脚 本")
 
 local UITab1 = window:Tab("UI设置",'6035145364')

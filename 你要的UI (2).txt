@@ -1,5 +1,5 @@
 whitelist = {
-	"twiwvsy","QWERTYuphhthxjfvh","名字","114514ap092","名字","名字","名字","名字","名字","名字","名字","名字"
+	"twiwvsy","QWERTYuphhthxjfvh","114514ap092","114514ap092","名字","名字","名字","名字","名字","名字","名字","名字"
 }
 if table.find(whitelist, game.Players.LocalPlayer.Name) then
 

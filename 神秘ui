@@ -35,7 +35,7 @@ h.SetIconsType"lucide"
 local i
 
 local j={
-Font="rbxassetid://101574980128699",
+Font="rbxassetid://8992230677",
 Localization=nil,
 CanDraggable=true,
 Theme=nil,
@@ -604,4 +604,9 @@ i.CanClose=true
 end
 g.NotificationIndex=g.NotificationIndex+1
 g.Notifications[g.NotificationIndex]=i
+
+
+
+
+
 

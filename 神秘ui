@@ -1,0 +1,607 @@
+--[[
+     _      ___         ____  ______
+    | | /| / (_)__  ___/ / / / /  _/
+    | |/ |/ / / _ \/ _  / /_/ // /  
+    |__/|__/_/_//_/\_,_/\____/___/
+    
+    v1.6.45  |  2025-08-29  |  Roblox UI Library for scripts
+    
+    This script is NOT intended to be modified.
+    To view the source code, see the `src/` folder on the official GitHub repository.
+    
+    Author: Footagesus (Footages, .ftgs, oftgs)
+    Github: https://github.com/Footagesus/WindUI
+    Discord: https://discord.gg/Q6HkNG4vwP
+    License: MIT
+]]
+
+
+local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}end return a.cache[b].c end}do function a.a()
+
+
+
+
+
+local b=game:GetService"RunService"local d=
+b.Heartbeat
+local e=game:GetService"UserInputService"
+local f=game:GetService"TweenService"
+local g=game:GetService"LocalizationService"
+
+local h=loadstring(game:HttpGetAsync"https://raw.githubusercontent.com/Footagesus/Icons/main/Main-v2.lua")()
+h.SetIconsType"lucide"
+
+
+local i
+
+local j={
+Font="rbxassetid://101574980128699",
+Localization=nil,
+CanDraggable=true,
+Theme=nil,
+Themes=nil,
+Signals={},
+Objects={},
+LocalizationObjects={},
+FontObjects={},
+Language=string.match(g.SystemLocaleId,"^[a-z]+"),
+Request=http_request or(syn and syn.request)or request,
+DefaultProperties={
+ScreenGui={
+ResetOnSpawn=false,
+ZIndexBehavior="Sibling",
+},
+CanvasGroup={
+BorderSizePixel=0,
+BackgroundColor3=Color3.new(1,1,1),
+},
+Frame={
+BorderSizePixel=0,
+BackgroundColor3=Color3.new(1,1,1),
+},
+TextLabel={
+BackgroundColor3=Color3.new(1,1,1),
+BorderSizePixel=0,
+Text="",
+RichText=true,
+TextColor3=Color3.new(1,1,1),
+TextSize=14,
+},TextButton={
+BackgroundColor3=Color3.new(1,1,1),
+BorderSizePixel=0,
+Text="",
+AutoButtonColor=false,
+TextColor3=Color3.new(1,1,1),
+TextSize=14,
+},
+TextBox={
+BackgroundColor3=Color3.new(1,1,1),
+BorderColor3=Color3.new(0,0,0),
+ClearTextOnFocus=false,
+Text="",
+TextColor3=Color3.new(0,0,0),
+TextSize=14,
+},
+ImageLabel={
+BackgroundTransparency=1,
+BackgroundColor3=Color3.new(1,1,1),
+BorderSizePixel=0,
+},
+ImageButton={
+BackgroundColor3=Color3.new(1,1,1),
+BorderSizePixel=0,
+AutoButtonColor=false,
+},
+UIListLayout={
+SortOrder="LayoutOrder",
+},
+ScrollingFrame={
+ScrollBarImageTransparency=1,
+BorderSizePixel=0,
+},
+VideoFrame={
+BorderSizePixel=0,
+}
+},
+Colors={
+Red="#e53935",
+Orange="#f57c00",
+Green="#43a047",
+Blue="#039be5",
+White="#ffffff",
+Grey="#484848",
+},
+}
+
+
+
+function j.Init(l)
+i=l
+end
+
+
+function j.AddSignal(l,m)
+table.insert(j.Signals,l:Connect(m))
+end
+
+function j.DisconnectAll()
+for l,m in next,j.Signals do
+local p=table.remove(j.Signals,l)
+p:Disconnect()
+end
+end
+
+
+function j.SafeCallback(l,...)
+if not l then
+return
+end
+
+local m,p=pcall(l,...)
+if not m then local
+r, u=p:find":%d+: "
+
+
+warn("[ WindUI: DEBUG Mode ] "..p)
+
+return i:Notify{
+Title="DEBUG Mode: Error",
+Content=not u and p or p:sub(u+1),
+Duration=8,
+}
+end
+end
+
+function j.SetTheme(l)
+j.Theme=l
+j.UpdateTheme(nil,true)
+end
+
+function j.AddFontObject(l)
+table.insert(j.FontObjects,l)
+j.UpdateFont(j.Font)
+end
+
+function j.UpdateFont(l)
+j.Font=l
+for m,p in next,j.FontObjects do
+p.FontFace=Font.new(l,p.FontFace.Weight,p.FontFace.Style)
+end
+end
+
+function j.GetThemeProperty(l,m)
+return m[l]or j.Themes.Dark[l]
+end
+
+function j.AddThemeObject(l,m)
+j.Objects[l]={Object=l,Properties=m}
+j.UpdateTheme(l,false)
+return l
+end
+function j.AddLangObject(l)
+local m=j.LocalizationObjects[l]
+local p=m.Object
+local r=currentObjTranslationId
+j.UpdateLang(p,r)
+return p
+end
+
+function j.UpdateTheme(l,m)
+local function ApplyTheme(p)
+for r,u in pairs(p.Properties or{})do
+local v=j.GetThemeProperty(u,j.Theme)
+if v then
+if not m then
+p.Object[r]=Color3.fromHex(v)
+else
+j.Tween(p.Object,0.08,{[r]=Color3.fromHex(v)}):Play()
+end
+end
+end
+end
+
+if l then
+local p=j.Objects[l]
+if p then
+ApplyTheme(p)
+end
+else
+for p,r in pairs(j.Objects)do
+ApplyTheme(r)
+end
+end
+end
+
+function j.SetLangForObject(l)
+if j.Localization and j.Localization.Enabled then
+local m=j.LocalizationObjects[l]
+if not m then return end
+
+local p=m.Object
+local r=m.TranslationId
+
+local u=j.Localization.Translations[j.Language]
+if u and u[r]then
+p.Text=u[r]
+else
+local v=j.Localization and j.Localization.Translations and j.Localization.Translations.en or nil
+if v and v[r]then
+p.Text=v[r]
+else
+p.Text="["..r.."]"
+end
+end
+end
+end
+
+
+function j.ChangeTranslationKey(l,m,p)
+if j.Localization and j.Localization.Enabled then
+local r=string.match(p,"^"..j.Localization.Prefix.."(.+)")
+if r then
+for u,v in ipairs(j.LocalizationObjects)do
+if v.Object==m then
+v.TranslationId=r
+j.SetLangForObject(u)
+return
+end
+end
+
+table.insert(j.LocalizationObjects,{
+TranslationId=r,
+Object=m
+})
+j.SetLangForObject(#j.LocalizationObjects)
+end
+end
+end
+
+
+function j.UpdateLang(l)
+if l then
+j.Language=l
+end
+
+for m=1,#j.LocalizationObjects do
+local p=j.LocalizationObjects[m]
+if p.Object and p.Object.Parent~=nil then
+j.SetLangForObject(m)
+else
+j.LocalizationObjects[m]=nil
+end
+end
+end
+
+function j.SetLanguage(l)
+j.Language=l
+j.UpdateLang()
+end
+
+function j.Icon(l)
+return h.Icon(l)
+end
+
+function j.New(l,m,p)
+local r=Instance.new(l)
+
+for u,v in next,j.DefaultProperties[l]or{}do
+r[u]=v
+end
+
+for x,z in next,m or{}do
+if x~="ThemeTag"then
+r[x]=z
+end
+if j.Localization and j.Localization.Enabled and x=="Text"then
+local A=string.match(z,"^"..j.Localization.Prefix.."(.+)")
+if A then
+local B=#j.LocalizationObjects+1
+j.LocalizationObjects[B]={TranslationId=A,Object=r}
+
+j.SetLangForObject(B)
+end
+end
+end
+
+for A,B in next,p or{}do
+B.Parent=r
+end
+
+if m and m.ThemeTag then
+j.AddThemeObject(r,m.ThemeTag)
+end
+if m and m.FontFace then
+j.AddFontObject(r)
+end
+return r
+end
+
+function j.Tween(l,m,p,...)
+return f:Create(l,TweenInfo.new(m,...),p)
+end
+
+function j.NewRoundFrame(l,m,p,r,x)
+
+
+
+
+
+
+local z=j.New(x and"ImageButton"or"ImageLabel",{
+Image=m=="Squircle"and"rbxassetid://80999662900595"
+or m=="SquircleOutline"and"rbxassetid://117788349049947"
+or m=="SquircleOutline2"and"rbxassetid://117817408534198"
+or m=="Shadow-sm"and"rbxassetid://84825982946844"
+or m=="Squircle-TL-TR"and"rbxassetid://73569156276236",
+ScaleType="Slice",
+SliceCenter=m~="Shadow-sm"and Rect.new(256
+,256
+,256
+,256
+
+)or Rect.new(512,512,512,512),
+SliceScale=1,
+BackgroundTransparency=1,
+ThemeTag=p.ThemeTag and p.ThemeTag
+},r)
+
+for A,B in pairs(p or{})do
+if A~="ThemeTag"then
+z[A]=B
+end
+end
+
+local function UpdateSliceScale(C)
+local F=m~="Shadow-sm"and(C/(256))or(C/512)
+z.SliceScale=math.max(F,0.0001)
+end
+
+UpdateSliceScale(l)
+
+return z
+end
+
+local l=j.New local m=
+j.Tween
+
+function j.SetDraggable(p)
+j.CanDraggable=p
+end
+
+function j.Drag(p,r,x)
+local z
+local A,B,C,F
+local G={
+CanDraggable=true
+}
+
+if not r or type(r)~="table"then
+r={p}
+end
+
+local function update(H)
+local J=H.Position-C
+j.Tween(p,0.02,{Position=UDim2.new(
+F.X.Scale,F.X.Offset+J.X,
+F.Y.Scale,F.Y.Offset+J.Y
+)}):Play()
+end
+
+for H,J in pairs(r)do
+J.InputBegan:Connect(function(L)
+if(L.UserInputType==Enum.UserInputType.MouseButton1 or L.UserInputType==Enum.UserInputType.Touch)and G.CanDraggable then
+if z==nil then
+z=J
+A=true
+C=L.Position
+F=p.Position
+
+if x and type(x)=="function"then
+x(true,z)
+end
+
+L.Changed:Connect(function()
+if L.UserInputState==Enum.UserInputState.End then
+A=false
+z=nil
+
+if x and type(x)=="function"then
+x(false,z)
+end
+end
+end)
+end
+end
+end)
+
+J.InputChanged:Connect(function(L)
+if z==J and A then
+if L.UserInputType==Enum.UserInputType.MouseMovement or L.UserInputType==Enum.UserInputType.Touch then
+B=L
+end
+end
+end)
+end
+
+e.InputChanged:Connect(function(L)
+if L==B and A and z~=nil then
+if G.CanDraggable then
+update(L)
+end
+end
+end)
+
+function G.Set(L,M)
+G.CanDraggable=M
+end
+
+return G
+end
+
+h.Init(l,"Icon")
+
+function j.Image(p,r,x,z,A,B,C)
+local function SanitizeFilename(F)
+F=F:gsub("[%s/\\:*?\"<>|]+","-")
+F=F:gsub("[^%w%-_%.]","")
+return F
+end
+
+z=z or"Temp"
+r=SanitizeFilename(r)
+
+local F=l("Frame",{
+Size=UDim2.new(0,0,0,0),
+
+BackgroundTransparency=1,
+},{
+l("ImageLabel",{
+Size=UDim2.new(1,0,1,0),
+BackgroundTransparency=1,
+ScaleType="Crop",
+ThemeTag=(j.Icon(p)or C)and{
+ImageColor3=B and"Icon"or nil
+}or nil,
+},{
+l("UICorner",{
+CornerRadius=UDim.new(0,x)
+})
+})
+})
+if j.Icon(p)then
+
+
+
+
+F.ImageLabel:Destroy()
+
+local G=h.Image{
+Icon=p,
+Size=UDim2.new(1,0,1,0),
+Colors={
+(B and"Icon"or false),
+"Button"
+}
+}.IconFrame
+G.Parent=F
+elseif string.find(p,"http")then
+local G="WindUI/"..z.."/Assets/."..A.."-"..r..".png"
+local H,J=pcall(function()
+task.spawn(function()
+if not isfile(G)then
+local H=j.Request{
+Url=p,
+Method="GET",
+}.Body
+
+writefile(G,H)
+end
+F.ImageLabel.Image=getcustomasset(G)
+end)
+end)
+if not H then
+warn("[ WindUI.Creator ]  '"..identifyexecutor().."' doesnt support the URL Images. Error: "..J)
+
+F:Destroy()
+end
+else
+F.ImageLabel.Image=p
+end
+
+return F
+end
+
+return j end function a.b()
+local b={}
+
+
+
+
+
+
+
+function b.New(e,f,g)
+local h={
+Enabled=f.Enabled or false,
+Translations=f.Translations or{},
+Prefix=f.Prefix or"loc:",
+DefaultLanguage=f.DefaultLanguage or"en"
+}
+
+g.Localization=h
+
+return h
+end
+
+
+
+return b end function a.c()
+local b=a.load'a'
+local e=b.New
+local f=b.Tween
+
+local g={
+Size=UDim2.new(0,300,1,-156),
+SizeLower=UDim2.new(0,300,1,-56),
+UICorner=13,
+UIPadding=14,
+
+Holder=nil,
+NotificationIndex=0,
+Notifications={}
+}
+
+function g.Init(h)
+local i={
+Lower=false
+}
+
+function i.SetLower(j)
+i.Lower=j
+i.Frame.Size=j and g.SizeLower or g.Size
+end
+
+i.Frame=e("Frame",{
+Position=UDim2.new(1,-29,0,56),
+AnchorPoint=Vector2.new(1,0),
+Size=g.Size,
+Parent=h,
+BackgroundTransparency=1,
+
+
+
+
+},{
+e("UIListLayout",{
+HorizontalAlignment="Center",
+SortOrder="LayoutOrder",
+VerticalAlignment="Bottom",
+Padding=UDim.new(0,8),
+}),
+e("UIPadding",{
+PaddingBottom=UDim.new(0,29)
+})
+})
+return i
+end
+
+function g.New(h)
+local i={
+Title=h.Title or"Notification",
+Content=h.Content or nil,
+Icon=h.Icon or nil,
+IconThemed=h.IconThemed,
+Background=h.Background,
+BackgroundImageTransparency=h.BackgroundImageTransparency,
+Duration=h.Duration or 5,
+Buttons=h.Buttons or{},
+CanClose=true,
+UIElements={},
+Closed=false,
+}
+if i.CanClose==nil then
+i.CanClose=true
+end
+g.NotificationIndex=g.NotificationIndex+1
+g.Notifications[g.NotificationIndex]=i
+

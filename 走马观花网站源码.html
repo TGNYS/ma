@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>走马观花X - 为免费而生</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #600000, #b30000, #ff0000);
+            background-size: 400% 400%;
+            animation: gradientBG 8s ease infinite;
+            color: white;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.7) 90%);
+            z-index: 1;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 4.5rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.9), 0 0 30px rgba(255, 0, 0, 0.7);
+            position: relative;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.8);
+            }
+        }
+        
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #ff0000, #ffcc00, #ff0000, transparent);
+            border-radius: 50%;
+        }
+        
+        .subtitle {
+            font-size: 2.2rem;
+            color: #ffcc00;
+            letter-spacing: 4px;
+            margin-top: 25px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+        }
+        
+        .code-container {
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #ff0000;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6), inset 0 0 20px rgba(255, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: left;
+        }
+        
+        .code-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff0000, #ffcc00, #ff0000);
+            animation: borderSlide 3s linear infinite;
+        }
+        
+        @keyframes borderSlide {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 300% 0%; }
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ff3333;
+        }
+        
+        .code-title {
+            font-size: 1.4rem;
+            color: #ffcc00;
+            font-weight: 600;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(45deg, #ff3333, #b30000);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn:hover {
+            background: linear-gradient(45deg, #ff4d4d, #cc0000);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+        
+        .code-content {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #e6e6e6;
+            overflow-x: auto;
+            padding: 15px;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        
+        .code-line {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #ff3333;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .floating {
+            position: absolute;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.1);
+            z-index: 2;
+            animation: float 15s linear infinite;
+            user-select: none;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        .instructions {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            border-left: 4px solid #ffcc00;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #ffcc00;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.8rem;
+                letter-spacing: 4px;
+            }
+            
+            .subtitle {
+                font-size: 1.6rem;
+            }
+            
+            .code-container {
+                padding: 20px;
+            }
+            
+            .code-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 浮动背景元素 -->
+    <div class="overlay"></div>
+    <div class="floating">走马观花X</div>
+    <div class="floating" style="left: 10%; animation-delay: -2s;">为免费而生</div>
+    <div class="floating" style="left: 20%; animation-delay: -5s;">免费脚本</div>
+    <div class="floating" style="left: 30%; animation-delay: -7s;">ROBLOX</div>
+    <div class="floating" style="left: 40%; animation-delay: -10s;">永久免费</div>
+    <div class="floating" style="left: 50%; animation-delay: -3s;">2586125757</div>
+    <div class="floating" style="left: 60%; animation-delay: -8s;">游戏辅助</div>
+    <div class="floating" style="left: 70%; animation-delay: -12s;">复制代码</div>
+    <div class="floating" style="left: 80%; animation-delay: -6s;">走马观花GUI</div>
+    <div class="floating" style="left: 90%; animation-delay: -9s;">免费工具</div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>走马观花X</h1>
+            <p class="subtitle">为免费而生</p>
+        </header>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <div class="code-title">走马观花X 脚本代码</div>
+                <button class="copy-btn" id="copyBtn">
+                    <i class="fas fa-copy"></i> 复制代码
+                </button>
+            </div>
+            
+            <div class="code-content">
+                <div class="code-line">_ZOUMAGUANHUAGUI='走马观花X'</div>
+                <div class="code-line">loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\88\80\84\105\86\75\87\120"))()</div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> 使用说明</h3>
+            <ul>
+                <li>复制上方代码到您的脚本执行器</li>
+                <li>确保您使用的是最新版本的执行器</li>
+                <li>该脚本永久免费，不会收取任何费用</li>
+                <li>遇到问题请联系QQ: 2586125757</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>走马观花X © 2023 | 永久免费脚本工具 | 为游戏玩家提供极致体验</p>
+        </div>
+    </div>
+    
+    <script>
+        // 创建更多浮动元素
+        function createFloatingElements() {
+            const container = document.body;
+            const texts = [
+                "走马观花X", "免费脚本", "ROBLOX", "游戏辅助", 
+                "2586125757", "复制代码", "永久免费", "为免费而生",
+                "GUI工具", "脚本执行", "免费使用", "为免费而生",
+                "GUI工具", "脚本执行", "免费使用", "无广告"
+            ];
+            
+            for (let i = 0; i < 20; i++) {
+                const float = document.createElement('div');
+                float.className = 'floating';
+                float.textContent = texts[Math.floor(Math.random() * texts.length)];
+                float.style.left = `${Math.random() * 100}%`;
+                float.style.animationDelay = `-${Math.random() * 15}s`;
+                float.style.fontSize = `${14 + Math.random() * 10}px`;
+                float.style.opacity = 0.05 + Math.random() * 0.1;
+                container.appendChild(float);
+            }
+        }
+        
+        // 复制代码功能
+        function copyCode() {
+            const code = `_ZOUMAGUANHUAGUI='走马观花X'\nloadstring(game:HttpGet("\\104\\116\\116\\112\\115\\58\\47\\47\\112\\97\\115\\116\\101\\98\\105\\110\\46\\99\\111\\109\\47\\114\\97\\119\\47\\88\\80\\84\\105\\86\\75\\87\\120"))()`;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-check"></i> 已复制!';
+                btn.style.background = 'linear-gradient(45deg, #00b300, #008000)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = 'linear-gradient(45deg, #ff3333, #b30000)';
+                }, 2000);
+            });
+        }
+        
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingElements();
+            document.getElementById('copyBtn').addEventListener('click', copyCode);
+        });
+    </script>
+</body>
+</html>
